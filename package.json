@@ -1,0 +1,41 @@
+{
+ "name": "syncviz-backend",
+ "version": "1.0.0",
+ "description": "3D file sharing app",
+ "main": "index.js",
+ "scripts": {
+  "dev": "nodemon cross-env NODE_ENV=development server.js",
+  "build": "react-scripts build --prefix ./client",
+  "start": "node server.js",
+  "heroku-postbuild": "cross-env NPM_CONFIG_PRODUCTION=false npm i --prefix ./client && npm run build --prefix ./client"
+ },
+ "author": "Karl-Johan",
+ "license": "ISC",
+ "dependencies": {
+  "@babel/preset-env": "^7.19.0",
+  "@socket.io/cluster-adapter": "^0.2.0",
+  "@socket.io/mongo-adapter": "^0.2.1",
+  "@socket.io/redis-adapter": "^7.2.0",
+  "@socket.io/redis-emitter": "^4.1.1",
+  "@socket.io/sticky": "^1.0.1",
+  "aws-sdk": "^2.1204.0",
+  "babel-preset-env": "^1.7.0",
+  "body-parser": "^1.20.0",
+  "cors": "^2.8.5",
+  "cross-env": "^7.0.3",
+  "dotenv-flow": "^3.2.0",
+  "express": "^4.18.1",
+  "mongodb": "^4.9.0",
+  "mongoose": "^6.5.3",
+  "multer": "^1.4.5-lts.1",
+  "node-schedule": "^2.1.0",
+  "redis": "^4.3.0",
+  "serve-favicon": "^2.5.0",
+  "socket.io": "^4.5.1",
+  "socket.io-stream": "^0.9.1"
+ },
+ "engines": {
+  "node": "v16.5.0",
+  "npm": "8.18.0"
+ }
+}
