@@ -18,7 +18,9 @@ const MODELS = [
     name: "Mini City",
     description: "Model of mini city",
     icon: <GiModernCity />,
-    url: "https://project-syncviz.herokuapp.com/static/uploads_files_3701280_A+miniature+model+of+the+city.glb",
+    url: `${
+      new URL(window.location.href).hostname
+    }/static/uploads_files_3701280_A+miniature+model+of+the+city.glb`,
   },
   {
     name: "Pirate Fort",
