@@ -14,20 +14,20 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 
 const MODELS = [
-  {
-    name: "Mini City",
-    description: "Model of mini city",
-    icon: <GiModernCity />,
-    url: `${
-      new URL(window.location.href).hostname
-    }/static/uploads_files_3701280_A+miniature+model+of+the+city.glb`,
-  },
-  {
-    name: "Pirate Fort",
-    description: "Detailed model of pirate fort",
-    icon: <GiPirateFlag />,
-    url: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
-  },
+  // {
+  //   name: "Mini City",
+  //   description: "Model of mini city",
+  //   icon: <GiModernCity />,
+  //   url: `${
+  //     new URL(window.location.href).hostname
+  //   }/static/uploads_files_3701280_A+miniature+model+of+the+city.glb`,
+  // },
+  // {
+  //   name: "Pirate Fort",
+  //   description: "Detailed model of pirate fort",
+  //   icon: <GiPirateFlag />,
+  //   url: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
+  // },
 ];
 
 export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
@@ -73,7 +73,6 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
           <Box sx={{ width: mobile ? "70vw" : "30vw", maxHeight: "50vh" }}>
             <GridLayout>
               <Selection
-                premium
                 data={{
                   name: "Upload 3D File",
                   description: "Upload your own 3D environment",
