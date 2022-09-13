@@ -62,13 +62,7 @@ export default function Viewer() {
         </IconButton>
       );
     });
-    return () => {
-      socket.removeAllListeners();
-    };
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [socket]);
 
-  useEffect(() => {
     socket.on("connect", () => {
       setDisplayTimer(true);
       setConnectionStatus(

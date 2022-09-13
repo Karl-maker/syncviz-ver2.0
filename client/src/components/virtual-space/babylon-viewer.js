@@ -40,11 +40,13 @@ export default function BabylonViewer(props) {
     babylonSceneRef.current.mobile = mobile;
 
     babylonSceneRef.current.scene.clearColor = new BABYLON.Color4(
-      0,
-      0,
-      0,
-      0.0000000000000001
+      theme.palette.mode === "dark" ? 0.2 : 0.93,
+      theme.palette.mode === "dark" ? 0.29 : 0.94,
+      theme.palette.mode === "dark" ? 0.37 : 0.95,
+      1
     );
+
+    //theme.palette.mode === "dark" ? "#34495e" : "#ecf0f1"34495e
 
     babylonSceneRef.current.initializeCamera({ mobile, vr });
     await babylonScene.loadScene(modelUrl, { setProgress });
@@ -119,9 +121,7 @@ export default function BabylonViewer(props) {
       return () => {
         scene.getEngine().dispose();
 
-        if (window) {
-          window.removeEventListener("resize", resize);
-        }
+        if (window) window.removeEventListener("resize", resize);
       };
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
