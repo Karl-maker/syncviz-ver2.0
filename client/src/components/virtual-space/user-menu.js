@@ -211,7 +211,18 @@ export default function ChatRoomComponent({
           </IconButton>
         )}
         {virtualSpace.link && (
-          <IconButton target="_blank" href={virtualSpace.link}>
+          <IconButton
+            onClick={() => {
+              function windowOpen(url, specs) {
+                if (!url.match(/^https?:\/\//i) || !url.match(/^http?:\/\//i)) {
+                  url = "https://" + url;
+                }
+                return window.open(url, specs);
+              }
+
+              windowOpen(virtualSpace.link, "_blank");
+            }}
+          >
             <BiLink />
           </IconButton>
         )}
