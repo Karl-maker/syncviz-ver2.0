@@ -16,17 +16,17 @@ const NextButton = () => {
     >
       <Button
         onClick={() => {
-          setIsOpen(false);
-        }}
-      >
-        End Tour
-      </Button>
-      <Button
-        onClick={() => {
           setCurrentStep((current) => current + 1);
         }}
       >
-        Next
+        CONTINUE
+      </Button>
+      <Button
+        onClick={() => {
+          setIsOpen(false);
+        }}
+      >
+        End
       </Button>
     </div>
   );
