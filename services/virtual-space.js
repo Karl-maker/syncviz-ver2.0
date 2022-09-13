@@ -10,6 +10,7 @@ const { checkIfValidHashtag } = require("../utils/hashtag-check");
 const {
  default: targetsParser,
 } = require("babel-preset-env/lib/targets-parser");
+const Record = require("../models/record");
 const re = /(?:\.([^.]+))?$/;
 
 class VirtualSpace {
@@ -117,6 +118,14 @@ class VirtualSpace {
    { new: true }
   );
 
+  try {
+   // Record it
+   await Record.findOneAndUpdate(
+    { virtual_room_id: id },
+    { $inc: { views: 1 } }
+   );
+  } catch (err) {}
+
   // Initialize Chat
 
   this.initializeChat();
@@ -223,6 +232,12 @@ class VirtualSpace {
     { new: true }
    );
 
+   // Record it
+   await Record.findOneAndUpdate(
+    { virtual_room_id: this._id },
+    { virtual_room: new_virtualspace }
+   );
+
    this._description = new_virtualspace.description;
    this._link = new_virtualspace.link;
    this._hashtags = new_virtualspace.hashtags;
@@ -234,14 +249,30 @@ class VirtualSpace {
 
  async create({ creator_id, description, username, user_theme, code, url }) {
   // Creation Logic
+  let virtual_space = null;
   try {
-   let virtual_space = await VirtualSpaceModel.create({
+   virtual_space = await VirtualSpaceModel.create({
     host: creator_id,
     user: { username, theme: user_theme },
     code,
     description,
    });
+  } catch (err) {
+   throw err;
+  }
 
+  try {
+   // Record it
+   await Record.create({
+    virtual_room: virtual_space,
+    views: 0,
+    virtual_room_id: virtual_space._id,
+   });
+  } catch (err) {
+   throw err;
+  }
+
+  try {
    this._description = virtual_space.description;
    this._creator_id = creator_id;
    this._time_limit = virtual_space.time_limit;
