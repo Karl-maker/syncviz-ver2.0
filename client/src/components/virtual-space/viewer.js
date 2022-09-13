@@ -300,8 +300,21 @@ export default function Viewer() {
                   {info.link ? (
                     <IconButton
                       color="primary"
-                      target="_blank"
-                      href={info.link}
+                      onClick={() => {
+                        // link
+
+                        function windowOpen(url, specs) {
+                          if (
+                            !url.match(/^https?:\/\//i) ||
+                            !url.match(/^http?:\/\//i)
+                          ) {
+                            url = "https://" + url;
+                          }
+                          return window.open(url, specs);
+                        }
+
+                        windowOpen(info.link, "_blank");
+                      }}
                       sx={{ marginTop: "15px" }}
                     >
                       <BiLink />

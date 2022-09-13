@@ -11,7 +11,10 @@ function PaperComponent(props) {
   return (
     <div>
       <Paper
-        sx={{ bgcolor: theme.palette.mode === "dark" ? "" : "text.tertiary" }}
+        sx={{
+          bgcolor: theme.palette.mode === "dark" ? "" : "text.tertiary",
+          borderRadius: "15px",
+        }}
         {...props}
       />
     </div>

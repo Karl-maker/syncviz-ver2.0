@@ -6,7 +6,7 @@ import {
   Backdrop,
 } from "@mui/material";
 import Selection from "./environment-selections";
-import { GiPirateFlag, GiModernCity } from "react-icons/gi";
+//import { GiPirateFlag, GiModernCity } from "react-icons/gi";
 import MEDIA from "../../utils/constants/media";
 import { useRef } from "react";
 import GridLayout from "../../template/layout/grid-layout";

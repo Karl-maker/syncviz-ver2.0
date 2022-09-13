@@ -175,10 +175,10 @@ export default class Scene {
     rect1.width = "20px";
     rect1.height = "20px";
     rect1.cornerRadius = 20;
-    rect1.color = fontColor;
+    rect1.color = backgroundColor;
     //rect1.adaptWidthToChildren = true;
-    rect1.thickness = 2;
-    rect1.background = backgroundColor;
+    rect1.thickness = 0.1;
+    rect1.background = fontColor;
     advancedTexture.addControl(rect1);
     rect1.linkOffsetY = -0;
     rect1.linkWithMesh(plane);
