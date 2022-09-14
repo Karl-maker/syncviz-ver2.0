@@ -17,7 +17,7 @@ export default function EndMetaverseRoom({ virtualSpace, open, setOpen }) {
             variant="filled"
             onClick={() => {
               virtualSpace.end();
-              navigate("/");
+              setOpen(false);
             }}
           >
             End
