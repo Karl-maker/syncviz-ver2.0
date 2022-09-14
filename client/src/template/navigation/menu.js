@@ -24,7 +24,7 @@ import { FaInfo } from "react-icons/fa";
 import { FiMail, FiHome } from "react-icons/fi";
 import { AiOutlinePhone } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
-import { RiSurveyFill } from "react-icons/ri";
+import { RiSurveyLine } from "react-icons/ri";
 
 /*
 
@@ -51,7 +51,7 @@ export default function MenuBar({ text_color }) {
       action: () => navigate(PAGES.METAVERSE_FEED),
     },
     {
-      label: "Create",
+      label: "Start Demo ",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
       action: () => {
@@ -59,17 +59,18 @@ export default function MenuBar({ text_color }) {
         navigate(0);
       },
     },
-    {
-      label: "Feedback",
-      icon: <RiSurveyFill />,
-      info: "Give us feedback",
-      action: () => window.open(URLS.feedback_survey, "_blank"),
-    },
+
     {
       label: "About",
       icon: <FaInfo />,
       info: "Learn more about us here",
       action: () => navigate(PAGES.ABOUT),
+    },
+    {
+      label: "Feedback",
+      icon: <RiSurveyLine />,
+      info: "Give us feedback",
+      action: () => window.open(URLS.feedback_survey, "_blank"),
     },
   ];
 
