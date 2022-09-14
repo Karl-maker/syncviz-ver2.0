@@ -98,7 +98,7 @@ class VirtualSpace {
   this._namespace.to(this._id).emit("link", {
    title: "Feedback",
    content:
-    "For many years companies, artists, freelancers and hobbyists have used 3D modeling to create detailed, accurate virtual replicas of their ideas, concepts and products. However due to the complex nature of 3D files and models most have been limited to sharing their creations though video and images, which is limiting and takes significant time. Help us understand you better and take part in our survey",
+    "For many years companies, artists, freelancers and hobbyists have used 3D modeling to create detailed, accurate virtual replicas of their ideas, concepts and products. However due to the complex nature of 3D files and models most have been limited to sharing their creations though video and images, which is limiting and takes significant time. Help us understand how we should help to solve this issue by taking part in our survey.",
    url: "https://qy1dv96qc5r.typeform.com/to/PHOgyVlt",
   });
  }
