@@ -9,15 +9,8 @@ const BACKEND = config.API.LIVE_SERVER;
 
 class VirtualSpace {
   constructor(id, { attendee, name, link, description, url, hashtags }) {
-    try {
-      this._id =
-        id || JSON.parse(localStorage.getItem("current_room")).id || null;
-      this._code =
-        JSON.parse(localStorage.getItem("current_room")).code || null;
-    } catch (err) {
-      this._id = id;
-      this._code = null;
-    }
+    this._id = id;
+    this._code = null;
 
     this._description = description || "";
     this._attendee = attendee || { username: "Guest" };
@@ -201,8 +194,8 @@ class VirtualSpace {
   }
 
   end() {
-    this.clean();
     this._socket.emit("delete", { placeholder: "ending" });
+    this.clean();
   }
 
   clean() {
@@ -238,7 +231,12 @@ class VirtualSpace {
     this._manage = true;
   }
 
-  manageVirtualRoom() {
+  manageVirtualRoom({ id, code }) {
+    if (id && code) {
+      this._id = id;
+      this._code = code;
+    }
+
     this._socket.emit("manage", { id: this._id, code: this._code });
   }
 

@@ -13,6 +13,16 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
   const [select, setSelect] = useState({ x: 0, y: 0, z: 0 });
   const [tag, setTag] = useState(false);
   const { setIsOpen } = useTour();
+
+  // Local Storage
+
+  const [current, setCurrent] = useLocalStorage(
+    `current_room`,
+    JSON.stringify({
+      id: "",
+      code: "",
+    })
+  );
   const [history, setHistory] = useLocalStorage(
     `${manage ? "manage" : "viewer"}_history`,
     JSON.stringify({
@@ -35,8 +45,11 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
     socket.on("connect", () => {
       if (!manage) {
         virtualSpace.join();
-      } else if (virtualSpace.id) {
-        virtualSpace.manageVirtualRoom();
+      } else if (JSON.parse(current).id && JSON.parse(current).code) {
+        virtualSpace.manageVirtualRoom({
+          code: JSON.parse(current).code,
+          id: JSON.parse(current).id,
+        });
       } else {
         virtualSpace.create();
       }
