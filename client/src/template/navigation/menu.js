@@ -16,6 +16,7 @@ import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
 import { ColorModeContext } from "../theme/provider";
 import PAGES from "../../utils/constants/page-names";
+import URLS from "../../utils/constants/url";
 
 // Icons
 
@@ -23,6 +24,7 @@ import { FaInfo } from "react-icons/fa";
 import { FiMail, FiHome } from "react-icons/fi";
 import { AiOutlinePhone } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
+import { RiSurveyFill } from "react-icons/ri";
 
 /*
 
@@ -56,6 +58,12 @@ export default function MenuBar({ text_color }) {
         navigate(PAGES.CREATE_METAVERSE);
         navigate(0);
       },
+    },
+    {
+      label: "Feedback",
+      icon: <RiSurveyFill />,
+      info: "Give us feedback",
+      action: () => window.open(URLS.feedback_survey, "_blank"),
     },
     {
       label: "About",
