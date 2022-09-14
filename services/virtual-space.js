@@ -86,6 +86,23 @@ class VirtualSpace {
   this._master = master;
  }
 
+ get namespace() {
+  return this._namespace;
+ }
+
+ set namespace(namespace) {
+  this._namespace = namespace;
+ }
+
+ sendSurvey() {
+  this._namespace.to(this._id).emit("link", {
+   title: "Feedback",
+   content:
+    "For many years companies, artists, freelancers and hobbyists have used 3D modeling to create detailed, accurate virtual replicas of their ideas, concepts and products. However due to the complex nature of 3D files and models most have been limited to sharing their creations though video and images, which is limiting and takes significant time. Help us understand you better and take part in our survey",
+   url: "https://qy1dv96qc5r.typeform.com/to/PHOgyVlt",
+  });
+ }
+
  async join(id) {
   // return message
   // Do database actions first..
@@ -197,6 +214,7 @@ class VirtualSpace {
  }
 
  async end() {
+  this.sendSurvey();
   const file = new FileUpload(this._id);
   let virtual = null;
   try {

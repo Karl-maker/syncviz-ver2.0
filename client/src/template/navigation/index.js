@@ -10,6 +10,7 @@ import { useTheme } from "@mui/material/styles";
 import MEDIA from "../../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
 import SearchVirtualPage from "../../pages/search-virtual-space";
+import About from "../../pages/about";
 
 export default function PageNavigation() {
   const theme = useTheme();
@@ -69,19 +70,20 @@ export default function PageNavigation() {
           <Box
             sx={{
               width: "100%",
-              justifyContent: "start",
+              justifyContent: "space-between",
               marginTop: 0,
               padding: 3,
               display: "flex",
             }}
           >
-            <Examples height={400} />
-            <div style={{ marginLeft: "30px", marginTop: "40px" }}>
+            <div style={{ marginTop: "40px" }}>
               <Typography variant="h3">Project Syncviz</Typography>
               <Typography
                 variant="subtitle1"
                 sx={{ marginTop: "40px", marginBottom: "20px" }}
               >
+                Syncviz is an online platform that makes the Metaverse
+                accessible to all persons. <br />
                 Share 3D files with clients and friends, have a trail with our
                 demo
               </Typography>
@@ -96,6 +98,7 @@ export default function PageNavigation() {
                 Start Demo
               </Button>
             </div>
+            <Examples height={400} />
           </Box>
         )}
       </>
@@ -124,6 +127,7 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<SearchVirtualPage />}
       />
+      <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
     </Routes>
   );
 }

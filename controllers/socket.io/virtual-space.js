@@ -23,6 +23,8 @@ module.exports = virtualSpaceHandler = async (io) => {
   socket.username = User.username;
   VirtualSpace.socket = socket;
   VirtualSpace.attendee = User;
+  VirtualSpace.attendee = User;
+  VirtualSpace.namespace = NameSpace;
 
   // Return current user data
 

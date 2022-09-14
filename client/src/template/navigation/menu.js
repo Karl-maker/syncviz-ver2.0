@@ -7,6 +7,9 @@ import {
   Divider,
   Switch,
   Grid,
+  Chip,
+  Avatar,
+  Typography,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useContext } from "react";
@@ -16,9 +19,10 @@ import PAGES from "../../utils/constants/page-names";
 
 // Icons
 
-import { FaQuestion, FaInfo } from "react-icons/fa";
+import { FaInfo } from "react-icons/fa";
+import { FiMail, FiHome } from "react-icons/fi";
+import { AiOutlinePhone } from "react-icons/ai";
 import { BiAddToQueue } from "react-icons/bi";
-import { RiEarthFill } from "react-icons/ri";
 
 /*
 
@@ -39,6 +43,12 @@ export default function MenuBar({ text_color }) {
 
   const ITEM_LIST = [
     {
+      label: "Home",
+      icon: <FiHome />,
+      info: "Go to the main page",
+      action: () => navigate(PAGES.METAVERSE_FEED),
+    },
+    {
       label: "Create",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
@@ -48,22 +58,10 @@ export default function MenuBar({ text_color }) {
       },
     },
     {
-      label: "Feed",
-      icon: <RiEarthFill />,
-      info: "Viewer to start 3D video conference",
-      action: () => navigate(PAGES.METAVERSE_FEED),
-    },
-    {
       label: "About",
       icon: <FaInfo />,
       info: "Learn more about us here",
       action: () => navigate(PAGES.ABOUT),
-    },
-    {
-      label: "Help",
-      icon: <FaQuestion />,
-      info: "Get help to learn more about our service",
-      action: () => navigate(PAGES.HELP),
     },
   ];
 
@@ -121,6 +119,42 @@ export default function MenuBar({ text_color }) {
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
 
+  const Contact = ({ icon, label }) => {
+    return (
+      <div style={{ display: "flex" }}>
+        <Avatar
+          sizes="small"
+          src="/"
+          sx={{
+            width: 25,
+            height: 25,
+            color: "#ffff",
+            marginRight: "5px",
+            bgcolor: "#3498db",
+          }}
+          alt={label}
+        >
+          {icon}
+        </Avatar>
+        <Chip
+          label={
+            <Typography
+              variant="body2"
+              sx={{
+                //color: "#ffff",
+                fontSize: 10,
+              }}
+            >
+              {label}
+            </Typography>
+          }
+          size="small"
+          sx={{ height: "100%", bgcolor: "transparent" }}
+        />
+      </div>
+    );
+  };
+
   return (
     <>
       <List>
@@ -140,12 +174,31 @@ export default function MenuBar({ text_color }) {
       </List>
       <Divider />
       <List>
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "space-around",
+            alignContent: "center",
+          }}
+        >
+          <Contact
+            label={"karljohanbailey98@gmail.com"}
+            icon={<FiMail size={10} />}
+          />
+          <Contact
+            label={"+1 (868) 742-2549"}
+            icon={<AiOutlinePhone size={10} />}
+          />
+        </div>
+      </List>
+
+      <List>
         {
           // Toggle button
         }
         <Grid
           container
-          direction="row"
+          direction="colu"
           justifyContent="center"
           alignItems="center"
         >

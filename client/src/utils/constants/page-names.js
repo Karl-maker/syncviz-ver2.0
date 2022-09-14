@@ -4,7 +4,9 @@ const constants = {
   METAVERSE_ROOM: "/metaverse-room",
   METAVERSE_SEARCH: "/metaverse-rooms",
   ABOUT: "/about",
+  CONTACT: "/contact",
   HELP: "/help",
+  SURVEY: "/survey",
 };
 
 export default constants;

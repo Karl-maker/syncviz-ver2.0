@@ -1,12 +1,15 @@
-import { Box } from "@mui/material";
-import { useEffect, useContext } from "react";
+import { Box, Typography, Button } from "@mui/material";
+import { useEffect, useContext, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { VirtualSpaceContext } from "../../widgets/virtual-space";
 import { UserAccountContext } from "../../context/user";
 import Viewer from "./viewer";
+import DialogButton from "../../template/buttons/dialog";
 
 export default function VirtualSpaceComponent() {
   const { user, save } = useContext(UserAccountContext);
+  const [link, setLink] = useState({ url: null, title: null, content: null });
+  const [popup, setPopUp] = useState(false);
   const navigate = useNavigate();
   const { socket, virtualSpace } = useContext(VirtualSpaceContext);
 
@@ -21,6 +24,11 @@ export default function VirtualSpaceComponent() {
 
     socket.on("current-user", (user) => {
       virtualSpace.attendee.socket_id = user.socket_id;
+    });
+
+    socket.on("link", ({ url, title, content }) => {
+      setLink({ url, title, content });
+      setPopUp(true);
     });
 
     socket.on("attributes", ({ virtual_space }) => {
@@ -51,6 +59,7 @@ export default function VirtualSpaceComponent() {
     });
 
     return () => {
+      socket.off("link");
       socket.off("attributes");
       socket.off("updates");
       socket.off("current-user");
@@ -77,6 +86,32 @@ export default function VirtualSpaceComponent() {
       }}
     >
       <Viewer />
+      <DialogButton
+        title={link.title}
+        content={<Typography>{link.content}</Typography>}
+        actions={
+          <>
+            <Button
+              variant="filled"
+              onClick={() => {
+                if (window) window.open(link.url, "_blank");
+              }}
+            >
+              Do Survey
+            </Button>
+            <Button
+              variant="filled"
+              onClick={() => {
+                setPopUp(false);
+              }}
+            >
+              Cancel
+            </Button>
+          </>
+        }
+        open={popup}
+        setOpen={setPopUp}
+      />
     </Box>
   );
 }

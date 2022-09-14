@@ -22,12 +22,11 @@ const MODELS = [
   //     new URL(window.location.href).hostname
   //   }/static/uploads_files_3701280_A+miniature+model+of+the+city.glb`,
   // },
-  // {
-  //   name: "Pirate Fort",
-  //   description: "Detailed model of pirate fort",
-  //   icon: <GiPirateFlag />,
-  //   url: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
-  // },
+  {
+    name: "Pirate Fort",
+    description: "Detailed model of pirate fort",
+    url: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
+  },
 ];
 
 export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
