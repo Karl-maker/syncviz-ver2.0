@@ -46,7 +46,7 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
     socket.on("connect", () => {
       if (!manage) {
         virtualSpace.join();
-      } else if (!JSON.parse(current).id && !JSON.parse(current).code) {
+      } else if (JSON.parse(current).id && JSON.parse(current).code) {
         // reconnect to previous room
         virtualSpace.manageVirtualRoom({
           code: JSON.parse(current).code,
