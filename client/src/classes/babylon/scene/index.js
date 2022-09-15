@@ -48,25 +48,17 @@ export default class Scene {
 
   async initializeCamera({ x, y, z, mobile, vr }) {
     x = x || 0;
-    y = y || 5;
-    z = z || -10;
+    y = y || 0;
+    z = z || 0;
 
     this._mobile = mobile;
     this._camera = new Camera({ scene: this._scene });
 
-    if (!mobile) {
-      this._camera.initializeFree("camera1", {
-        x,
-        y,
-        z,
-      });
-    } else {
-      this._camera.initializeArc("camera1", {
-        x,
-        y,
-        z,
-      });
-    }
+    this._camera.initializeArc("camera1", {
+      x,
+      y,
+      z,
+    });
 
     this._scene.clipPlane = new BABYLON.Plane(0, 0, 0, 0);
     this._camera.instance.useFramingBehavior = true;
@@ -92,17 +84,29 @@ export default class Scene {
         loadedPercent = Math.floor(dlCount * 100.0) / 100.0;
       }
       if (setProgress) setProgress(loadedPercent);
+    }).then((scene) => {
+      return scene;
     });
+  }
+
+  setArcCameraFraming() {
+    let framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
+    //framingBehavior.framingTime = 0.5;
+    framingBehavior.elevationReturnTime = -1;
+
+    let worldExtends = this._scene.getWorldExtends();
+    this._scene.activeCamera.lowerRadiusLimit = null;
+
+    framingBehavior.zoomOnBoundingInfo(worldExtends.min, worldExtends.max);
   }
 
   getParentMesh(meshes) {
     let parent = new BABYLON.Mesh("parent", this._scene);
 
-    var arrayLength = meshes.length;
-    for (let i = 0; i < arrayLength; i++) {
-      meshes[i].parent = parent;
-      console.log(this.getParentSize(meshes[i]));
-    }
+    meshes.forEach((mesh) => {
+      mesh.parent = parent;
+      this.getParentSize(mesh);
+    });
 
     return parent;
   }

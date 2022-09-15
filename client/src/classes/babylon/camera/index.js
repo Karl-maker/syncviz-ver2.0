@@ -38,14 +38,14 @@ export default class Camera {
   initializeArc(name, position) {
     this._instance = new ArcRotateCamera(
       name || "camera1",
-      1,
-      0.8,
+      -Math.PI / 2,
+      Math.PI / 2.5,
       10,
       new Vector3(position.x, position.y, position.z),
       this._scene
     );
 
-    this._instance.angularSensibility = -this._instance.angularSensibility;
+    //this._instance.angularSensibility = -this._instance.angularSensibility;
 
     return;
   }

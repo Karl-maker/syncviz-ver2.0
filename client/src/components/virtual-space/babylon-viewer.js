@@ -6,7 +6,6 @@ import { useTheme } from "@mui/material/styles";
 import SceneBabylon from "../../classes/babylon/scene";
 
 export default function BabylonViewer(props) {
-  let babylonScene;
   const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const reactCanvas = useRef(null);
@@ -50,6 +49,8 @@ export default function BabylonViewer(props) {
 
     babylonSceneRef.current.initializeCamera({ mobile, vr });
     await babylonScene.loadScene(modelUrl, { setProgress });
+
+    babylonScene.setArcCameraFraming();
     // This attaches the camera to the canvas
     babylonScene.scene.activeCamera.attachControl(
       babylonScene.canvas,

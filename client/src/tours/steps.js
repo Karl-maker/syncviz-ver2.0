@@ -69,7 +69,9 @@ const Instructions = () => {
               sx={{ color: "#2d3436", marginTop: "5px" }}
               variant="caption"
             >
-              <span style={{ fontWeight: "bold" }}>Drag with Two Fingers</span>{" "}
+              <span style={{ fontWeight: "bold" }}>
+                Drag + Hold with Two Fingers
+              </span>{" "}
               to move sideways
             </Typography>
           </li>
@@ -77,6 +79,34 @@ const Instructions = () => {
       ) : (
         <ul>
           <li>
+            <Typography
+              sx={{ color: "#2d3436", marginTop: "5px" }}
+              variant="caption"
+            >
+              <span style={{ fontWeight: "bold" }}>Scroll</span> to move forward
+              / backward
+            </Typography>
+          </li>
+
+          <li>
+            <Typography
+              sx={{ color: "#2d3436", marginTop: "5px" }}
+              variant="caption"
+            >
+              <span style={{ fontWeight: "bold" }}>Right Click + Drag</span> to
+              rotate
+            </Typography>
+          </li>
+          <li>
+            <Typography
+              sx={{ color: "#2d3436", marginTop: "5px" }}
+              variant="caption"
+            >
+              <span style={{ fontWeight: "bold" }}>Left Click + Drag</span> to
+              move sideways
+            </Typography>
+          </li>
+          {/* <li>
             <Typography
               sx={{ color: "#2d3436", marginTop: "5px" }}
               variant="caption"
@@ -95,7 +125,7 @@ const Instructions = () => {
               </span>{" "}
               to rotate
             </Typography>
-          </li>
+          </li> */}
         </ul>
       )}
     </>
