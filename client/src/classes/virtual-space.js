@@ -18,6 +18,7 @@ class VirtualSpace {
     this._init = false;
     this._manage = false;
     this._chat_room = null;
+    this._ended = false;
     this._time_limit = 0;
     this._host = new User("", "");
     this._url = url || null;
@@ -131,6 +132,14 @@ class VirtualSpace {
     this._manage = manage;
   }
 
+  get ended() {
+    return this._ended;
+  }
+
+  set ended(ended) {
+    this._ended = ended;
+  }
+
   get time_limit() {
     return this._time_limit;
   }
@@ -194,6 +203,7 @@ class VirtualSpace {
   }
 
   end() {
+    this._ended = true;
     this._socket.emit("delete", { placeholder: "ending" });
     this.clean();
   }
