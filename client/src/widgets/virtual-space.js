@@ -16,7 +16,6 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
   const [select, setSelect] = useState({ x: 0, y: 0, z: 0 });
   const [tag, setTag] = useState(false);
   const [disconnectionDialog, setDisconnectionDialog] = useState(false);
-  const [block, setBlock] = useState(false);
   const { setIsOpen } = useTour();
 
   // Local Storage
@@ -48,12 +47,6 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
   useEffect(() => {
     socket.on("connect", () => {
-      if (block && manage) {
-        // need to release block
-        setDisconnectionDialog(true);
-        return;
-      }
-
       if (!manage) {
         virtualSpace.join();
       } else if (JSON.parse(current).id && JSON.parse(current).code) {
@@ -70,7 +63,7 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
     socket.on("disconnect", () => {
       if (manage && !virtualSpace.ended) {
-        setBlock(true);
+        setDisconnectionDialog(true);
       }
     });
 
