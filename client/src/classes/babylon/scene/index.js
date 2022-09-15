@@ -90,11 +90,11 @@ export default class Scene {
   }
 
   setArcCameraFraming() {
-    let framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
+    var framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
     //framingBehavior.framingTime = 0.5;
     framingBehavior.elevationReturnTime = -1;
 
-    let worldExtends = this._scene.getWorldExtends();
+    var worldExtends = this._scene.getWorldExtends();
     this._scene.activeCamera.lowerRadiusLimit = null;
 
     worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
@@ -153,7 +153,7 @@ export default class Scene {
   }
 
   addTag(data, index, { backgroundColor, fontColor, setInfo, setInfoOpen }) {
-    let plane = BABYLON.Mesh.CreateSphere("gui-position", 2, this._scene);
+    var plane = BABYLON.Mesh.CreateSphere("gui-position", 2, this._scene);
 
     if (data.position) {
       // Move the sphere upward 1/2 its height
@@ -167,9 +167,9 @@ export default class Scene {
     }
 
     // GUI
-    let advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    let rect1 = GUI.Button.CreateSimpleButton("button1", "");
+    var rect1 = GUI.Button.CreateSimpleButton("button1", "");
     // rect1.width = this._mobile ? 0.4 : 0.2;
     // rect1.height = "30px";
     // rect1.cornerRadius = 20;
@@ -191,15 +191,13 @@ export default class Scene {
     rect1.linkOffsetY = -0;
     rect1.linkWithMesh(plane);
 
-    const camera = this._camera;
+    const camera = this._scene.activeCamera;
 
     rect1.onPointerUpObservable.add(function () {
-      try {
-        camera.instance.position = plane.position;
-      } catch (err) {}
-
       setInfo(data);
       setInfoOpen(true);
+
+      camera.setPosition(plane.position);
     });
 
     // var icon = GUI.Button.CreateSimpleButton("button", "");
@@ -240,5 +238,30 @@ export default class Scene {
     // advancedTexture.addControl(line);
     // line.linkWithMesh(plane);
     // line.connectedControl = rect1;
+  }
+
+  createAnimation({ property, from, to }) {
+    const FRAMES_PER_SECOND = 60;
+    const ease = new BABYLON.CubicEase();
+    ease.setEasingMode(BABYLON.EasingFunction.EASINGMODE_EASEINOUT);
+
+    const animation = BABYLON.Animation.CreateAnimation(
+      property,
+      BABYLON.Animation.ANIMATIONTYPE_FLOAT,
+      FRAMES_PER_SECOND,
+      ease
+    );
+    animation.setKeys([
+      {
+        frame: 0,
+        value: from,
+      },
+      {
+        frame: 100,
+        value: to,
+      },
+    ]);
+
+    return animation;
   }
 }

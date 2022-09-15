@@ -256,6 +256,10 @@ class VirtualSpace {
     this._socket.emit("add-tag", data);
   }
 
+  getTags() {
+    this._socket.emit("get-tags", { placeholder: 1 });
+  }
+
   deleteTag(id) {
     this._socket.emit("delete-tag", {
       tag_id: id,

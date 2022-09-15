@@ -117,6 +117,13 @@ export default function Viewer() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [select]);
 
+  useEffect(() => {
+    if (progress === "100") {
+      virtualSpace.getTags();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progress]);
+
   const BabylonViewer = useMemo(
     () =>
       virtualSpace.url ? (
@@ -132,6 +139,7 @@ export default function Viewer() {
           setInfo={setInfo}
           setInfoOpen={setInfoOpen}
           vr={vr}
+          progress={progress}
           tags={tags}
         />
       ) : (

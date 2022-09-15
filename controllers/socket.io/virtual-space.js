@@ -43,6 +43,7 @@ module.exports = virtualSpaceHandler = async (io) => {
   socket.on("update-environment-url", updateVirtualSpaceEnvironmentURL);
   socket.on("add-tag", addTagToVirtualSpace);
   socket.on("delete-tag", deleteTagFromVirtualSpace);
+  socket.on("get-tags", getTags);
 
   // WebRTC
 
@@ -97,6 +98,16 @@ module.exports = virtualSpaceHandler = async (io) => {
     .catch((err) => errorHandler(err, socket));
   }
 
+  function getTags() {
+   VirtualSpace.getAllTags()
+    .then((tags) => {
+     socket.emit("add-tags", tags);
+    })
+    .catch((err) => {
+     return [];
+    });
+  }
+
   function manageVirtualSpace({ id, code }) {
    const virtual_space_id = id;
 
@@ -121,14 +132,6 @@ module.exports = virtualSpaceHandler = async (io) => {
       socket.emit("3D", {
        url: virtual_space.model.url,
        message: `Loading ${virtual_space.model.name}`,
-      });
-
-     VirtualSpace.getAllTags()
-      .then((tags) => {
-       socket.emit("add-tags", tags);
-      })
-      .catch((err) => {
-       return [];
       });
 
      // Notify current attendees who has joined
@@ -168,14 +171,6 @@ module.exports = virtualSpaceHandler = async (io) => {
       socket.emit("3D", {
        url: virtual_space.model.url,
        message: `Loading ${virtual_space.model.name}`,
-      });
-
-     VirtualSpace.getAllTags()
-      .then((tags) => {
-       socket.emit("add-tags", tags);
-      })
-      .catch((err) => {
-       return [];
       });
 
      // Notify current attendees who has joined
