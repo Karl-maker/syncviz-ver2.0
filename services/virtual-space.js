@@ -390,6 +390,7 @@ class VirtualSpace {
 
  static async updateURL(id, url, name) {
   try {
+   await TagModel.deleteMany({ virtual_room_id: id });
    await VirtualSpaceModel.findOneAndUpdate(
     { _id: id },
     {

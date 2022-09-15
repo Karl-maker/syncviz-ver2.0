@@ -3,7 +3,7 @@ const FileUpload = require("../../services/file-upload");
 const VirtualSpace = require("../../services/virtual-space");
 const router = express.Router();
 const constants = require("../../constants");
-const Tag = require("../../models/tag");
+
 const TOP_URL = "/file";
 
 function route() {
@@ -71,9 +71,6 @@ function route() {
          fileUpload.getUrl(),
          fileUpload.name
         );
-       })
-       .then(() => {
-        Tag.deleteMany({ virtual_room_id: fileUpload.virtual_room_id });
        })
        .then(() => {
         io
