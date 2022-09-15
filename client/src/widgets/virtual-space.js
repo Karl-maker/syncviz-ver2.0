@@ -46,7 +46,12 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
     socket.on("connect", () => {
       if (!manage) {
         virtualSpace.join();
-      } else if (JSON.parse(current).id && JSON.parse(current).code) {
+
+        return;
+      }
+
+      if (!window) return;
+      if (JSON.parse(current).id && JSON.parse(current).code) {
         // reconnect to previous room
         virtualSpace.manageVirtualRoom({
           code: JSON.parse(current).code,
@@ -63,7 +68,7 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
       socket.disconnect();
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [window]);
 
   // Join as soon as rendered
 
