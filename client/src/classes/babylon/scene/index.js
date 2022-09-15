@@ -97,6 +97,10 @@ export default class Scene {
     let worldExtends = this._scene.getWorldExtends();
     this._scene.activeCamera.lowerRadiusLimit = null;
 
+    worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
+    worldExtends.min.y = worldExtends.min.y - worldExtends.min.y * 0.8;
+    worldExtends.min.z = worldExtends.min.z - worldExtends.min.z * 0.8;
+
     framingBehavior.zoomOnBoundingInfo(worldExtends.min, worldExtends.max);
   }
 
@@ -149,7 +153,7 @@ export default class Scene {
   }
 
   addTag(data, index, { backgroundColor, fontColor, setInfo, setInfoOpen }) {
-    var plane = BABYLON.Mesh.CreateSphere("gui-position", 2, this._scene);
+    let plane = BABYLON.Mesh.CreateSphere("gui-position", 2, this._scene);
 
     if (data.position) {
       // Move the sphere upward 1/2 its height
@@ -163,9 +167,9 @@ export default class Scene {
     }
 
     // GUI
-    var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    let advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
 
-    var rect1 = GUI.Button.CreateSimpleButton("button1", "");
+    let rect1 = GUI.Button.CreateSimpleButton("button1", "");
     // rect1.width = this._mobile ? 0.4 : 0.2;
     // rect1.height = "30px";
     // rect1.cornerRadius = 20;
@@ -179,15 +183,21 @@ export default class Scene {
     rect1.width = "20px";
     rect1.height = "20px";
     rect1.cornerRadius = 20;
-    rect1.color = backgroundColor;
+    rect1.color = fontColor;
     //rect1.adaptWidthToChildren = true;
-    rect1.thickness = 0.1;
-    rect1.background = fontColor;
+    rect1.thickness = 3;
+    rect1.background = "transparent";
     advancedTexture.addControl(rect1);
     rect1.linkOffsetY = -0;
     rect1.linkWithMesh(plane);
 
+    const camera = this._camera;
+
     rect1.onPointerUpObservable.add(function () {
+      try {
+        camera.instance.position = plane.position;
+      } catch (err) {}
+
       setInfo(data);
       setInfoOpen(true);
     });

@@ -48,12 +48,12 @@ export default function BabylonViewer(props) {
     //theme.palette.mode === "dark" ? "#34495e" : "#ecf0f1"34495e
 
     babylonSceneRef.current.initializeCamera({ mobile, vr });
-    await babylonScene.loadScene(modelUrl, { setProgress });
+    await babylonSceneRef.current.loadScene(modelUrl, { setProgress });
 
-    babylonScene.setArcCameraFraming();
+    babylonSceneRef.current.setArcCameraFraming();
     // This attaches the camera to the canvas
-    babylonScene.scene.activeCamera.attachControl(
-      babylonScene.canvas,
+    babylonSceneRef.current.scene.activeCamera.attachControl(
+      babylonSceneRef.current.canvas,
       true,
       true,
       mobile ? 1 : 0
@@ -130,6 +130,7 @@ export default function BabylonViewer(props) {
 
   useEffect(() => {
     if (!tags) return;
+
     if (babylonSceneRef.current && babylonSceneRef) {
       // Add tag / render
       tags.forEach((tag) => {
