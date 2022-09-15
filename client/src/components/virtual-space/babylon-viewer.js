@@ -123,7 +123,8 @@ export default function BabylonViewer(props) {
       }
 
       return () => {
-        scene.getEngine().dispose();
+        if (babylonSceneRef.current)
+          babylonSceneRef.current.scene.getEngine().dispose();
 
         if (window) window.removeEventListener("resize", resize);
       };
@@ -148,6 +149,7 @@ export default function BabylonViewer(props) {
 
       setPreviousTags(tags);
     }
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, fullScreen, refresh, theme.palette.mode, vr, progress]);
 

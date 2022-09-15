@@ -97,9 +97,9 @@ export default class Scene {
     var worldExtends = this._scene.getWorldExtends();
     this._scene.activeCamera.lowerRadiusLimit = null;
 
-    worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
-    worldExtends.min.y = worldExtends.min.y - worldExtends.min.y * 0.8;
-    worldExtends.min.z = worldExtends.min.z - worldExtends.min.z * 0.8;
+    // worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
+    // worldExtends.min.y = worldExtends.min.y - worldExtends.min.y * 0.8;
+    // worldExtends.min.z = worldExtends.min.z - worldExtends.min.z * 0.8;
 
     framingBehavior.zoomOnBoundingInfo(worldExtends.min, worldExtends.max);
   }
