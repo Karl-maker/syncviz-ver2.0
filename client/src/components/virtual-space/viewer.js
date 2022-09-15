@@ -34,6 +34,7 @@ export default function Viewer() {
   const [vr, setVR] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [displayChat, toggleDisplayChat] = useState(false);
+  const [sceneReady, setSceneReady] = useState(false);
   const [chatFocus, toggleChatFocus] = useState(false);
   const [host, setHost] = useState(null);
   const [tags, setTags] = useState([]);
@@ -118,11 +119,11 @@ export default function Viewer() {
   }, [select]);
 
   useEffect(() => {
-    if (progress === "100") {
+    if (progress === "100" && sceneReady) {
       virtualSpace.getTags();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [progress]);
+  }, [progress, sceneReady]);
 
   const BabylonViewer = useMemo(
     () =>
@@ -141,6 +142,8 @@ export default function Viewer() {
           vr={vr}
           progress={progress}
           tags={tags}
+          sceneReady={sceneReady}
+          setSceneReady={setSceneReady}
         />
       ) : (
         <div

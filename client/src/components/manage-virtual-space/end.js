@@ -1,10 +1,7 @@
 import { Typography, Button } from "@mui/material";
 import DialogButton from "../../template/buttons/dialog";
-import { useNavigate } from "react-router-dom";
 
 export default function EndMetaverseRoom({ virtualSpace, open, setOpen }) {
-  const navigate = useNavigate();
-
   return (
     <DialogButton
       title="End Metaverse Room"

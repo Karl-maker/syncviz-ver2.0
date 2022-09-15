@@ -65,7 +65,7 @@ export default class Scene {
     this._camera.instance.setTarget(BABYLON.Vector3.Zero());
   }
 
-  async loadScene(url, { setProgress }) {
+  async loadScene(url, { setProgress }, callback) {
     var light = new BABYLON.HemisphericLight(
       "light",
       new BABYLON.Vector3(0, 1, 0),
@@ -85,23 +85,26 @@ export default class Scene {
       }
       if (setProgress) setProgress(loadedPercent);
     }).then((scene) => {
+      if (callback) callback(scene);
       return scene;
     });
   }
 
-  setArcCameraFraming() {
-    var framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
+  setArcCameraFraming(callback) {
+    let framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
     //framingBehavior.framingTime = 0.5;
     framingBehavior.elevationReturnTime = -1;
 
-    var worldExtends = this._scene.getWorldExtends();
+    let worldExtends = this._scene.getWorldExtends();
     this._scene.activeCamera.lowerRadiusLimit = null;
+    this._scene.activeCamera.useBouncingBehavior = true;
 
     // worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
     // worldExtends.min.y = worldExtends.min.y - worldExtends.min.y * 0.8;
     // worldExtends.min.z = worldExtends.min.z - worldExtends.min.z * 0.8;
 
     framingBehavior.zoomOnBoundingInfo(worldExtends.min, worldExtends.max);
+    callback();
   }
 
   getParentMesh(meshes) {
@@ -197,7 +200,13 @@ export default class Scene {
       setInfo(data);
       setInfoOpen(true);
 
-      //camera.setTarget(plane);
+      camera.setTarget(
+        new BABYLON.Vector3(
+          plane.position.x,
+          plane.position.y,
+          plane.position.z
+        )
+      );
     });
 
     // var icon = GUI.Button.CreateSimpleButton("button", "");

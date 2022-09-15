@@ -21,7 +21,7 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
   // Local Storage
 
-  const [current, setCurrent] = useLocalStorage(
+  const [current] = useLocalStorage(
     `current_room`,
     JSON.stringify({
       id: "",

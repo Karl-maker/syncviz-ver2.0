@@ -28,6 +28,8 @@ export default function BabylonViewer(props) {
     setSelect,
     setInfo,
     setInfoOpen,
+    setSceneReady,
+    sceneReady,
     tags,
     vr,
     ...rest
@@ -50,10 +52,17 @@ export default function BabylonViewer(props) {
 
     babylonSceneRef.current.initializeCamera({ mobile, vr });
 
-    await babylonSceneRef.current.loadScene(modelUrl, {
-      setProgress,
+    await babylonSceneRef.current.loadScene(
+      modelUrl,
+      {
+        setProgress,
+      },
+      (scene) => {}
+    );
+
+    babylonSceneRef.current.setArcCameraFraming(() => {
+      setSceneReady(true);
     });
-    babylonSceneRef.current.setArcCameraFraming();
     // This attaches the camera to the canvas
     babylonSceneRef.current.scene.activeCamera.attachControl(
       babylonSceneRef.current.canvas,
@@ -134,7 +143,12 @@ export default function BabylonViewer(props) {
 
   useEffect(() => {
     if (!tags) return;
-    if (babylonSceneRef.current && babylonSceneRef && progress === "100") {
+    if (
+      babylonSceneRef.current &&
+      babylonSceneRef &&
+      progress === "100" &&
+      sceneReady
+    ) {
       // Add tag / render
       tags.forEach((tag) => {
         if (!previousTags.includes({ _id: tag._id }))
@@ -151,7 +165,7 @@ export default function BabylonViewer(props) {
     }
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tags, fullScreen, refresh, theme.palette.mode, vr, progress]);
+  }, [tags, fullScreen, refresh, theme.palette.mode, vr, progress, sceneReady]);
 
   return (
     <canvas
