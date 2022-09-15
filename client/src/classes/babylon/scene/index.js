@@ -197,7 +197,7 @@ export default class Scene {
       setInfo(data);
       setInfoOpen(true);
 
-      camera.setPosition(plane.position);
+      //camera.setTarget(plane);
     });
 
     // var icon = GUI.Button.CreateSimpleButton("button", "");
