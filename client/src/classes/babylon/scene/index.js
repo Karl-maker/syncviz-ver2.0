@@ -3,6 +3,7 @@ import * as BABYLON from "@babylonjs/core";
 import * as GUI from "@babylonjs/gui";
 import "@babylonjs/loaders/glTF";
 import "@babylonjs/loaders/OBJ";
+import "@babylonjs/loaders/STL";
 
 export default class Scene {
   constructor(props) {
