@@ -14,31 +14,31 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 
 const MODELS = [
-  {
-    name: "Mini City",
-    description: "Model of mini city",
-    url: `${new URL(window.location.href).hostname}/static/city.glb`,
-  },
-  {
-    name: "Pirate Fort",
-    description: "Detailed model of pirate fort",
-    url: `${new URL(window.location.href).hostname}/static/pirateFort.glb`,
-  },
-  {
-    name: "Seagull",
-    description: "Stylistic seagull model",
-    url: `${new URL(window.location.href).hostname}/static/seagulf.glb`,
-  },
-  {
-    name: "UFO",
-    description: "UFO model",
-    url: `${new URL(window.location.href).hostname}/static/ufo.glb`,
-  },
-  {
-    name: "Aeroplane",
-    description: "Aerobatic plane",
-    url: `${new URL(window.location.href).hostname}/static/aerobatic_plane.glb`,
-  },
+  // {
+  //   name: "Mini City",
+  //   description: "Model of mini city",
+  //   url: `${new URL(window.location.href).hostname}/static/city.glb`,
+  // },
+  // {
+  //   name: "Pirate Fort",
+  //   description: "Detailed model of pirate fort",
+  //   url: `${new URL(window.location.href).hostname}/static/pirateFort.glb`,
+  // },
+  // {
+  //   name: "Seagull",
+  //   description: "Stylistic seagull model",
+  //   url: `${new URL(window.location.href).hostname}/static/seagulf.glb`,
+  // },
+  // {
+  //   name: "UFO",
+  //   description: "UFO model",
+  //   url: `${new URL(window.location.href).hostname}/static/ufo.glb`,
+  // },
+  // {
+  //   name: "Aeroplane",
+  //   description: "Aerobatic plane",
+  //   url: `${new URL(window.location.href).hostname}/static/aerobatic_plane.glb`,
+  // },
 ];
 
 export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
