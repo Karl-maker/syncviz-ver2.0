@@ -44,9 +44,10 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
   useEffect(() => {
     socket.on("connect", () => {
-      let id = JSON.parse(current).id;
-      let code = JSON.parse(current).code;
+      let id = JSON.parse(current).id || virtualSpace.id;
+      let code = JSON.parse(current).code || virtualSpace.code;
 
+      // value is not changing from useLocal
       if (!manage) {
         virtualSpace.join();
       } else if (id && code) {
