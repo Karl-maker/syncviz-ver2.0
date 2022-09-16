@@ -17,38 +17,27 @@ const MODELS = [
   {
     name: "Mini City",
     description: "Model of mini city",
-    icon: <GiModernCity />,
-    url: `${
-      new URL(window.location.href).hostname
-    }/static/city.glb`,
+    url: `${new URL(window.location.href).hostname}/static/city.glb`,
   },
   {
     name: "Pirate Fort",
     description: "Detailed model of pirate fort",
-    url:  `${
-      new URL(window.location.href).hostname
-    }/static/pirateFort.glb`,
+    url: `${new URL(window.location.href).hostname}/static/pirateFort.glb`,
   },
   {
     name: "Seagull",
     description: "Stylistic seagull model",
-    url:  `${
-      new URL(window.location.href).hostname
-    }/static/seagulf.glb`,
+    url: `${new URL(window.location.href).hostname}/static/seagulf.glb`,
   },
   {
     name: "UFO",
     description: "UFO model",
-    url:  `${
-      new URL(window.location.href).hostname
-    }/static/ufo.glb`,
+    url: `${new URL(window.location.href).hostname}/static/ufo.glb`,
   },
   {
     name: "Aeroplane",
     description: "Aerobatic plane",
-    url:  `${
-      new URL(window.location.href).hostname
-    }/static/aerobatic_plane.glb`,,
+    url: `${new URL(window.location.href).hostname}/static/aerobatic_plane.glb`,
   },
 ];
 
