@@ -14,18 +14,41 @@ import { Box } from "@mui/system";
 import { useState } from "react";
 
 const MODELS = [
-  // {
-  //   name: "Mini City",
-  //   description: "Model of mini city",
-  //   icon: <GiModernCity />,
-  //   url: `${
-  //     new URL(window.location.href).hostname
-  //   }/static/uploads_files_3701280_A+miniature+model+of+the+city.glb`,
-  // },
+  {
+    name: "Mini City",
+    description: "Model of mini city",
+    icon: <GiModernCity />,
+    url: `${
+      new URL(window.location.href).hostname
+    }/static/city.glb`,
+  },
   {
     name: "Pirate Fort",
     description: "Detailed model of pirate fort",
-    url: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
+    url:  `${
+      new URL(window.location.href).hostname
+    }/static/pirateFort.glb`,
+  },
+  {
+    name: "Seagull",
+    description: "Stylistic seagull model",
+    url:  `${
+      new URL(window.location.href).hostname
+    }/static/seagulf.glb`,
+  },
+  {
+    name: "UFO",
+    description: "UFO model",
+    url:  `${
+      new URL(window.location.href).hostname
+    }/static/ufo.glb`,
+  },
+  {
+    name: "Aeroplane",
+    description: "Aerobatic plane",
+    url:  `${
+      new URL(window.location.href).hostname
+    }/static/aerobatic_plane.glb`,,
   },
 ];
 
@@ -67,21 +90,21 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
       </Backdrop>
       <DialogButton
         noClickOff
-        title="Select Environment"
+        title="Select Model"
         content={
           <Box sx={{ width: mobile ? "70vw" : "30vw", maxHeight: "50vh" }}>
             <GridLayout>
               <Selection
                 data={{
                   name: "Upload 3D File",
-                  description: "Upload your own 3D environment",
+                  description: "Upload your own 3D model",
                 }}
                 key={0}
                 action={handleClick}
               />
               <input
                 type="file"
-                accept="model/glb, model/gltf, model/babylon"
+                accept="model/glb, model/gltf, model/babylon, model/obj"
                 ref={fileInput}
                 style={{ display: "none" }}
                 onChange={() => {
