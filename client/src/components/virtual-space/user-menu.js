@@ -200,7 +200,7 @@ export default function ChatRoomComponent({
         </IconButton> */}
 
         {/* {manage ? <MicTransmitter /> : <AudioStream />} */}
-        {manage && (
+        {manage && !handleFullScreen.active && (
           <IconButton
             className={classes.VIEWER_TAGS}
             onClick={() => {

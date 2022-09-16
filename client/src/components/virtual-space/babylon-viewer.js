@@ -83,6 +83,10 @@ export default function BabylonViewer(props) {
         adaptToDeviceRatio
       );
 
+      // Set Scene Ready to FALSE
+      setSceneReady(false);
+      setProgress(0);
+
       // Loading Screen
 
       function customLoadingScreen() {}
@@ -132,8 +136,9 @@ export default function BabylonViewer(props) {
       }
 
       return () => {
-        if (babylonSceneRef.current)
+        if (babylonSceneRef.current) {
           babylonSceneRef.current.scene.getEngine().dispose();
+        }
 
         if (window) window.removeEventListener("resize", resize);
       };
@@ -164,8 +169,10 @@ export default function BabylonViewer(props) {
       setPreviousTags(tags);
     }
 
+    return () => {};
+
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [tags, fullScreen, refresh, theme.palette.mode, vr, progress, sceneReady]);
+  }, [tags, progress, sceneReady]);
 
   return (
     <canvas
