@@ -30,7 +30,7 @@ export default function Viewer() {
   const [softRefresh, toggleSoftRefresh] = useState(false);
   const [connectionStatus, setConnectionStatus] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [progress, setProgress] = useState(0);
+  const [progress, setProgress] = useState("0");
   const [vr, setVR] = useState(false);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [displayChat, toggleDisplayChat] = useState(false);
