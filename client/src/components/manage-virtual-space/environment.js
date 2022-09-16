@@ -93,7 +93,7 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
               />
               <input
                 type="file"
-                accept="model/glb, model/gltf, model/babylon, model/obj"
+                accept="model/glb, model/gltf, model/babylon, model/obj, model/stl"
                 ref={fileInput}
                 style={{ display: "none" }}
                 onChange={() => {

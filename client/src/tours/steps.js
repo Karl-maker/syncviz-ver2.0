@@ -480,7 +480,9 @@ const MANAGE = [
           >
             Add your own 3D models, concepts or worlds right here. Currently we
             only support{" "}
-            <span style={{ fontWeight: "bold" }}>.glb, .gltf and .babylon</span>{" "}
+            <span style={{ fontWeight: "bold" }}>
+              glb, gltf, obj, stl and babylon
+            </span>{" "}
             files. We also have other 3D models avaliable for use.
           </Typography>
           <NextButton />
