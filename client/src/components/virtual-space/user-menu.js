@@ -31,6 +31,8 @@ export default function ChatRoomComponent({
   setTag,
   tag,
   setVR,
+  progress,
+  sceneReady,
 }) {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const { socket, virtualSpace, manage } = useContext(VirtualSpaceContext);
@@ -202,6 +204,7 @@ export default function ChatRoomComponent({
         {/* {manage ? <MicTransmitter /> : <AudioStream />} */}
         {manage && !handleFullScreen.active && (
           <IconButton
+            disabled={progress !== "100" || !sceneReady}
             className={classes.VIEWER_TAGS}
             onClick={() => {
               setTag((tag) => !tag);

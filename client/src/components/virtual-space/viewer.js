@@ -246,6 +246,8 @@ export default function Viewer() {
             setTag={setTag}
             tag={tag}
             setVR={setVR}
+            sceneReady={sceneReady}
+            progress={progress}
           />
         </div>
         {
