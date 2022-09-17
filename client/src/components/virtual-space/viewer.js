@@ -10,8 +10,10 @@ import {
   Typography,
   useMediaQuery,
   Button,
+  Chip,
 } from "@mui/material";
 import { BiLinkAlt, BiLink } from "react-icons/bi";
+import { AiFillTag } from "react-icons/ai";
 import ThreeDimentionalViewer from "./babylon-viewer";
 import MEDIA from "../../utils/constants/media";
 import ViewersChip from "./viewers-chip";
@@ -266,7 +268,18 @@ export default function Viewer() {
               value={progress}
             />
           ) : (
-            <>{host}</>
+            <>
+              {!tag ? (
+                host
+              ) : (
+                <Chip
+                  icon={<AiFillTag size={15} />}
+                  label={`${
+                    mobile ? "Press" : "Click"
+                  } where you want to place tag`}
+                />
+              )}
+            </>
           )}
         </div>
         {
