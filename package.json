@@ -4,9 +4,9 @@
  "description": "3D file sharing app",
  "main": "index.js",
  "scripts": {
-  "dev": "nodemon cross-env NODE_ENV=development cluster.js",
+  "dev": "nodemon cross-env NODE_ENV=development server.js",
   "build": "react-scripts build --prefix ./client",
-  "start": "node cluster.js",
+  "start": "node server.js",
   "heroku-postbuild": "cross-env NPM_CONFIG_PRODUCTION=false npm i --prefix ./client && npm run build --prefix ./client"
  },
  "author": "Karl-Johan",
