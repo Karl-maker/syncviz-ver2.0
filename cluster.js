@@ -1,94 +1,87 @@
+const { createAdapter } = require("@socket.io/mongo-adapter");
+const { MongoClient } = require("mongodb");
+
 const http = require("http");
 const express = require("express");
 const cluster = require("cluster");
 const numCPUs = require("os").cpus().length;
 const { setupWorker, setupMaster } = require("@socket.io/sticky");
-const { createAdapter, setupPrimary } = require("@socket.io/cluster-adapter");
-const redis = require("@socket.io/redis-adapter");
-const { createClient } = require("redis");
+
+const clusterAdapter = require("@socket.io/cluster-adapter");
 
 const entryPoint = require("./index");
 const config = require("./config");
 
 // CONSTANTS
 
-const app = express();
-const server = http.createServer(app);
+const server = http.createServer();
 const PORT = config.server.PORT;
-const REDIS_URL = config.redis.URL;
-const pubClient = createClient({ url: REDIS_URL });
-const subClient = pubClient.duplicate();
-const path = require("path");
 
-// Connect any DB...
+const DB = "mydb";
+const COLLECTION = "socket.io-adapter-events";
 
 require("./helper/db")();
+const mongoClient = new MongoClient(config.db.URI, {
+ useUnifiedTopology: true,
+});
 
 (async function () {
  if (cluster.isMaster) {
-  console.log({
-   message: `Master ${process.pid} is running`,
-   timestamp: new Date().toString(),
-  });
+  console.log(`Master ${process.pid} is running`);
 
-  const httpServer = http.createServer();
-
-  // setup sticky sessions
   setupMaster(server, {
    loadBalancingMethod: "least-connection",
   });
 
-  // setup connections between the workers
-  setupPrimary();
+  // connection between workers
 
-  // needed for packets containing buffers (you can ignore it if you only send plaintext objects)
-  // Node.js < 16.0.0
-  cluster.setupMaster({
+  cluster.setupPrimary({
    serialization: "advanced",
   });
 
-  //server.listen(PORT);
+  server.listen(PORT);
 
   for (let i = 0; i < numCPUs; i++) {
    cluster.fork();
   }
 
   cluster.on("exit", (worker) => {
-   console.log({
-    message: `Worker ${worker.process.pid} died`,
-    timestamp: new Date().toString(),
-   });
+   console.log(`Worker ${worker.process.pid} died`);
    cluster.fork();
   });
  } else {
-  console.log({
-   message: `Worker ${process.pid} started`,
-   timestamp: new Date().toString(),
-  });
+  console.log(`Worker ${process.pid} started`);
 
-  const io = require("socket.io")(server, {
+  const app = express();
+  const httpServer = http.createServer(app);
+
+  const io = require("socket.io")(httpServer, {
+   transport: ["websocket"],
    cors: {
-    origin: "*",
+    origin: !config.production.IS_PROD ? "*" : [config.environment.URL],
     methods: ["GET", "POST"],
    },
   });
 
   // use the cluster adapter
 
-  io.adapter(createAdapter());
+  await mongoClient.connect();
 
-  // setup connection with the primary process
+  try {
+   await mongoClient.db(DB).createCollection(COLLECTION, {
+    capped: true,
+    size: 1e6,
+   });
+  } catch (e) {
+   // collection already exists
+  }
+
+  const mongoCollection = mongoClient.db(DB).collection(COLLECTION);
+
+  io.adapter(createAdapter(mongoCollection));
+
   setupWorker(io);
 
-  // Wrap index.js
-
-  Promise.all([pubClient.connect(), subClient.connect()]).then(() => {
-   io.adapter(redis.createAdapter(pubClient, subClient));
-
-   entryPoint.call({ io, express, app });
-
-   server.listen(PORT);
-   //io.listen(PORT);
-  });
+  entryPoint.call({ io, express, app, server });
  }
 })();

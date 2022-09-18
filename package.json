@@ -6,7 +6,7 @@
  "scripts": {
   "dev": "nodemon cross-env NODE_ENV=development server.js",
   "build": "react-scripts build --prefix ./client",
-  "start": "node server.js",
+  "start": "node cluster.js",
   "heroku-postbuild": "cross-env NPM_CONFIG_PRODUCTION=false npm i --prefix ./client && npm run build --prefix ./client"
  },
  "author": "Karl-Johan",
