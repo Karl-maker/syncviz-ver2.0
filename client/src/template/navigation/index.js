@@ -11,6 +11,8 @@ import MEDIA from "../../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
 import SearchVirtualPage from "../../pages/search-virtual-space";
 import About from "../../pages/about";
+import ReactGA from "react-ga";
+import { useEffect } from "react";
 
 export default function PageNavigation() {
   const theme = useTheme();
@@ -104,6 +106,10 @@ export default function PageNavigation() {
       </>
     );
   };
+
+  useEffect(() => {
+    ReactGA.pageview(window.location.pathname + window.location.search);
+  }, []);
 
   return (
     <Routes>

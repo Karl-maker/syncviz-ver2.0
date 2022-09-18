@@ -7,7 +7,7 @@ const variables = {
   },
   Google: {
     Analytics: {
-      TRACKING_ID: env.GOOGLE_ANALYTICS_TRACKING_ID,
+      TRACKING_ID: env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID,
     },
   },
 };
