@@ -10,6 +10,12 @@ import { BrowserRouter as Router } from "react-router-dom";
 import StyleProvider from "./template/theme/provider";
 import { SearchContextProvider } from "./context/search";
 import { UserContextProvider } from "./context/user";
+import ReactGA from "react-ga";
+import config from "./config";
+
+ReactGA.initialize(config.Google.Analytics.TRACKING_ID);
+
+alert(config.Google.Analytics.TRACKING_ID);
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
