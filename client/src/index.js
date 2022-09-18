@@ -15,6 +15,8 @@ import config from "./config";
 
 ReactGA.initialize(config.Google.Analytics.TRACKING_ID);
 
+alert(config.Google.Analytics.TRACKING_ID);
+
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <Router>
