@@ -19,8 +19,12 @@ const VirtualSpaceSchema = new mongoose.Schema(
    url: { type: String, default: "" },
   },
   model: {
-   url: { type: String, default: "" },
-   name: { type: String, default: "" },
+   url: {
+    type: String,
+    default:
+     "https://project-syncviz-3d-models.s3-accelerate.amazonaws.com/city.glb",
+   },
+   name: { type: String, default: "Default City" },
   },
   user: {},
  },
