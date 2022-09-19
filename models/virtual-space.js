@@ -21,10 +21,9 @@ const VirtualSpaceSchema = new mongoose.Schema(
   model: {
    url: {
     type: String,
-    default:
-     "https://project-syncviz-3d-models.s3-accelerate.amazonaws.com/city.glb",
+    default: "https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb",
    },
-   name: { type: String, default: "Default City" },
+   name: { type: String, default: "Default Pirate Bay" },
   },
   user: {},
  },

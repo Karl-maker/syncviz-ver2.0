@@ -216,6 +216,14 @@ module.exports = virtualSpaceHandler = async (io) => {
 
        // Send new attendee the current attributes of meeting
        socket.emit("attributes", { virtual_space });
+
+       if (virtual_space.model.url) {
+        socket.emit("3D", {
+         message: `Loading "${virtual_space.model.name}"`,
+         url: virtual_space.model.url,
+        });
+       }
+
        return { virtual_space };
       })
       .catch((err) => {
