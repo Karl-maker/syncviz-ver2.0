@@ -21,7 +21,6 @@ import MEDIA from "../../utils/constants/media";
 
 // Icons
 
-import { FaInfo } from "react-icons/fa";
 import { FiHome } from "react-icons/fi";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
@@ -60,12 +59,12 @@ export default function MenuBar({ text_color }) {
       },
     },
 
-    {
-      label: "About",
-      icon: <FaInfo />,
-      info: "Learn more about us here",
-      action: () => navigate(PAGES.ABOUT),
-    },
+    // {
+    //   label: "About",
+    //   icon: <FaInfo />,
+    //   info: "Learn more about us here",
+    //   action: () => navigate(PAGES.ABOUT),
+    // },
     {
       label: "Feedback",
       icon: <RiSurveyLine />,
@@ -185,7 +184,13 @@ export default function MenuBar({ text_color }) {
             }}
           />
           <Divider orientation="vertical" flexItem />
-          <Contact label={"+1 (868) 742-2549"} />
+          <Contact
+            label={"Terms of Service"}
+            action={() => {
+              navigate(PAGES.TERMS_AND_CONDITIONS);
+            }}
+          />
+
           <Divider orientation="vertical" flexItem />
           <Contact label={"karljohanbailey98@gmail.com"} />
         </div>

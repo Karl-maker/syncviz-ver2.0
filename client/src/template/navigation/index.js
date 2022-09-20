@@ -14,6 +14,7 @@ import About from "../../pages/about";
 import ReactGA from "react-ga";
 import { useEffect } from "react";
 import PrivacyPolicy from "../../pages/privacy-policy";
+import Terms from "../../pages/terms-conditions";
 
 export default function PageNavigation() {
   const theme = useTheme();
@@ -109,7 +110,7 @@ export default function PageNavigation() {
   };
 
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname + window.location.search);
+    ReactGA.pageview(window.location.pathname);
   }, []);
 
   return (
@@ -138,6 +139,11 @@ export default function PageNavigation() {
         path={PAGES.PRIVACY_POLICY}
         caseSensitive={false}
         element={<PrivacyPolicy />}
+      />
+      <Route
+        path={PAGES.TERMS_AND_CONDITIONS}
+        caseSensitive={false}
+        element={<Terms />}
       />
       <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
     </Routes>
