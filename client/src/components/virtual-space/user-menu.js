@@ -49,6 +49,17 @@ export default function ChatRoomComponent({
     // append with useRef..
   };
 
+  const enterKeyHandler = (event) => {
+    if (event.key === "Enter") {
+      handleSendMessage();
+    }
+  };
+
+  const handleSendMessage = () => {
+    if (message) virtualSpace.chat_room.send(message);
+    setMessage("");
+  };
+
   useEffect(() => {
     socket.on("3D", ({ message }) => {
       const update = new Prompt(message, {
@@ -133,6 +144,7 @@ export default function ChatRoomComponent({
             //     input.focus();
             //   }
             // }}
+            onKeyDown={enterKeyHandler}
             label="Send Message"
             size="small"
             id="input-message"
@@ -160,13 +172,7 @@ export default function ChatRoomComponent({
               ),
               endAdornment: (
                 <InputAdornment position="end" sx={{ marginBottom: "2px" }}>
-                  <IconButton
-                    size="small"
-                    onClick={() => {
-                      if (message) virtualSpace.chat_room.send(message);
-                      setMessage("");
-                    }}
-                  >
+                  <IconButton size="small" onClick={handleSendMessage}>
                     <BiSend />
                   </IconButton>
                 </InputAdornment>
