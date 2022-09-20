@@ -13,6 +13,7 @@ import SearchVirtualPage from "../../pages/search-virtual-space";
 import About from "../../pages/about";
 import ReactGA from "react-ga";
 import { useEffect } from "react";
+import PrivacyPolicy from "../../pages/privacy-policy";
 
 export default function PageNavigation() {
   const theme = useTheme();
@@ -132,6 +133,11 @@ export default function PageNavigation() {
         path={PAGES.METAVERSE_SEARCH}
         caseSensitive={false}
         element={<SearchVirtualPage />}
+      />
+      <Route
+        path={PAGES.PRIVACY_POLICY}
+        caseSensitive={false}
+        element={<PrivacyPolicy />}
       />
       <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
     </Routes>

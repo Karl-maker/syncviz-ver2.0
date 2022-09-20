@@ -41,7 +41,7 @@ export default function About() {
             padding: 3,
           }}
         >
-          <Examples />
+          <Typography variant="h5">About Us</Typography>
           <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
             Syncviz is an online platform that makes the Metaverse accessible to
             all persons. The Metaverse in our definition is a virtual world

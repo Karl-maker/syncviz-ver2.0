@@ -7,6 +7,7 @@ const constants = {
   CONTACT: "/contact",
   HELP: "/help",
   SURVEY: "/survey",
+  PRIVACY_POLICY: "/privacy-policy",
 };
 
 export default constants;

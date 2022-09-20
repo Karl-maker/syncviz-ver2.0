@@ -8,8 +8,8 @@ import {
   Switch,
   Grid,
   Chip,
-  Avatar,
   Typography,
+  useMediaQuery,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useContext } from "react";
@@ -17,12 +17,12 @@ import { useNavigate } from "react-router-dom";
 import { ColorModeContext } from "../theme/provider";
 import PAGES from "../../utils/constants/page-names";
 import URLS from "../../utils/constants/url";
+import MEDIA from "../../utils/constants/media";
 
 // Icons
 
 import { FaInfo } from "react-icons/fa";
-import { FiMail, FiHome } from "react-icons/fi";
-import { AiOutlinePhone } from "react-icons/ai";
+import { FiHome } from "react-icons/fi";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
 
@@ -127,30 +127,18 @@ export default function MenuBar({ text_color }) {
 
   const theme = useTheme();
   const colorMode = useContext(ColorModeContext);
+  const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
 
-  const Contact = ({ icon, label }) => {
+  const Contact = ({ action, label }) => {
     return (
       <div style={{ display: "flex" }}>
-        <Avatar
-          sizes="small"
-          src="/"
-          sx={{
-            width: 25,
-            height: 25,
-            color: "#ffff",
-            marginRight: "5px",
-            bgcolor: "#3498db",
-          }}
-          alt={label}
-        >
-          {icon}
-        </Avatar>
         <Chip
+          onClick={action}
           label={
             <Typography
               variant="body2"
               sx={{
-                //color: "#ffff",
+                color: mobile ? "#ffff" : "",
                 fontSize: 10,
               }}
             >
@@ -191,13 +179,15 @@ export default function MenuBar({ text_color }) {
           }}
         >
           <Contact
-            label={"karljohanbailey98@gmail.com"}
-            icon={<FiMail size={10} />}
+            label={"Privacy Policy"}
+            action={() => {
+              navigate(PAGES.PRIVACY_POLICY);
+            }}
           />
-          <Contact
-            label={"+1 (868) 742-2549"}
-            icon={<AiOutlinePhone size={10} />}
-          />
+          <Divider orientation="vertical" flexItem />
+          <Contact label={"+1 (868) 742-2549"} />
+          <Divider orientation="vertical" flexItem />
+          <Contact label={"karljohanbailey98@gmail.com"} />
         </div>
       </List>
 
