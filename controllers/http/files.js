@@ -62,6 +62,13 @@ function route() {
     upload(req, res, (err) => {
      if (err) {
      } else {
+      io
+       .of(constants.namespaces.VIRTUAL_SPACE)
+       .to(fileUpload.virtual_room_id)
+       .emit("updates", {
+        message: `Model update may take awhile`,
+       });
+
       fileUpload
        .upload3DFile(req.file.filename)
        .then(() => {

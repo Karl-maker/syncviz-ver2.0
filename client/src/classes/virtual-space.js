@@ -4,6 +4,7 @@ import User from "./user";
 import makeid from "../utils/others/generateString";
 import config from "../config";
 import LiveConnection from "./liveConnection";
+import axios from "axios";
 
 const BACKEND = config.API.LIVE_SERVER;
 
@@ -288,16 +289,67 @@ class VirtualSpace {
     });
   }
 
-  transfer3D(formData) {
+  async transfer3D(formData, progressCallBack) {
     //this._code;
-    return fetch(`${BACKEND}/api/file/upload-3d/${this._id}`, {
-      method: "PUT", // *GET, POST, PUT, DELETE, etc.
-      body: formData,
-    })
-      .then((response) => {
-        return response.json();
+    // return fetch(`${BACKEND}/api/file/upload-3d/${this._id}`, {
+    //   method: "PUT", // *GET, POST, PUT, DELETE, etc.
+    //   body: formData,
+    // })
+    //   .then((response) => {
+    //     return response.json();
+    //   })
+    //   .catch((err) => {});
+
+    /*
+
+      TEST
+
+      */
+
+    // const xhr = new XMLHttpRequest();
+    // const success = await new Promise((resolve) => {
+    //   xhr.upload.addEventListener("progress", (event) => {
+    //     if (event.lengthComputable) {
+    //       console.log("upload progress:", event.loaded / event.total);
+    //       // uploadProgress.value = event.loaded / event.total;
+    //     }
+    //   });
+
+    //   xhr.addEventListener("progress", (event) => {
+    //     if (event.lengthComputable) {
+    //       console.log("download progress:", event.loaded / event.total);
+    //       //downloadProgress.value = event.loaded / event.total;
+    //     }
+    //   });
+
+    //   xhr.addEventListener("loadend", () => {
+    //     resolve(xhr.readyState === 4 && xhr.status === 200);
+    //   });
+
+    //   xhr.open("PUT", `${BACKEND}/api/file/upload-3d/${this._id}`, true);
+
+    //   xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+
+    //   xhr.send(formData);
+    //  });
+    return axios
+      .put(`${BACKEND}/api/file/upload-3d/${this._id}`, formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+        onUploadProgress: function (progressEvent) {
+          const percentCompleted = Math.round(
+            (progressEvent.loaded / progressEvent.total) * 100
+          );
+          progressCallBack(percentCompleted);
+        },
       })
-      .catch((err) => {});
+      .then((res) => {
+        return res;
+      })
+      .catch((err) => {
+        throw err;
+      });
   }
 
   transferAudio(formData) {

@@ -45,6 +45,7 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
   const fileInput = useRef(null);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const [load, setLoad] = useState(false);
+  const [loadProgress, setLoadProgress] = useState(0);
 
   const handleClick = (event) => {
     fileInput.current.click();
@@ -73,9 +74,13 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
     <>
       <Backdrop
         sx={{ color: "#fff", zIndex: (theme) => theme.zIndex.drawer + 2 }}
-        open={load}
+        open={loadProgress !== 100 && load}
       >
-        <CircularProgress color="inherit" />
+        <CircularProgress
+          color="inherit"
+          variant="determinate"
+          value={loadProgress}
+        />
       </Backdrop>
       <DialogButton
         noClickOff
@@ -97,21 +102,28 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
                 ref={fileInput}
                 style={{ display: "none" }}
                 onChange={() => {
-                  startLoad();
                   setOpen(false);
+                  startLoad();
                   const formData = new FormData();
                   formData.append("file-3d", fileInput.current.files[0]);
                   virtualSpace
-                    .transfer3D(formData)
-                    .then((model) => {
-                      stopLoad();
+                    .transfer3D(formData, (progress) => {
+                      setLoadProgress(progress);
+
+                      if (progress === 100) {
+                        stopLoad();
+                      }
+                    })
+                    .then((result) => {
+                      if (result.status === 200) {
+                      }
                     })
                     .catch((err) => {
-                      //...
                       stopLoad();
                     });
                 }}
               />
+
               {MODELS.map((model, index) => {
                 return (
                   <Selection

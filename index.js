@@ -28,6 +28,8 @@ module.exports = function () {
  app.use(cors(corsOptions));
  app.use(jsonParser);
  app.use(urlencodedParser);
+ app.use(bodyParser.json({ limit: "50mb" }));
+ app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
  app.use("/", express.static(path.join(__dirname, config.build.PATH))); // Build
  app.use("/static", express.static(path.join(__dirname, "/static")));
