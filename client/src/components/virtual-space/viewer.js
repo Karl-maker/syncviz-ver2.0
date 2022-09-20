@@ -33,6 +33,7 @@ export default function Viewer() {
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState("0");
   const [vr, setVR] = useState(false);
+  const [deleteTag, setDeleteTag] = useState(null);
   const [displayTimer, setDisplayTimer] = useState(false);
   const [displayChat, toggleDisplayChat] = useState(false);
   const [sceneReady, setSceneReady] = useState(false);
@@ -100,7 +101,12 @@ export default function Viewer() {
     });
 
     socket.on("remove-tag", ({ data }) => {
-      tags.forEach((tag) => tag.filter((e) => e._id !== data._id));
+      setDeleteTag(data._id);
+      setTags(
+        tags.filter(function (e) {
+          return e !== { _id: data._id };
+        })
+      );
     });
 
     return () => {
@@ -145,6 +151,7 @@ export default function Viewer() {
           tags={tags}
           sceneReady={sceneReady}
           setSceneReady={setSceneReady}
+          deleteTag={deleteTag}
         />
       ) : (
         <div
@@ -353,7 +360,14 @@ export default function Viewer() {
                   onClick={() => {
                     if (info) virtualSpace.deleteTag(info._id);
                     setInfoOpen(false);
+
+                    // setTags(
+                    //   tags.filter(function (e) {
+                    //     return e !== { _id: info._id };
+                    //   })
+                    // );
                   }}
+                  sx={{ bgcolor: "#d63031" }}
                 >
                   Delete
                 </Button>

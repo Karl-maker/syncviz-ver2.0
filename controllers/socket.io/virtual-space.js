@@ -87,7 +87,7 @@ module.exports = virtualSpaceHandler = async (io) => {
    VirtualSpace.addTag(data)
     .then((tag) => {
      NameSpace.to(VirtualSpace.id).emit("add-tag", {
-      data,
+      data: tag,
      });
 
      NameSpace.to(VirtualSpace.id).emit("updates", {

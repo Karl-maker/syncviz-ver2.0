@@ -156,8 +156,36 @@ export default class Scene {
     );
   }
 
+  deleteTag(id) {
+    this._scene.meshes.forEach((mesh) => {
+      if (mesh.id.includes(`tag-${id}`)) {
+        console.log(mesh);
+        mesh.dispose();
+        mesh = null;
+      }
+    });
+
+    this._scene.textures.forEach((texture) => {
+      if (texture.name.includes(`UI-Tag-${id}`)) {
+        texture.dispose();
+        texture = null;
+      }
+    });
+
+    this._tags.forEach((tag) => {
+      if (tag.name.includes(`Button-${id}`)) {
+        tag.dispose();
+        tag = null;
+      }
+    });
+
+    this._tags.filter(function (e) {
+      return e !== null;
+    });
+  }
+
   addTag(data, index, { backgroundColor, fontColor, setInfo, setInfoOpen }) {
-    var plane = BABYLON.Mesh.CreateSphere("gui-position", 2, this._scene);
+    var plane = BABYLON.Mesh.CreateSphere(`tag-${data._id}`, 2, this._scene);
 
     if (data.position) {
       // Move the sphere upward 1/2 its height
@@ -171,9 +199,11 @@ export default class Scene {
     }
 
     // GUI
-    var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI("UI");
+    var advancedTexture = GUI.AdvancedDynamicTexture.CreateFullscreenUI(
+      `UI-Tag-${data._id}`
+    );
 
-    var rect1 = GUI.Button.CreateSimpleButton("button1", "");
+    var rect1 = GUI.Button.CreateSimpleButton(`Button-${data._id}`, "");
     // rect1.width = this._mobile ? 0.4 : 0.2;
     // rect1.height = "30px";
     // rect1.cornerRadius = 20;
@@ -196,6 +226,7 @@ export default class Scene {
     rect1.linkWithMesh(plane);
 
     const camera = this._scene.activeCamera;
+    this._tags.push(rect1);
 
     rect1.onPointerUpObservable.add(function () {
       setInfo(data);

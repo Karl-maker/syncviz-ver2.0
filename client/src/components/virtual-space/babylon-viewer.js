@@ -13,6 +13,7 @@ export default function BabylonViewer(props) {
   const {
     modelUrl,
     meshName,
+    deleteTag,
     antialias,
     engineOptions,
     adaptToDeviceRatio,
@@ -157,6 +158,8 @@ export default function BabylonViewer(props) {
     ) {
       // Add tag / render
       tags.forEach((tag) => {
+        // Delete
+
         if (!previousTags.includes({ _id: tag._id }))
           babylonSceneRef.current.addTag(tag, 0, {
             backgroundColor:
@@ -174,6 +177,11 @@ export default function BabylonViewer(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, progress, sceneReady]);
+
+  useEffect(() => {
+    //delete
+    if (deleteTag) babylonSceneRef.current.deleteTag(deleteTag);
+  }, [deleteTag]);
 
   return (
     <canvas
