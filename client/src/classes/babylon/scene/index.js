@@ -93,18 +93,23 @@ export default class Scene {
 
   setArcCameraFraming(callback) {
     let framingBehavior = this._scene.activeCamera.getBehaviorByName("Framing");
-    //framingBehavior.framingTime = 0.5;
+    framingBehavior.framingTime = 5000;
     framingBehavior.elevationReturnTime = -1;
+    framingBehavior.autoCorrectCameraLimitsAndSensibility = true;
 
     let worldExtends = this._scene.getWorldExtends();
-    this._scene.activeCamera.lowerRadiusLimit = null;
+
     this._scene.activeCamera.useBouncingBehavior = true;
+    this._scene.activeCamera.allowUpsideDown = false;
 
     // worldExtends.min.x = worldExtends.min.x - worldExtends.min.x * 0.8;
     // worldExtends.min.y = worldExtends.min.y - worldExtends.min.y * 0.8;
     // worldExtends.min.z = worldExtends.min.z - worldExtends.min.z * 0.8;
 
     framingBehavior.zoomOnBoundingInfo(worldExtends.min, worldExtends.max);
+    framingBehavior.zoomOnMeshesHierarchy(this._scene.meshes);
+    this._scene.activeCamera.lowerRadiusLimit = 0;
+
     callback();
   }
 

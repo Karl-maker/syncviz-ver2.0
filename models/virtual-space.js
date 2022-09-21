@@ -14,7 +14,7 @@ const VirtualSpaceSchema = new mongoose.Schema(
   code: { type: String, select: false },
   theme: { type: String, default: "#74b9ff" },
   link: { type: String },
-  hashtags: { type: String },
+  hashtags: { type: String, default: "" },
   audio: {
    url: { type: String, default: "" },
   },

@@ -13,7 +13,7 @@ class VirtualSpace {
     this._id = id;
     this._code = null;
 
-    this._description = description || "";
+    this._description = description || "Welcome to my Virtual Space";
     this._attendee = attendee || { username: "Guest" };
     this._socket = null;
     this._init = false;
@@ -25,7 +25,7 @@ class VirtualSpace {
     this._url = url || null;
     this._link = link || "";
     this._connected = true;
-    this._hashtags = hashtags || "";
+    this._hashtags = hashtags || "#3dmodel";
     this._connection = new LiveConnection();
   }
 
