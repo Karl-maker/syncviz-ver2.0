@@ -47,6 +47,7 @@ export default function Viewer() {
   }, [virtualSpace.host]);
 
   useEffect(() => {
+    const style = { marginLeft: "5px", height: "25px", width: "25px" };
     socket.on("disconnect", () => {
       // Allow user to attempt to rejoin
       //virtualSpace.reconnect().emit("reconnect", { id: this._id });
@@ -54,10 +55,10 @@ export default function Viewer() {
       setConnectionStatus(
         <IconButton
           className={classes.VIEWER_CONNECTION_STATUS}
-          sx={{ bgcolor: "#d63031", marginLeft: "5px" }}
+          sx={{ ...style, bgcolor: "#d63031" }}
           size="small"
         >
-          <BiLinkAlt />
+          <BiLinkAlt size={15} />
         </IconButton>
       );
     });
@@ -68,9 +69,9 @@ export default function Viewer() {
         <IconButton
           className={classes.VIEWER_CONNECTION_STATUS}
           size="small"
-          sx={{ bgcolor: "#00b894", marginLeft: "5px" }}
+          sx={{ bgcolor: "#00b894", ...style }}
         >
-          <BiLinkAlt />
+          <BiLinkAlt size={15} />
         </IconButton>
       );
     });

@@ -391,13 +391,22 @@ export default class Scene {
     text,
     name,
     advancedTexture,
-    { bgcolor, color, handleClick, horizontalPosition, width, height, fontSize }
+    {
+      bgcolor,
+      color,
+      handleClick,
+      horizontalPosition,
+      width,
+      height,
+      fontSize,
+      borderRadius,
+    }
   ) {
     let btn = GUI.Button.CreateSimpleButton(`${name}`, "");
 
     btn.width = width || "90px";
     btn.height = height || "30px";
-    btn.cornerRadius = 10;
+    btn.cornerRadius = borderRadius || 10;
     btn.color = color || "#2d3436";
     btn.adaptWidthToChildren = false;
     btn.thickness = 0.05;

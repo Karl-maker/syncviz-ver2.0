@@ -131,7 +131,7 @@ module.exports = virtualSpaceHandler = async (io) => {
      virtual_space.model.url &&
       socket.emit("3D", {
        url: virtual_space.model.url,
-       message: `Loading ${virtual_space.model.name}`,
+       message: `Updating room`,
       });
 
      // Notify current attendees who has joined
@@ -170,7 +170,7 @@ module.exports = virtualSpaceHandler = async (io) => {
      virtual_space.model.url &&
       socket.emit("3D", {
        url: virtual_space.model.url,
-       message: `Loading ${virtual_space.model.name}`,
+       message: `Updating room`,
       });
 
      // Notify current attendees who has joined
@@ -219,7 +219,7 @@ module.exports = virtualSpaceHandler = async (io) => {
 
        if (virtual_space.model.url) {
         socket.emit("3D", {
-         message: `Loading "${virtual_space.model.name}"`,
+         message: `Updating room`,
          url: virtual_space.model.url,
         });
        }
@@ -272,7 +272,7 @@ module.exports = virtualSpaceHandler = async (io) => {
     VirtualSpace.updateEnvironmentWithURL(code, { url, name })
      .then((virtual_space) => {
       NameSpace.to(VirtualSpace._id).emit("3D", {
-       message: `Loading "${name}"`,
+       message: `Updating room`,
        url: url,
       });
      })
