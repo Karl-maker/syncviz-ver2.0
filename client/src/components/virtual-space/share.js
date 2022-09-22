@@ -9,8 +9,10 @@ import copyText from "../../utils/others/clipboard";
 import { VirtualSpaceContext } from "../../widgets/virtual-space";
 import PAGES from "../../utils/constants/page-names";
 import QRCode from "react-qr-code";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 export default function Share({ toggleOpen, open }) {
+  const gaEventTracker = useAnalyticsEventTracker("Share");
   const { virtualSpace } = useContext(VirtualSpaceContext);
   const [showQRCode, toggleShowQRCode] = useState(false);
   const theme = useTheme();
@@ -52,12 +54,18 @@ export default function Share({ toggleOpen, open }) {
                     size="large"
                     sx={{ marginBottom: 2 }}
                     href={`mailto:?subject=${shareHeader()}&body=Click Link: ${shareContent()}`}
+                    onClick={() => {
+                      gaEventTracker("mail");
+                    }}
                   >
                     <IoMail />
                   </IconButton>
                   <IconButton
                     size="large"
                     sx={{ marginBottom: 2 }}
+                    onClick={() => {
+                      gaEventTracker("twitter");
+                    }}
                     href={`http://twitter.com/share?text=Join ${
                       virtualSpace.host.username
                         ? virtualSpace.host.username
@@ -75,6 +83,7 @@ export default function Share({ toggleOpen, open }) {
                     size="large"
                     sx={{ marginBottom: 2 }}
                     onClick={() => {
+                      gaEventTracker("qr code");
                       toggleShowQRCode((show) => !show);
                     }}
                   >
@@ -83,6 +92,9 @@ export default function Share({ toggleOpen, open }) {
                   <IconButton
                     size="large"
                     sx={{ marginBottom: 2 }}
+                    onClick={() => {
+                      gaEventTracker("facebook");
+                    }}
                     href={`https://www.facebook.com/share.php?u=${createLink(
                       window.location.href
                     )}`}
@@ -95,6 +107,9 @@ export default function Share({ toggleOpen, open }) {
                     sx={{ marginBottom: 2 }}
                     href={`whatsapp://send?text=${shareContent()}`}
                     data-action="share/whatsapp/share"
+                    onClick={() => {
+                      gaEventTracker("whatsapp");
+                    }}
                   >
                     <BsWhatsapp />
                   </IconButton>
@@ -126,6 +141,7 @@ export default function Share({ toggleOpen, open }) {
                     sx={{ marginLeft: 0 }}
                     variant="outlined"
                     onClick={() => {
+                      gaEventTracker("copy url");
                       copyText(clipboard.current);
                     }}
                   >

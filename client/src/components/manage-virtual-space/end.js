@@ -1,7 +1,9 @@
 import { Typography, Button } from "@mui/material";
 import DialogButton from "../../template/buttons/dialog";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 export default function EndMetaverseRoom({ virtualSpace, open, setOpen }) {
+  const gaEventTracker = useAnalyticsEventTracker("End Room");
   return (
     <DialogButton
       title="End Metaverse Room"
@@ -13,13 +15,20 @@ export default function EndMetaverseRoom({ virtualSpace, open, setOpen }) {
           <Button
             variant="filled"
             onClick={() => {
+              gaEventTracker("end");
               virtualSpace.end();
               setOpen(false);
             }}
           >
             End
           </Button>
-          <Button variant="filled" onClick={() => setOpen(false)}>
+          <Button
+            variant="filled"
+            onClick={() => {
+              gaEventTracker("cancel");
+              setOpen(false);
+            }}
+          >
             Cancel
           </Button>
         </>

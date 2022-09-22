@@ -9,8 +9,10 @@ import {
 import MEDIA from "../../utils/constants/media";
 import { MdWrapText, MdTitle } from "react-icons/md";
 import { BiLink } from "react-icons/bi";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
+  const gaEventTracker = useAnalyticsEventTracker("3D Tag");
   const [attributes, setAttributes] = useState({
     text: "",
     description: "",
@@ -50,6 +52,7 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
               ),
             }}
             onChange={(e) => {
+              gaEventTracker("add title");
               setAttributes((attribute) => ({
                 ...attribute,
                 text: e.target.value,
@@ -73,6 +76,7 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
             }}
             value={attributes.description}
             onChange={(e) => {
+              gaEventTracker("add description");
               setAttributes((attribute) => ({
                 ...attribute,
                 description: e.target.value,
@@ -97,6 +101,7 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
               ),
             }}
             onChange={(e) => {
+              gaEventTracker("add link");
               setAttributes((attribute) => ({
                 ...attribute,
                 link: e.target.value,
@@ -113,6 +118,8 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
           <Button
             variant="filled"
             onClick={() => {
+              // Track
+              gaEventTracker("create");
               virtualSpace.addTag({
                 text: attributes.text,
                 description: attributes.description,

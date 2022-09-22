@@ -11,8 +11,10 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import MEDIA from "../../utils/constants/media";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 export default function Attributes({ virtualSpace, open, setOpen }) {
+  const gaEventTracker = useAnalyticsEventTracker("Attributes");
   const [attributes, setAttributes] = useState({
     description: "",
     link: "",
@@ -63,6 +65,7 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
+                gaEventTracker("add caption");
                 setAttributes((attribute) => ({
                   ...attribute,
                   description: e.target.value,
@@ -86,6 +89,7 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
+                gaEventTracker("add link");
                 setAttributes((attribute) => ({
                   ...attribute,
                   link: e.target.value,
@@ -109,6 +113,7 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
+                gaEventTracker("add hashtag");
                 setAttributes((attribute) => ({
                   ...attribute,
                   hashtags: e.target.value,

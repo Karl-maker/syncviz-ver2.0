@@ -12,6 +12,8 @@ import { useRef } from "react";
 import GridLayout from "../../template/layout/grid-layout";
 import { Box } from "@mui/system";
 import { useState } from "react";
+import formatBytes from "../../utils/tools/sizeFormat";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 const MODELS = [
   {
@@ -42,6 +44,9 @@ const MODELS = [
 ];
 
 export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
+  const gaEventTracker = useAnalyticsEventTracker("Add 3D Model");
+  const modelSizeTracker = useAnalyticsEventTracker("Model Size");
+  const modelTypeTracker = useAnalyticsEventTracker("Model Type");
   const fileInput = useRef(null);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const [load, setLoad] = useState(false);
@@ -102,6 +107,18 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
                 ref={fileInput}
                 style={{ display: "none" }}
                 onChange={() => {
+                  gaEventTracker(`selected upload`);
+                  modelTypeTracker(
+                    `${
+                      fileInput.current.files[0].name.substring(
+                        fileInput.current.files[0].name.lastIndexOf(".") + 1,
+                        fileInput.current.files[0].name.length
+                      ) || fileInput.current.files[0].name
+                    }`
+                  );
+                  modelSizeTracker(
+                    `${formatBytes(fileInput.current.files[0].size)}`
+                  );
                   setOpen(false);
                   startLoad();
                   const formData = new FormData();
@@ -130,6 +147,7 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
                     data={model}
                     key={index + 1}
                     action={() => {
+                      gaEventTracker(`selected ${model.name}`);
                       selectEnvironment(model);
                     }}
                   />

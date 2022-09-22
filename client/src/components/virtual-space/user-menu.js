@@ -21,6 +21,7 @@ import { VirtualSpaceContext } from "../../widgets/virtual-space";
 import useDidMountEffect from "../../utils/hooks/useDidMountEffect";
 import MEDIA from "../../utils/constants/media";
 import classes from "../../utils/constants/classes";
+import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 export default function ChatRoomComponent({
   display,
@@ -35,6 +36,7 @@ export default function ChatRoomComponent({
   sceneReady,
 }) {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
+  const messageEventTracker = useAnalyticsEventTracker("Message");
   const { socket, virtualSpace, manage } = useContext(VirtualSpaceContext);
   const [messages, setMessages] = useState(<></>);
   const [message, setMessage] = useState("");
@@ -56,7 +58,10 @@ export default function ChatRoomComponent({
   };
 
   const handleSendMessage = () => {
-    if (message) virtualSpace.chat_room.send(message);
+    if (message) {
+      messageEventTracker("send");
+      virtualSpace.chat_room.send(message);
+    }
     setMessage("");
   };
 
