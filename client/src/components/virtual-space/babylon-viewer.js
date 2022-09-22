@@ -89,7 +89,7 @@ export default function BabylonViewer(props) {
       );
 
       // Set Scene Ready to FALSE
-      setSceneReady(false);
+      if (setSceneReady) setSceneReady(false);
       setProgress("0");
       setLoading(false);
 
