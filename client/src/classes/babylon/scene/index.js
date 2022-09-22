@@ -284,7 +284,7 @@ export default class Scene {
 
     let white_space_2 = new GUI.Rectangle("white_space_2");
 
-    white_space_2.height = "20px";
+    white_space_2.height = data.link ? "5px" : "20px";
     white_space_2.cornerRadius = 15;
     white_space_2.color = "#2d3436";
     white_space_2.thickness = 0;
@@ -318,7 +318,7 @@ export default class Scene {
 
       let white_space_6 = new GUI.Rectangle("white_space_6");
 
-      white_space_6.height = "5px";
+      white_space_6.height = "8px";
       white_space_6.cornerRadius = 15;
       white_space_6.color = "#2d3436";
       white_space_6.thickness = 0;
