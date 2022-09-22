@@ -220,8 +220,8 @@ export default class Scene {
     box.width = this._mobile ? "180px" : "200px";
     box.adaptHeightToChildren = true;
     box.cornerRadius = 15;
-    box.color = "#2d3436";
-    box.thickness = 0;
+    box.color = data.link ? "#2d3436" : "#2d3436";
+    box.thickness = data.link ? 0 : 0;
     box.background = data.link ? "#ffff" : "#ffff";
 
     box.onPointerOutObservable.add(() => {
@@ -293,26 +293,24 @@ export default class Scene {
 
     if (data.link) {
       // Button
-      let link_btn = this.generalButton(
-        "CONNECT",
-        "link_btn",
-        advancedTexture,
-        {
-          bgcolor: "transparent",
-          color: "#74b9ff",
-          handleClick: () => {
-            // Open URL
-            function windowOpen(url, specs) {
-              if (!url.match(/^https?:\/\//i) || !url.match(/^http?:\/\//i)) {
-                url = "https://" + url;
-              }
-              return window.open(url, specs);
+      let link_btn = this.generalButton("LINK", "link_btn", advancedTexture, {
+        bgcolor: "#74b9ff",
+        color: "#ffff",
+        fontSize: "12px",
+        height: "25px",
+        width: "50px",
+        handleClick: () => {
+          // Open URL
+          function windowOpen(url, specs) {
+            if (!url.match(/^https?:\/\//i) || !url.match(/^http?:\/\//i)) {
+              url = "https://" + url;
             }
+            return window.open(url, specs);
+          }
 
-            windowOpen(data.link, "_blank");
-          },
-        }
-      );
+          windowOpen(data.link, "_blank");
+        },
+      });
 
       panelStack.addControl(link_btn);
 
@@ -393,12 +391,12 @@ export default class Scene {
     text,
     name,
     advancedTexture,
-    { bgcolor, color, handleClick, horizontalPosition }
+    { bgcolor, color, handleClick, horizontalPosition, width, height, fontSize }
   ) {
     let btn = GUI.Button.CreateSimpleButton(`${name}`, "");
 
-    btn.width = "90px";
-    btn.height = "30px";
+    btn.width = width || "90px";
+    btn.height = height || "30px";
     btn.cornerRadius = 10;
     btn.color = color || "#2d3436";
     btn.adaptWidthToChildren = false;
@@ -408,7 +406,7 @@ export default class Scene {
 
     let label = new GUI.TextBlock();
     label.text = text;
-    label.fontSize = 15;
+    label.fontSize = fontSize || 15;
     btn.addControl(label);
 
     // On click
