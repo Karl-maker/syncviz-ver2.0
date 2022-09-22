@@ -65,7 +65,6 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
-                gaEventTracker("add caption");
                 setAttributes((attribute) => ({
                   ...attribute,
                   description: e.target.value,
@@ -89,7 +88,6 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
-                gaEventTracker("add link");
                 setAttributes((attribute) => ({
                   ...attribute,
                   link: e.target.value,
@@ -113,7 +111,6 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
                 ),
               }}
               onChange={(e) => {
-                gaEventTracker("add hashtag");
                 setAttributes((attribute) => ({
                   ...attribute,
                   hashtags: e.target.value,
@@ -131,8 +128,12 @@ export default function Attributes({ virtualSpace, open, setOpen }) {
           <Button
             variant="filled"
             onClick={() => {
+              if (attributes.description) gaEventTracker("add caption");
+              if (attributes.link) gaEventTracker("add link");
+
               let hashtags = "";
               if (attributes.hashtags) {
+                gaEventTracker("add hashtag");
                 hashtags = generateHashtags(attributes.hashtags);
               }
               virtualSpace.updateAttributes({

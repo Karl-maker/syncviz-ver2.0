@@ -52,7 +52,6 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
               ),
             }}
             onChange={(e) => {
-              gaEventTracker("add title");
               setAttributes((attribute) => ({
                 ...attribute,
                 text: e.target.value,
@@ -76,7 +75,6 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
             }}
             value={attributes.description}
             onChange={(e) => {
-              gaEventTracker("add description");
               setAttributes((attribute) => ({
                 ...attribute,
                 description: e.target.value,
@@ -101,7 +99,6 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
               ),
             }}
             onChange={(e) => {
-              gaEventTracker("add link");
               setAttributes((attribute) => ({
                 ...attribute,
                 link: e.target.value,
@@ -119,6 +116,9 @@ export default function Tag({ virtualSpace, open, setOpen, select, setTag }) {
             variant="filled"
             onClick={() => {
               // Track
+              if (attributes.text) gaEventTracker("add title");
+              if (attributes.description) gaEventTracker("add description");
+              if (attributes.link) gaEventTracker("add link");
               gaEventTracker("create");
               virtualSpace.addTag({
                 text: attributes.text,
