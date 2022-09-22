@@ -66,7 +66,7 @@ function route() {
        .of(constants.namespaces.VIRTUAL_SPACE)
        .to(fileUpload.virtual_room_id)
        .emit("updates", {
-        message: `Model update may take awhile`,
+        message: `Update pending...`,
        });
 
       fileUpload
@@ -84,7 +84,7 @@ function route() {
          .of(constants.namespaces.VIRTUAL_SPACE)
          .to(fileUpload.virtual_room_id)
          .emit("3D", {
-          message: `Loading "${fileUpload.name}"`,
+          message: `Room is Updating`,
           url: fileUpload.getUrl(),
          });
        })
