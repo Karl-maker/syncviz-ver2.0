@@ -12,7 +12,6 @@ import { useRef } from "react";
 import GridLayout from "../../template/layout/grid-layout";
 import { Box } from "@mui/system";
 import { useState } from "react";
-import formatBytes from "../../utils/tools/sizeFormat";
 import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 
 const MODELS = [
@@ -116,9 +115,7 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
                       ) || fileInput.current.files[0].name
                     }`
                   );
-                  modelSizeTracker(
-                    `${formatBytes(fileInput.current.files[0].size)}`
-                  );
+                  modelSizeTracker(`${fileInput.current.files[0].size}`);
                   setOpen(false);
                   startLoad();
                   const formData = new FormData();
