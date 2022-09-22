@@ -7,20 +7,16 @@ import { VirtualSpaceContext, TagContext } from "../../widgets/virtual-space";
 import {
   CircularProgress,
   IconButton,
-  Typography,
   useMediaQuery,
-  Button,
   Chip,
 } from "@mui/material";
-import { BiLinkAlt, BiLink } from "react-icons/bi";
+import { BiLinkAlt } from "react-icons/bi";
 import ThreeDimentionalViewer from "./babylon-viewer";
 import MEDIA from "../../utils/constants/media";
 import ViewersChip from "./viewers-chip";
 import { useTheme } from "@mui/material/styles";
 import Tag from "../manage-virtual-space/tag";
 import classes from "../../utils/constants/classes";
-import DialogButton from "../../template/buttons/dialog";
-
 // Meshes: https://github.com/BabylonJS/Assets/tree/master/meshes
 
 export default function Viewer() {
@@ -136,6 +132,7 @@ export default function Viewer() {
     () =>
       virtualSpace.url ? (
         <ThreeDimentionalViewer
+          virtualSpace={virtualSpace}
           fullScreen={handleFullScreen.active}
           modelUrl={virtualSpace.url}
           refresh={softRefresh}
@@ -147,6 +144,9 @@ export default function Viewer() {
           setInfo={setInfo}
           setInfoOpen={setInfoOpen}
           vr={vr}
+          manage={manage}
+          infoOpen={infoOpen}
+          info={info}
           progress={progress}
           tags={tags}
           sceneReady={sceneReady}
@@ -174,7 +174,15 @@ export default function Viewer() {
         </div>
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [handleFullScreen.active, theme.palette.mode, softRefresh, vr, tags]
+    [
+      handleFullScreen.active,
+      theme.palette.mode,
+      softRefresh,
+      vr,
+      tags,
+      infoOpen,
+      info,
+    ]
   );
 
   return (
@@ -312,7 +320,7 @@ export default function Viewer() {
           select={select}
           setTag={setTag}
         />
-        <DialogButton
+        {/* <DialogButton
           open={infoOpen}
           setOpen={setInfoOpen}
           title={info ? info.text : ""}
@@ -382,7 +390,7 @@ export default function Viewer() {
               </Button>
             </>
           }
-        />
+        /> */}
       </div>
     </FullScreen>
   );

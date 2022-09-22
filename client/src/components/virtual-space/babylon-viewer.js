@@ -11,6 +11,7 @@ export default function BabylonViewer(props) {
   const reactCanvas = useRef(null);
   const babylonSceneRef = useRef(null);
   const {
+    virtualSpace,
     modelUrl,
     meshName,
     deleteTag,
@@ -18,6 +19,7 @@ export default function BabylonViewer(props) {
     engineOptions,
     adaptToDeviceRatio,
     sceneOptions,
+    manage,
     fullScreen,
     refresh,
     setLoading,
@@ -33,6 +35,8 @@ export default function BabylonViewer(props) {
     sceneReady,
     tags,
     vr,
+    info,
+    infoOpen,
     ...rest
   } = props;
 
@@ -179,8 +183,20 @@ export default function BabylonViewer(props) {
   }, [tags, progress, sceneReady]);
 
   useEffect(() => {
+    if (infoOpen && info) {
+      babylonSceneRef.current.displayGUILabel(info, manage, {
+        setInfo,
+        setInfoOpen,
+        virtualSpace,
+      });
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [infoOpen, info]);
+
+  useEffect(() => {
     //delete
     if (deleteTag) babylonSceneRef.current.deleteTag(deleteTag);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleteTag]);
 
   return (

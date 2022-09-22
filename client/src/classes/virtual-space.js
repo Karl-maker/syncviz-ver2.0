@@ -25,7 +25,7 @@ class VirtualSpace {
     this._url = url || null;
     this._link = link || "";
     this._connected = true;
-    this._hashtags = hashtags || "#3dmodel";
+    this._hashtags = hashtags || "";
     this._connection = new LiveConnection();
   }
 
