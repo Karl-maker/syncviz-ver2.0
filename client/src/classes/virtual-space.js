@@ -183,7 +183,6 @@ class VirtualSpace {
       this._chat_room = new ChatRoom({ socket: this._socket });
       return this._socket;
     } catch (err) {
-      console.log(err);
       throw err;
     }
   }

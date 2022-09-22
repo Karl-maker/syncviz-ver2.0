@@ -11,7 +11,7 @@ export default function VirtualSpaceComponent() {
   const [link, setLink] = useState({ url: null, title: null, content: null });
   const [popup, setPopUp] = useState(false);
   const navigate = useNavigate();
-  const { socket, virtualSpace } = useContext(VirtualSpaceContext);
+  const { socket, virtualSpace, manage } = useContext(VirtualSpaceContext);
 
   useEffect(() => {
     socket.on("updates", (data) => {
@@ -54,8 +54,7 @@ export default function VirtualSpaceComponent() {
       virtualSpace.hashtags = hashtags;
 
       if (model.url) virtualSpace.url = model.url;
-
-      virtualSpace.setLocal();
+      if (manage) virtualSpace.setLocal();
     });
 
     return () => {
