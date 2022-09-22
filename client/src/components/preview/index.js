@@ -10,12 +10,10 @@ import {
   Chip,
   Typography,
   CircularProgress,
-  Skeleton,
 } from "@mui/material";
 import MEDIA from "../../utils/constants/media";
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { countDownTimer } from "../../utils/others/date";
 
 export default function Preview({ data }) {
   const room = data;
@@ -24,17 +22,6 @@ export default function Preview({ data }) {
   const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [progress, setProgress] = useState(0);
-  const [time, setTime] = useState(
-    <Skeleton animation="wave" variant="circular" width={10} height={10} />
-  );
-
-  useEffect(() => {
-    setInterval(function () {
-      setTime(countDownTimer(new Date(room.createdAt), room.time_limit));
-    }, 1000);
-
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   return (
     <Grid xs={2} sm={4} md={4} sx={{ height: 300 }}>
@@ -115,7 +102,7 @@ export default function Preview({ data }) {
                   sx={{ fontSize: "12px", bgcolor: "#d63031" }}
                 />
               }
-              label={<Typography sx={{ fontSize: "10px" }}>{time}</Typography>}
+              label={<></>}
               sx={{
                 width: "auto",
                 justifyContent: "end",

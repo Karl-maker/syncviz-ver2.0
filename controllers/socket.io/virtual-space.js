@@ -230,14 +230,7 @@ module.exports = virtualSpaceHandler = async (io) => {
        throw err;
       });
     })
-    .then(({ virtual_space }) => {
-     // Start timer
-     VirtualSpace.time(NameSpace.to(virtual_space._id.toString()))
-      .then(() => {})
-      .catch((err) => errorHandler(err, socket));
-    })
     .catch((err) => {
-     console.log(err);
      errorHandler(err, socket);
     });
   }

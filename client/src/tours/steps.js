@@ -194,25 +194,25 @@ const COMMON = {
       );
     },
   },
-  TIMER: {
-    selector: `.${constants.VIEWER_TIMER}`,
-    position: "left",
-    content: () => {
-      return (
-        <Box>
-          <Typography sx={{ color: "#2d3436" }}>Timer</Typography>
-          <Typography
-            sx={{ color: "#2d3436", marginTop: "5px" }}
-            variant="caption"
-          >
-            Here tells you and your visitors how much time is left till your{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span> ends.
-          </Typography>
-          <NextButton />
-        </Box>
-      );
-    },
-  },
+  // TIMER: {
+  //   selector: `.${constants.VIEWER_TIMER}`,
+  //   position: "left",
+  //   content: () => {
+  //     return (
+  //       <Box>
+  //         <Typography sx={{ color: "#2d3436" }}>Timer</Typography>
+  //         <Typography
+  //           sx={{ color: "#2d3436", marginTop: "5px" }}
+  //           variant="caption"
+  //         >
+  //           Here tells you and your visitors how much time is left till your{" "}
+  //           <span style={{ fontWeight: "bold" }}>Metaverse Room</span> ends.
+  //         </Typography>
+  //         <NextButton />
+  //       </Box>
+  //     );
+  //   },
+  // },
   CONNECTION: {
     selector: `.${constants.VIEWER_CONNECTION_STATUS}`,
     position: "left",
