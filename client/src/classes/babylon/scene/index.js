@@ -239,11 +239,33 @@ export default class Scene {
     panelStack.isVertical = true;
     box.addControl(panelStack);
 
+    // X button
+
+    let x_btn = this.generalButton("", "x_btn", advancedTexture, {
+      bgcolor: "#d63031",
+      borderRadius: 50,
+      color: "#ffff",
+      fontSize: 10,
+      horizontalPosition: 1,
+      width: "25px",
+      height: "25px",
+      thickness: 5,
+      handleClick: () => {
+        // The entire GUI Component
+        advancedTexture.removeControl(box);
+        setInfoOpen(false);
+      },
+    });
+
+    x_btn.left = -2;
+
+    panelStack.addControl(x_btn);
+
     // White Space 1
 
     let white_space_1 = new GUI.Rectangle("white_space_1");
 
-    white_space_1.height = "20px";
+    white_space_1.height = "10px";
     white_space_1.cornerRadius = 15;
     white_space_1.color = "#2d3436";
     white_space_1.thickness = 0;
@@ -284,7 +306,7 @@ export default class Scene {
 
     let white_space_2 = new GUI.Rectangle("white_space_2");
 
-    white_space_2.height = data.link ? "5px" : "20px";
+    white_space_2.height = data.link ? "10px" : "20px";
     white_space_2.cornerRadius = 15;
     white_space_2.color = "#2d3436";
     white_space_2.thickness = 0;
@@ -294,11 +316,9 @@ export default class Scene {
     if (data.link) {
       // Button
       let link_btn = this.generalButton("LINK", "link_btn", advancedTexture, {
-        bgcolor: "#74b9ff",
-        color: "#ffff",
-        fontSize: "12px",
-        height: "25px",
-        width: "50px",
+        bgcolor: "#ffff",
+        color: "#74b9ff",
+        thickness: 0.2,
         handleClick: () => {
           // Open URL
           function windowOpen(url, specs) {
@@ -328,27 +348,27 @@ export default class Scene {
 
     // Close button
 
-    let close_btn = this.generalButton("CLOSE", "close_btn", advancedTexture, {
-      bgcolor: "transparent",
-      handleClick: () => {
-        // The entire GUI Component
-        advancedTexture.removeControl(box);
-        setInfoOpen(false);
-      },
-    });
+    // let close_btn = this.generalButton("CLOSE", "close_btn", advancedTexture, {
+    //   bgcolor: "transparent",
+    //   handleClick: () => {
+    //     // The entire GUI Component
+    //     advancedTexture.removeControl(box);
+    //     setInfoOpen(false);
+    //   },
+    // });
 
-    panelStack.addControl(close_btn);
+    // panelStack.addControl(close_btn);
 
-    // White Space 3
+    // // White Space 3
 
-    let white_space_3 = new GUI.Rectangle("white_space_3");
+    // let white_space_3 = new GUI.Rectangle("white_space_3");
 
-    white_space_3.height = "5px";
-    white_space_3.cornerRadius = 15;
-    white_space_3.color = "#2d3436";
-    white_space_3.thickness = 0;
-    white_space_3.background = "transparent";
-    panelStack.addControl(white_space_3);
+    // white_space_3.height = "5px";
+    // white_space_3.cornerRadius = 15;
+    // white_space_3.color = "#2d3436";
+    // white_space_3.thickness = 0;
+    // white_space_3.background = "transparent";
+    // panelStack.addControl(white_space_3);
 
     // Delete Button
 
@@ -400,6 +420,7 @@ export default class Scene {
       height,
       fontSize,
       borderRadius,
+      thickness,
     }
   ) {
     let btn = GUI.Button.CreateSimpleButton(`${name}`, "");
@@ -409,7 +430,7 @@ export default class Scene {
     btn.cornerRadius = borderRadius || 10;
     btn.color = color || "#2d3436";
     btn.adaptWidthToChildren = false;
-    btn.thickness = 0.05;
+    btn.thickness = thickness || 0.05;
     btn.background = bgcolor || "#ffff";
     btn.horizontalAlignment = horizontalPosition || 2;
 
