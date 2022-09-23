@@ -120,12 +120,12 @@ export default function ChatRoomComponent({
         style={{
           pointerEvents: chatFocus ? "auto" : "none",
           padding: "0px",
-          height: mobile ? "86%" : !handleFullScreen.active ? "82%" : "92%",
           opacity: display ? 1 : 0,
           display: "flex",
           visibility: display ? "" : "hidden",
           flexDirection: "column-reverse",
           marginTop: "0px",
+          height: "300px",
           webKitUserSelect: "none",
           MozUserSelect: "none",
           msUserSelect: "none",

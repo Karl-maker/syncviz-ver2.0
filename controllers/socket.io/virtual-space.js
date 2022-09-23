@@ -282,9 +282,11 @@ module.exports = virtualSpaceHandler = async (io) => {
 
   function sendMessageToChat({ message }) {
    const Message = require("../../services/message");
-   VirtualSpace.chat.add(
-    new Message(message, { sender: VirtualSpace.attendee })
-   );
+   try {
+    VirtualSpace.chat.add(
+     new Message(message, { sender: VirtualSpace.attendee })
+    );
+   } catch (err) {}
   }
 
   function updateAttributes(attributes) {
