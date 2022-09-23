@@ -247,8 +247,9 @@ export default function Viewer() {
             bottom: "0%",
             left: "0%",
             marginLeft: "20px",
-            marginBottom: "0px",
-            height: "100%",
+            marginBottom: "15px",
+            height: "90%",
+            alignItems: "end",
             width: displayChat ? "75%" : "75%",
           }}
         >
