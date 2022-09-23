@@ -125,7 +125,7 @@ export default function ChatRoomComponent({
           visibility: display ? "" : "hidden",
           flexDirection: "column-reverse",
           marginTop: "0px",
-          height: "300px",
+          height: handleFullScreen.active ? "500px" : "300px",
           webKitUserSelect: "none",
           MozUserSelect: "none",
           msUserSelect: "none",
