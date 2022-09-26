@@ -1,6 +1,6 @@
 import VirtualSpaceWidget from "../widgets/virtual-space";
 import { useSearchParams } from "react-router-dom";
-import { useMemo, useContext } from "react";
+import { useMemo, useContext, useState } from "react";
 import { UserAccountContext } from "../context/user";
 import VirtualSpaceClass from "../classes/virtual-space";
 import Tour from "../tours";
@@ -8,6 +8,7 @@ import Steps from "../tours/steps";
 
 export default function VirtualSpace() {
   const [searchParams] = useSearchParams();
+  const [manage, setManage] = useState(false);
   const { user } = useContext(UserAccountContext);
   const virtualSpace = useMemo(
     () => new VirtualSpaceClass(searchParams.get("id"), { attendee: user }),
@@ -24,7 +25,12 @@ export default function VirtualSpace() {
     <>
       {socket && (
         <Tour steps={Steps.VISITER}>
-          <VirtualSpaceWidget virtualSpace={virtualSpace} socket={socket} />
+          <VirtualSpaceWidget
+            virtualSpace={virtualSpace}
+            socket={socket}
+            manage={manage}
+            setManage={setManage}
+          />
         </Tour>
       )}
     </>

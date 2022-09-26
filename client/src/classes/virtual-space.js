@@ -27,6 +27,7 @@ class VirtualSpace {
     this._connected = true;
     this._hashtags = hashtags || "";
     this._connection = new LiveConnection();
+    this._createdAt = null;
   }
 
   get connected() {
@@ -97,8 +98,8 @@ class VirtualSpace {
     return this._host;
   }
 
-  set host({ username, theme }) {
-    this._host = new User(username, theme);
+  set host({ username, theme, picture }) {
+    this._host = new User(username, theme, picture);
   }
 
   get attendee() {
@@ -165,9 +166,33 @@ class VirtualSpace {
     this._peer = peer;
   }
 
+  get createdAt() {
+    return this._createdAt;
+  }
+
+  set createdAt(createdAt) {
+    this._createdAt = createdAt;
+  }
+
   // Methods
 
   connect({ id }) {
+    let Authorization = `{ "username": "${this._attendee.username}", "theme": "${this._attendee.theme}"`;
+
+    if (this._attendee.email) {
+      Authorization = Authorization.concat(
+        `, "email": "${this._attendee.email}"`
+      );
+    }
+
+    if (this._attendee.img) {
+      Authorization = Authorization.concat(
+        `, "picture": "${this._attendee.img}"`
+      );
+    }
+
+    Authorization = Authorization.concat(" }");
+
     try {
       this._socket = io.connect(`${BACKEND}/virtual-space`, {
         // reconnection: true,
@@ -175,7 +200,7 @@ class VirtualSpace {
         // reconnectionDelayMax: 5000,
         // reconnectionAttempts: 99999,
         extraHeaders: {
-          Authorization: `{ "username": "${this._attendee.username}", "theme": "${this._attendee.theme}" }`,
+          Authorization,
         },
         query: { virtual_space_id: this._id || "" },
       });
@@ -363,13 +388,28 @@ class VirtualSpace {
       .catch((err) => {});
   }
 
-  static searchMetaverseRooms(query) {
+  static searchMetaverseRooms(query, { page, amount }) {
     return fetch(
-      `${BACKEND}/api/virtual-room?q=${query}&limit=${6}&page=${1}`,
+      `${BACKEND}/api/virtual-room?q=${query}&limit=${amount}&page=${
+        page || 1
+      }`,
       {
         method: "GET",
       }
     )
+      .then((response) => {
+        return response.json();
+      })
+      .catch((err) => {});
+  }
+
+  static searchPromoMetaverseRooms() {
+    return fetch(`${BACKEND}/api/virtual-room/promo`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
+    })
       .then((response) => {
         return response.json();
       })

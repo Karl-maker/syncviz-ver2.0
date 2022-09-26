@@ -4,13 +4,13 @@ import {
   useMediaQuery,
   CircularProgress,
   Backdrop,
+  Box,
 } from "@mui/material";
 import Selection from "./environment-selections";
 //import { GiPirateFlag, GiModernCity } from "react-icons/gi";
 import MEDIA from "../../utils/constants/media";
 import { useRef } from "react";
 import GridLayout from "../../template/layout/grid-layout";
-import { Box } from "@mui/system";
 import { useState } from "react";
 import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
 

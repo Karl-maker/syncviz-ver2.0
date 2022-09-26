@@ -2,29 +2,41 @@ import VirtualSpace from "../../pages/virtual-space";
 import CreateVirtualSpace from "../../pages/create-virtual-space";
 import { Route, Routes } from "react-router-dom";
 import PAGES from "../../utils/constants/page-names";
-import { Button, Typography, Box, useMediaQuery } from "@mui/material";
-import light_themed_mobile_example from "../../images/light-themed-mobile-example.png";
-import dark_themed_mobile_example from "../../images/dark-themed-mobile-example.png";
+import { Button, Typography, Box, useMediaQuery, Divider } from "@mui/material";
 import { useNavigate } from "react-router-dom";
-import { useTheme } from "@mui/material/styles";
 import MEDIA from "../../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
 import SearchVirtualPage from "../../pages/search-virtual-space";
 import About from "../../pages/about";
 import ReactGA from "react-ga";
-import { useEffect } from "react";
+import { useEffect, useContext, useState } from "react";
 import PrivacyPolicy from "../../pages/privacy-policy";
 import Terms from "../../pages/terms-conditions";
+import Login from "../../pages/login";
+import synclogo from "../../images/logo192.png";
+import GoogleLoginButton from "../../components/login/google-button";
+import { UserAccountContext } from "../../context/user";
+import VirtualSpaceClass from "../../classes/virtual-space";
+import Preview from "../../components/preview";
+import GridLayout from "../layout/grid-layout";
 
 export default function PageNavigation() {
-  const theme = useTheme();
   const navigation = useNavigate();
+  const [metaverseRooms, setMetaverseRooms] = useState([]);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
+  const { user, setLoggedIn, loggedIn } = useContext(UserAccountContext);
+
+  useEffect(() => {
+    VirtualSpaceClass.searchPromoMetaverseRooms().then((results) => {
+      if (results) setMetaverseRooms(results.virtual_rooms);
+      else setMetaverseRooms([]);
+    });
+  }, []);
 
   const Examples = ({ height }) => {
     return (
       <>
-        {theme.palette.mode === "light" ? (
+        {/* {theme.palette.mode === "light" ? (
           <img
             src={light_themed_mobile_example}
             alt="light-themed-mobile-example"
@@ -36,7 +48,7 @@ export default function PageNavigation() {
             alt="dark-themed-mobile-example"
             height={height ? height : 300}
           />
-        )}
+        )} */}
       </>
     );
   };
@@ -54,21 +66,42 @@ export default function PageNavigation() {
               padding: 3,
             }}
           >
-            <Examples />
+            <img src={synclogo} alt="syncviz-logo" height={120} />
+            <Divider sx={{ marginTop: "20px", marginBottom: "20px" }}>
+              Get Started
+            </Divider>
             <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
-              Share 3D files with clients and friends, have a trail with our
-              demo
+              Create virtual rooms to share 3D worlds with clients and friends
             </Typography>
-            <Button
-              onClick={() => {
-                navigation(PAGES.CREATE_METAVERSE);
+
+            <div
+              style={{
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+                marginTop: "20px",
               }}
-              variant="contained"
-              sx={{ marginTop: 5 }}
-              startIcon={<HiOutlineCubeTransparent />}
             >
-              Start Demo
-            </Button>
+              <Button
+                onClick={() => {
+                  navigation(PAGES.CREATE_METAVERSE);
+                }}
+                variant="contained"
+                startIcon={<HiOutlineCubeTransparent />}
+              >
+                Creat Room
+              </Button>
+              {!loggedIn && (
+                <>
+                  <Divider
+                    orientation={"vertical"}
+                    flexItem={true}
+                    sx={{ marginLeft: "15px", marginRight: "15px" }}
+                  ></Divider>
+                  <GoogleLoginButton user={user} setLogin={setLoggedIn} />
+                </>
+              )}
+            </div>
           </Box>
         ) : (
           <Box
@@ -80,27 +113,78 @@ export default function PageNavigation() {
               display: "flex",
             }}
           >
-            <div style={{ marginTop: "40px" }}>
-              <Typography variant="h3">Project Syncviz</Typography>
-              <Typography
-                variant="subtitle1"
-                sx={{ marginTop: "40px", marginBottom: "20px" }}
-              >
-                Syncviz is an online platform that makes the Metaverse
-                accessible to all persons. <br />
-                Share 3D files with clients and friends, have a trail with our
-                demo
-              </Typography>
-              <Button
-                onClick={() => {
-                  navigation(PAGES.CREATE_METAVERSE);
+            <div style={{ marginRight: "20px" }}>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "20px",
                 }}
-                variant="contained"
-                sx={{ marginTop: "10px" }}
-                startIcon={<HiOutlineCubeTransparent />}
               >
-                Start Demo
-              </Button>
+                <Typography
+                  variant="subtitle1"
+                  sx={{ marginTop: "40px", marginBottom: "20px" }}
+                >
+                  Syncviz is an online platform that makes the Metaverse
+                  accessible to all persons. Share 3D files with clients and
+                  friends.
+                </Typography>
+
+                <Divider
+                  orientation={mobile ? "" : "vertical"}
+                  flexItem={mobile ? false : true}
+                  sx={mobile ? {} : { marginLeft: "30px", marginRight: "30px" }}
+                ></Divider>
+                <img src={synclogo} alt="syncviz-logo" height={80} />
+              </div>
+
+              {
+                // Rooms
+              }
+
+              {metaverseRooms.length ? (
+                <>
+                  <Typography variant="caption" sx={{ marginLeft: "10px" }}>
+                    Join A Virtual Room
+                  </Typography>
+                  <GridLayout>
+                    {metaverseRooms.map((room, i) => {
+                      return <Preview data={room} key={i} />;
+                    })}
+                  </GridLayout>
+                </>
+              ) : (
+                <></>
+              )}
+
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "start",
+                  marginTop: "0px",
+                }}
+              >
+                <Button
+                  onClick={() => {
+                    navigation(PAGES.CREATE_METAVERSE);
+                  }}
+                  variant="contained"
+                  startIcon={<HiOutlineCubeTransparent />}
+                >
+                  Creat Room
+                </Button>
+                {!loggedIn && (
+                  <>
+                    <Divider
+                      orientation={"vertical"}
+                      flexItem={true}
+                      sx={{ marginLeft: "20px", marginRight: "20px" }}
+                    ></Divider>
+                    <GoogleLoginButton user={user} setLogin={setLoggedIn} />
+                  </>
+                )}
+              </div>
             </div>
             <Examples height={400} />
           </Box>
@@ -125,6 +209,7 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<VirtualSpace />}
       />
+
       <Route
         path={PAGES.CREATE_METAVERSE}
         caseSensitive={false}
@@ -145,6 +230,7 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<Terms />}
       />
+      <Route path={PAGES.LOGIN} caseSensitive={false} element={<Login />} />
       <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
     </Routes>
   );

@@ -10,6 +10,8 @@ class Message {
    message: this._message,
    timestamp: this._timestamp,
    sender: {
+    picture: this._sender.picture || "",
+    email: this._sender.email || "",
     username: this._sender.username,
     id: this._sender.socket_id,
     color: this._sender.color,

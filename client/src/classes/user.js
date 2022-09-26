@@ -1,9 +1,10 @@
 import { Chip, Avatar } from "@mui/material";
 
 class User {
-  constructor(username, theme) {
+  constructor(username, theme, img) {
     this._username = username;
     this._theme = theme;
+    this._img = img;
     this._socket_id = null;
   }
 
@@ -21,6 +22,14 @@ class User {
 
   set theme(theme) {
     this._theme = theme;
+  }
+
+  get img() {
+    return this._img;
+  }
+
+  set img(img) {
+    this._img = img;
   }
 
   get socket_id() {
@@ -42,7 +51,8 @@ class User {
         }}
         avatar={
           <Avatar
-            src="/"
+            referrerPolicy="no-referrer"
+            src={this._img ? this._img : "/"}
             sx={{ bgcolor: this._theme, color: "#ffff" }}
             alt={this._username}
           />
@@ -54,8 +64,9 @@ class User {
   avatar({ size, sx, action }) {
     return (
       <Avatar
+        referrerPolicy="no-referrer"
         onClick={action}
-        src="/"
+        src={this._img ? this._img : "/"}
         sx={{
           ...sx,
           bgcolor: this._theme,

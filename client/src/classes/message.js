@@ -1,10 +1,11 @@
 import { Chip, Avatar, Typography } from "@mui/material";
 
 class Message {
-  constructor(message, { timestamp, username, color }) {
+  constructor(message, { timestamp, username, color, picture }) {
     this._message = message || "";
     this._timestamp = timestamp || "";
     this._username = username || "";
+    this._picture = picture || "";
     this._color = color || null;
     this._textShadow = {
       textShadow: "0.5px 0.5px 0.5px rgba(0,0,0,0.64)",
@@ -24,7 +25,7 @@ class Message {
       <div style={{ display: "flex" }}>
         <Avatar
           sizes="small"
-          src="/"
+          src={this._picture ? this._picture : "/"}
           sx={{
             width: 30,
             height: 30,

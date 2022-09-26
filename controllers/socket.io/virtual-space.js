@@ -2,7 +2,7 @@ const VS = require("../../services/virtual-space");
 const wrapper = require("../../middlewares/wrapper");
 const constants = require("../../constants");
 const config = require("../../config");
-const authenticate = require("../../middlewares/authenticate");
+const authenticate = require("../../middlewares/auth");
 const errorHandler = require("../../utils/socket-error-handler");
 const path = require("path");
 
@@ -11,7 +11,7 @@ const fs = require("fs");
 module.exports = virtualSpaceHandler = async (io) => {
  const NameSpace = io.of(constants.namespaces.VIRTUAL_SPACE);
 
- NameSpace.use(wrapper(authenticate));
+ NameSpace.use(wrapper(authenticate.Socket));
 
  NameSpace.on("connection", async (socket) => {
   const VirtualSpace = new VS();
@@ -146,11 +146,11 @@ module.exports = virtualSpaceHandler = async (io) => {
     });
   }
 
-  function joinVirtualSpace() {
-   const virtual_space_id = socket.handshake.query.virtual_space_id;
+  function joinVirtualSpace({ id }) {
+   const virtual_space_id = id || socket.handshake.query.virtual_space_id;
 
    VirtualSpace.join(virtual_space_id)
-    .then(({ message, virtual_space }) => {
+    .then(({ message, virtual_space, manage }) => {
      // Notify current attendees of updated viewer list
      VirtualSpace.getSocketClients(NameSpace.in(VirtualSpace._id)).then(
       (viewers) => {
@@ -165,7 +165,7 @@ module.exports = virtualSpaceHandler = async (io) => {
      );
 
      // Send new attendee the current attributes of meeting
-     socket.emit("attributes", { virtual_space });
+     socket.emit("attributes", { virtual_space, manage });
 
      virtual_space.model.url &&
       socket.emit("3D", {
@@ -185,13 +185,17 @@ module.exports = virtualSpaceHandler = async (io) => {
     });
   }
 
-  function createVirtualSpace({ description, code }) {
+  async function createVirtualSpace({ description }) {
+   const time = await VirtualSpace.attendee.getTimeLimit();
+
    VirtualSpace.create({
     creator_id: socket.id,
     description,
-    code,
     username: VirtualSpace.attendee.username,
     user_theme: VirtualSpace.attendee.color,
+    email: VirtualSpace.attendee.email || "",
+    picture: VirtualSpace.attendee.picture || "",
+    time_limit: time,
    })
     .then(({ message, virtual_space }) => {
      // Prompt creator
@@ -223,6 +227,8 @@ module.exports = virtualSpaceHandler = async (io) => {
          url: virtual_space.model.url,
         });
        }
+
+       VirtualSpace.time(NameSpace.to(VirtualSpace._id));
 
        return { virtual_space };
       })

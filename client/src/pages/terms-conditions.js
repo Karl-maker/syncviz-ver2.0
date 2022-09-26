@@ -16,7 +16,7 @@ export default function Terms() {
       <h2 style={{ textAlign: "center" }}>
         <b>TERMS AND CONDITIONS</b>
       </h2>
-      <p>Last updated: 2022-09-19</p>
+      <p>Last updated: 2022-09-26</p>
       <p>
         1. <b>Introduction</b>
       </p>
@@ -25,8 +25,8 @@ export default function Terms() {
       </p>
       <p>
         These Terms of Service (“Terms”, “Terms of Service”) govern your use of
-        our website located at <b>https://project-syncviz.herokuapp.com/</b>{" "}
-        (together or individually “Service”) operated by <b>Syncviz</b>.
+        our website located at <b>project-syncviz.herokuapp.com</b> (together or
+        individually “Service”) operated by <b>Syncviz</b>.
       </p>
       <p>
         Our Privacy Policy also governs your use of our Service and explains how
@@ -514,8 +514,8 @@ export default function Terms() {
         <a href="https://policymaker.io/terms-and-conditions/">
           Terms of Service
         </a>{" "}
-        were created for <b>https://project-syncviz.herokuapp.com/</b> by{" "}
-        <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-19.
+        were created for <b>project-syncviz.herokuapp.com</b> by{" "}
+        <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-26.
       </p>
     </Box>
   );

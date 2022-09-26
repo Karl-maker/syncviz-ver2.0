@@ -7,7 +7,12 @@ import { useTour } from "@reactour/tour";
 export const VirtualSpaceContext = createContext({});
 export const TagContext = createContext({});
 
-export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
+export default function VirtualSpaceWidget({
+  manage,
+  socket,
+  virtualSpace,
+  setManage,
+}) {
   // This will create instance and share with all components
 
   const [select, setSelect] = useState({ x: 0, y: 0, z: 0 });
@@ -17,13 +22,6 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
   // Local Storage
 
-  const [current] = useLocalStorage(
-    `current_room`,
-    JSON.stringify({
-      id: "",
-      code: "",
-    })
-  );
   const [history, setHistory] = useLocalStorage(
     `${manage ? "manage" : "viewer"}_history`,
     JSON.stringify({
@@ -44,18 +42,9 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
 
   useEffect(() => {
     socket.on("connect", () => {
-      let id = JSON.parse(current).id || virtualSpace.id;
-      let code = JSON.parse(current).code || virtualSpace.code;
-
       // value is not changing from useLocal
       if (!manage) {
         virtualSpace.join();
-      } else if (id && code) {
-        // reconnect to previous room
-        virtualSpace.manageVirtualRoom({
-          code: code,
-          id: id,
-        });
       } else {
         // create new room
         virtualSpace.create();
@@ -72,7 +61,9 @@ export default function VirtualSpaceWidget({ manage, socket, virtualSpace }) {
   // Join as soon as rendered
 
   return (
-    <VirtualSpaceContext.Provider value={{ socket, virtualSpace, manage }}>
+    <VirtualSpaceContext.Provider
+      value={{ socket, virtualSpace, manage, setManage }}
+    >
       <TagContext.Provider value={{ setSelect, select, setTag, tag }}>
         {
           // All components will use virtual space context to display data

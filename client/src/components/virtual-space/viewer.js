@@ -232,7 +232,13 @@ export default function Viewer() {
             marginTop: "15px",
           }}
         >
-          <Timer on={displayTimer} />
+          {virtualSpace.createdAt && (
+            <Timer
+              on={displayTimer}
+              start={virtualSpace.createdAt}
+              timeLeft={virtualSpace.time_limit}
+            />
+          )}
           {connectionStatus && connectionStatus}
         </div>
         {

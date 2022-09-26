@@ -53,6 +53,7 @@ export function countTimeLeft(start, time_limit) {
 }
 
 export function countDownTimer(start, timeleft) {
+  if (timeleft === 0) return null;
   const countDownDate = new Date(
     new Date(start).getTime() + timeleft * 60000
   ).getTime();

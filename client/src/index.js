@@ -10,32 +10,32 @@ import { BrowserRouter as Router } from "react-router-dom";
 import StyleProvider from "./template/theme/provider";
 import { SearchContextProvider } from "./context/search";
 import { UserContextProvider } from "./context/user";
-import ReactGA from "react-ga";
-import config from "./config";
-
-ReactGA.initialize(config.Google.Analytics.TRACKING_ID);
+import { LegalContextProvider } from "./context/legal";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
-root.render(
-  <Router>
-    {
-      // Wrap Routing
-    }
 
-    <StyleProvider>
-      <UserContextProvider>
-        <SearchContextProvider>
-          <CssBaseline />
-          {
-            // Provide Theme
-          }
-          <Layout>
-            <PageNavigation />
-          </Layout>
-        </SearchContextProvider>
-      </UserContextProvider>
-    </StyleProvider>
-  </Router>
+root.render(
+  <LegalContextProvider>
+    <Router>
+      {
+        // Wrap Routing
+      }
+
+      <StyleProvider>
+        <UserContextProvider>
+          <SearchContextProvider>
+            <CssBaseline />
+            {
+              // Provide Theme
+            }
+            <Layout>
+              <PageNavigation />
+            </Layout>
+          </SearchContextProvider>
+        </UserContextProvider>
+      </StyleProvider>
+    </Router>
+  </LegalContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

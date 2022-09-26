@@ -6,21 +6,18 @@ import MEDIA from "../../utils/constants/media";
 import SearchBar from "../../components/search-bar/dummy";
 import PAGE from "../../utils/constants/page-names";
 import { useNavigate } from "react-router-dom";
-import { useContext, useState } from "react";
+import { useContext } from "react";
 import { UserAccountContext } from "../../context/user";
-import EditUsername from "../../components/user-account/edit-username";
 import synclogo from "../../images/logo192.png";
 
 export default function Header() {
-  const [userDialog, setUserDialog] = useState(false);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
-  const { user } = useContext(UserAccountContext);
+  const { user, loggedIn } = useContext(UserAccountContext);
 
   return (
     <Grid
       container
-      direction="row"
       justifyContent="center"
       alignItems="center"
       columns={{ xs: 12, sm: 12, md: 12, lg: 12 }}
@@ -72,11 +69,21 @@ export default function Header() {
           // Search Bar
         }
         {<SearchBar />}
-        {user.avatar({
+        {/* {user.avatar({
           size: 30,
           sx: { marginLeft: "10px" },
           action: () => setUserDialog(true),
-        })}
+        })} */}
+        {loggedIn ? (
+          <>
+            {user.avatar({
+              size: 30,
+              sx: { marginLeft: "10px" },
+            })}
+          </>
+        ) : (
+          <></>
+        )}
       </Grid>
       <Grid
         item
@@ -125,7 +132,6 @@ export default function Header() {
       {
         // Other Stuff
       }
-      <EditUsername open={userDialog} setOpen={setUserDialog} />
     </Grid>
   );
 }

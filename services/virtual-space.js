@@ -2,6 +2,7 @@ const User = require("./user");
 const Chat = require("./chat");
 const { fetchSocketOrganizer } = require("../utils/socket");
 const VirtualSpaceModel = require("../models/virtual-space");
+const UserModel = require("../models/user");
 const TagModel = require("../models/tag");
 const FileUpload = require("../services/file-upload");
 const constants = require("../constants");
@@ -107,6 +108,7 @@ class VirtualSpace {
   // return message
   // Do database actions first..
   let virtual_space = {};
+  let user = {};
 
   try {
    virtual_space = await VirtualSpaceModel.findOne({ _id: id });
@@ -135,25 +137,41 @@ class VirtualSpace {
    { new: true }
   );
 
-  try {
-   // Record it
-   await Record.findOneAndUpdate(
-    { virtual_room_id: id },
-    { $inc: { views: 1 } }
-   );
-  } catch (err) {}
+  // try {
+  //  // Record it
+  //  await Record.findOneAndUpdate(
+  //   { virtual_room_id: id },
+  //   { $inc: { views: 1 } }
+  //  );
+  // } catch (err) {}
+
+  if (virtual_space.user.email) {
+   user = await UserModel.findOne({ email: virtual_space.user.email });
+   virtual_space.user = user;
+
+   // Check if master
+
+   if (virtual_space.user.email === this._attendee.email) {
+    this._master = true;
+   }
+  }
 
   // Initialize Chat
 
   this.initializeChat();
 
-  return { message: "Joined Metaverse Room", virtual_space };
+  return {
+   message: "Joined Metaverse Room",
+   virtual_space,
+   manage: this._master,
+  };
  }
 
  async manage(id, code) {
   // return message
   // Do database actions first..
   let virtual_space = {};
+  let user = {};
 
   try {
    virtual_space = await VirtualSpaceModel.findOne({ _id: id, code: code });
@@ -192,6 +210,11 @@ class VirtualSpace {
    { $inc: { current_amount_attending: 1 } },
    { new: true }
   );
+
+  if (virtual_space.user.email) {
+   user = await UserModel.findOne({ email: virtual_space.user.email });
+   virtual_space.user = user;
+  }
 
   // Initialize Chat
 
@@ -240,9 +263,16 @@ class VirtualSpace {
   return await VirtualSpaceModel.findOne({ _id: id });
  }
 
+ static async getByEmail(email) {
+  const virtual_room = await VirtualSpaceModel.findOne({
+   "user.email": email,
+  });
+  return virtual_room;
+ }
+
  async updateAttributes(attributes) {
   const object = deleteNull(attributes);
-
+  let user = {};
   try {
    const new_virtualspace = await VirtualSpaceModel.findOneAndUpdate(
     { _id: this._id },
@@ -250,11 +280,16 @@ class VirtualSpace {
     { new: true }
    );
 
-   // Record it
-   await Record.findOneAndUpdate(
-    { virtual_room_id: this._id },
-    { virtual_room: new_virtualspace }
-   );
+   //  // Record it
+   //  await Record.findOneAndUpdate(
+   //   { virtual_room_id: this._id },
+   //   { virtual_room: new_virtualspace }
+   //  );
+
+   if (new_virtualspace.user.email) {
+    user = await UserModel.findOne({ email: new_virtualspace.user.email });
+    new_virtualspace.user = user;
+   }
 
    this._description = new_virtualspace.description;
    this._link = new_virtualspace.link;
@@ -265,30 +300,63 @@ class VirtualSpace {
   }
  }
 
- async create({ creator_id, description, username, user_theme, code, url }) {
+ async checkIfAnyToManage() {
+  let virtual_space = {};
+  try {
+   virtual_space = await VirtualSpaceModel.findOne({
+    user: { email: this._attendee.email },
+   });
+
+   if (!virtual_space) {
+    return false;
+   }
+
+   return virtual_space;
+  } catch (err) {
+   return false;
+  }
+ }
+
+ async create({
+  creator_id,
+  description,
+  username,
+  user_theme,
+  url,
+  email,
+  picture,
+  time_limit,
+ }) {
   // Creation Logic
   let virtual_space = null;
   try {
    virtual_space = await VirtualSpaceModel.create({
     host: creator_id,
-    user: { username, theme: user_theme },
-    code,
+    user: {
+     username,
+     picture: picture || "",
+     theme: user_theme,
+     email: email || "",
+    },
     description,
+    time_limit: time_limit,
    });
   } catch (err) {
    throw err;
   }
 
-  try {
-   // Record it
-   await Record.create({
-    virtual_room: virtual_space,
-    views: 0,
-    virtual_room_id: virtual_space._id,
-   });
-  } catch (err) {
-   throw err;
-  }
+  this._time_limit = time_limit;
+
+  // try {
+  //  // Record it
+  //  await Record.create({
+  //   virtual_room: virtual_space,
+  //   views: 0,
+  //   virtual_room_id: virtual_space._id,
+  //  });
+  // } catch (err) {
+  //  throw err;
+  // }
 
   try {
    this._description = virtual_space.description;
@@ -333,6 +401,8 @@ class VirtualSpace {
  async time(room) {
   // shedule an end where they all disconnect
   let i = 0;
+  if (this._time_limit === 0) return;
+
   const timer = setInterval(() => {
    i++;
    trackTimer(i);
@@ -365,24 +435,47 @@ class VirtualSpace {
 
  // Static
 
- static async searchVirtualRooms(query, { limit, page }) {
+ static async searchVirtualRooms(query, { limit, page, promo }) {
+  let checkIfPromo = {};
+  if (promo) {
+   checkIfPromo = { promo: true };
+  }
+
+  let amount = 0,
+   virtual_rooms = [];
   try {
    // check if query is #
    if (checkIfValidHashtag(query)) {
-    return await VirtualSpaceModel.find({
+    amount = await VirtualSpaceModel.countDocuments({
      hashtags: q,
      private: false,
+     ...checkIfPromo,
+    });
+    virtual_rooms = await VirtualSpaceModel.find({
+     hashtags: q,
+     private: false,
+     ...checkIfPromo,
     })
      .limit(limit * 1)
      .skip((page - 1) * limit);
+
+    return { amount, virtual_rooms };
    }
-   // seach as normal if not
-   return await VirtualSpaceModel.find({
+   amount = await VirtualSpaceModel.countDocuments({
     description: { $regex: query, $options: "i" },
     private: false,
+    ...checkIfPromo,
+   });
+   // seach as normal if not
+   virtual_rooms = await VirtualSpaceModel.find({
+    description: { $regex: query, $options: "i" },
+    private: false,
+    ...checkIfPromo,
    })
     .limit(limit * 1)
     .skip((page - 1) * limit);
+
+   return { amount, virtual_rooms };
   } catch (err) {
    throw err;
   }

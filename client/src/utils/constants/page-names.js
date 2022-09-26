@@ -7,6 +7,7 @@ const constants = {
   CONTACT: "/contact",
   HELP: "/help",
   SURVEY: "/survey",
+  LOGIN: "/login",
   PRIVACY_POLICY: "/privacy-policy",
   TERMS_AND_CONDITIONS: "terms-and-conditions",
 };

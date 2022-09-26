@@ -18,12 +18,14 @@ import { ColorModeContext } from "../theme/provider";
 import PAGES from "../../utils/constants/page-names";
 import URLS from "../../utils/constants/url";
 import MEDIA from "../../utils/constants/media";
+import { UserAccountContext } from "../../context/user";
 
 // Icons
 
-import { FiHome } from "react-icons/fi";
+import { FiHome, FiLogIn, FiLogOut } from "react-icons/fi";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
+import Logout from "../../components/login/logout";
 
 /*
 
@@ -41,6 +43,7 @@ import { RiSurveyLine } from "react-icons/ri";
 
 export default function MenuBar({ text_color }) {
   const navigate = useNavigate();
+  const { loggedIn, user, setLoggedIn } = useContext(UserAccountContext);
 
   const ITEM_LIST = [
     {
@@ -50,7 +53,7 @@ export default function MenuBar({ text_color }) {
       action: () => navigate(PAGES.METAVERSE_FEED),
     },
     {
-      label: "Start Demo ",
+      label: "Start Virtual Space",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
       action: () => {
@@ -71,6 +74,28 @@ export default function MenuBar({ text_color }) {
       info: "Give us feedback",
       action: () => window.open(URLS.feedback_survey, "_blank"),
     },
+    // Profile Page
+    !loggedIn
+      ? {
+          label: "Login",
+          icon: <FiLogIn />,
+          info: "Login",
+          action: () => {
+            navigate(PAGES.LOGIN);
+          },
+        }
+      : {
+          label: "Logout",
+          icon: <FiLogOut />,
+          info: "Logout",
+          action: async () => {
+            // logout
+
+            try {
+              await Logout(user, setLoggedIn);
+            } catch (err) {}
+          },
+        },
   ];
 
   /*

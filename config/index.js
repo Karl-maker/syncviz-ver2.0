@@ -2,6 +2,8 @@ require("dotenv-flow").config({
  silent: true,
 });
 
+const path = require("path");
+
 /*
   Central point of all major variables that are needed to run the service.
   Everything should be edited or altered to fit the CPU it will be ran on by using .env files.
@@ -11,15 +13,29 @@ require("dotenv-flow").config({
 const ENV = process.env;
 const IS_PROD = process.env.NODE_ENV === "production";
 
+let ACCESS_KEYS, REFRESH_KEYS, GENERAL_KEYS;
+
+try {
+ ACCESS_KEYS = JSON.parse(ENV.ACCESS_KEYS);
+ REFRESH_KEYS = JSON.parse(ENV.REFRESH_KEYS);
+} catch (err) {
+ console.error("Keys unable to parse JSON, please check config variables");
+
+ ACCESS_KEYS = { public: "", private: "" };
+ REFRESH_KEYS = { public: "", private: "" };
+}
+
 const variables = {
  production: {
   IS_PROD: process.env.NODE_ENV === "production",
  },
+
  environment: {
+  LOCATION: `${ENV.LOCATION || "http://localhost"}:${ENV.CLIENT_PORT || 3000}`,
   NODE_ENV: ENV.NODE_ENV || "development",
   URL: IS_PROD
    ? "https://project-syncviz.herokuapp.com"
-   : `http://localhost:${ENV.PORT || 5000}`,
+   : `${ENV.LOCATION || "http://localhost"}:${ENV.PORT || 5000}`,
  },
 
  server: {
@@ -56,6 +72,27 @@ const variables = {
     ACCELERATED: ENV.AWS_MODEL_ACCELERATED || false,
    },
   },
+ },
+
+ Google: {
+  OAuth: {
+   CLIENT_ID: ENV.REACT_APP_GOOGLE_OAUTH_CLIENT_ID || "",
+   SECRET_ID: ENV.REACT_APP_GOOGLE_OAUTH_SECRET_ID || "",
+  },
+ },
+
+ jwt: {
+  ISSUER: ENV.JWT_ISSUER || "Appointment",
+  ALGORITHM: ENV.JWT_ALGORITHM || "RS256",
+  IS_HTTPS: ENV.JWT_IS_HTTPS || false,
+
+  ACCESS_TOKEN_LIFE: ENV.ACCESS_TOKEN_LIFE || "7d",
+  ACCESS_TOKEN_PUBLIC_KEY: ACCESS_KEYS.public,
+  ACCESS_TOKEN_PRIVATE_KEY: ACCESS_KEYS.private,
+
+  REFRESH_TOKEN_PUBLIC_KEY: REFRESH_KEYS.public,
+  REFRESH_TOKEN_PRIVATE_KEY: REFRESH_KEYS.private,
+  REFRESH_TOKEN_LIFE: ENV.REFRESH_TOKEN_LIFE || "7d",
  },
 };
 

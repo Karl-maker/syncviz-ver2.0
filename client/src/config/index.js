@@ -9,6 +9,10 @@ const variables = {
     Analytics: {
       TRACKING_ID: env.REACT_APP_GOOGLE_ANALYTICS_TRACKING_ID,
     },
+    OAuth: {
+      CLIENT_ID: env.REACT_APP_GOOGLE_OAUTH_CLIENT_ID || "",
+      SECRET_ID: env.REACT_APP_GOOGLE_OAUTH_SECRET_ID || "",
+    },
   },
 };
 

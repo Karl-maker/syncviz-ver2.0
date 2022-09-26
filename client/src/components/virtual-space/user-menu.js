@@ -91,6 +91,7 @@ export default function ChatRoomComponent({
       const new_message = new Message(message, {
         username: sender.username,
         color: sender.color,
+        picture: sender.picture || "",
         timestamp,
       });
       addMessage(new_message);
