@@ -15,7 +15,7 @@ function route() {
    })
    .catch((err) => {
     //next(err);
-    res.status(404).json([]);
+    res.status(404).json({ virtual_rooms: [], amount: 0 });
    });
  }
 

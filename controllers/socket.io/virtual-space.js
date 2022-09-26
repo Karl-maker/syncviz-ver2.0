@@ -192,6 +192,7 @@ module.exports = virtualSpaceHandler = async (io) => {
     code,
     username: VirtualSpace.attendee.username,
     user_theme: VirtualSpace.attendee.color,
+    time_limit: 90,
    })
     .then(({ message, virtual_space }) => {
      // Prompt creator
@@ -223,6 +224,8 @@ module.exports = virtualSpaceHandler = async (io) => {
          url: virtual_space.model.url,
         });
        }
+
+       VirtualSpace.time(NameSpace.to(VirtualSpace._id));
 
        return { virtual_space };
       })

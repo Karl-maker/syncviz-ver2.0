@@ -363,9 +363,11 @@ class VirtualSpace {
       .catch((err) => {});
   }
 
-  static searchMetaverseRooms(query) {
+  static searchMetaverseRooms(query, { page, amount }) {
     return fetch(
-      `${BACKEND}/api/virtual-room?q=${query}&limit=${6}&page=${1}`,
+      `${BACKEND}/api/virtual-room?q=${query}&limit=${amount}&page=${
+        page || 1
+      }`,
       {
         method: "GET",
       }

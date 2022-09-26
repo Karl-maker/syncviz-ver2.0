@@ -135,13 +135,13 @@ class VirtualSpace {
    { new: true }
   );
 
-  try {
-   // Record it
-   await Record.findOneAndUpdate(
-    { virtual_room_id: id },
-    { $inc: { views: 1 } }
-   );
-  } catch (err) {}
+  // try {
+  //  // Record it
+  //  await Record.findOneAndUpdate(
+  //   { virtual_room_id: id },
+  //   { $inc: { views: 1 } }
+  //  );
+  // } catch (err) {}
 
   // Initialize Chat
 
@@ -250,11 +250,11 @@ class VirtualSpace {
     { new: true }
    );
 
-   // Record it
-   await Record.findOneAndUpdate(
-    { virtual_room_id: this._id },
-    { virtual_room: new_virtualspace }
-   );
+   //  // Record it
+   //  await Record.findOneAndUpdate(
+   //   { virtual_room_id: this._id },
+   //   { virtual_room: new_virtualspace }
+   //  );
 
    this._description = new_virtualspace.description;
    this._link = new_virtualspace.link;
@@ -265,7 +265,15 @@ class VirtualSpace {
   }
  }
 
- async create({ creator_id, description, username, user_theme, code, url }) {
+ async create({
+  creator_id,
+  description,
+  username,
+  user_theme,
+  code,
+  url,
+  time_limit,
+ }) {
   // Creation Logic
   let virtual_space = null;
   try {
@@ -274,21 +282,22 @@ class VirtualSpace {
     user: { username, theme: user_theme },
     code,
     description,
+    time_limit,
    });
   } catch (err) {
    throw err;
   }
 
-  try {
-   // Record it
-   await Record.create({
-    virtual_room: virtual_space,
-    views: 0,
-    virtual_room_id: virtual_space._id,
-   });
-  } catch (err) {
-   throw err;
-  }
+  // try {
+  //  // Record it
+  //  await Record.create({
+  //   virtual_room: virtual_space,
+  //   views: 0,
+  //   virtual_room_id: virtual_space._id,
+  //  });
+  // } catch (err) {
+  //  throw err;
+  // }
 
   try {
    this._description = virtual_space.description;
@@ -365,24 +374,47 @@ class VirtualSpace {
 
  // Static
 
- static async searchVirtualRooms(query, { limit, page }) {
+ static async searchVirtualRooms(query, { limit, page, promo }) {
+  let checkIfPromo = {};
+  if (promo) {
+   checkIfPromo = { promo: true };
+  }
+
+  let amount = 0,
+   virtual_rooms = [];
   try {
    // check if query is #
    if (checkIfValidHashtag(query)) {
-    return await VirtualSpaceModel.find({
+    amount = await VirtualSpaceModel.countDocuments({
      hashtags: q,
      private: false,
+     ...checkIfPromo,
+    });
+    virtual_rooms = await VirtualSpaceModel.find({
+     hashtags: q,
+     private: false,
+     ...checkIfPromo,
     })
      .limit(limit * 1)
      .skip((page - 1) * limit);
+
+    return { amount, virtual_rooms };
    }
-   // seach as normal if not
-   return await VirtualSpaceModel.find({
+   amount = await VirtualSpaceModel.countDocuments({
     description: { $regex: query, $options: "i" },
     private: false,
+    ...checkIfPromo,
+   });
+   // seach as normal if not
+   virtual_rooms = await VirtualSpaceModel.find({
+    description: { $regex: query, $options: "i" },
+    private: false,
+    ...checkIfPromo,
    })
     .limit(limit * 1)
     .skip((page - 1) * limit);
+
+   return { amount, virtual_rooms };
   } catch (err) {
    throw err;
   }
