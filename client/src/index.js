@@ -14,13 +14,13 @@ import { CookieContextProvider } from "./context/cookie-permission";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <Router>
-    {
-      // Wrap Routing
-    }
+  <CookieContextProvider>
+    <Router>
+      {
+        // Wrap Routing
+      }
 
-    <StyleProvider>
-      <CookieContextProvider>
+      <StyleProvider>
         <UserContextProvider>
           <SearchContextProvider>
             <CssBaseline />
@@ -32,9 +32,9 @@ root.render(
             </Layout>
           </SearchContextProvider>
         </UserContextProvider>
-      </CookieContextProvider>
-    </StyleProvider>
-  </Router>
+      </StyleProvider>
+    </Router>
+  </CookieContextProvider>
 );
 
 // If you want to start measuring performance in your app, pass a function

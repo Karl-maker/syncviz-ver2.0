@@ -66,7 +66,12 @@ function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
         }}
       />
       <div
-        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+        style={{
+          display: "flex",
+          justifyContent: "center",
+          marginTop: "10px",
+          textAlign: "center",
+        }}
       >
         <Typography variant="caption">
           Search through all public Metaverse Rooms using key words and hashtags
