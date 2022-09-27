@@ -1,6 +1,11 @@
 import { useContext } from "react";
 import { BsSearch } from "react-icons/bs";
-import { TextField, InputAdornment, IconButton } from "@mui/material";
+import {
+  TextField,
+  InputAdornment,
+  IconButton,
+  Typography,
+} from "@mui/material";
 import { SearchContext } from "../../context/search";
 
 export default function SearchBarComponent() {
@@ -19,15 +24,27 @@ export default function SearchBarComponent() {
 }
 
 function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
+  const enterKeyHandler = (event) => {
+    if (event.key === "Enter") {
+      toggleSearchRequest((search) => !search);
+    }
+  };
+
   return (
-    <form>
+    <>
       <TextField
         id="search-bar"
-        onInput={(e) => {
+        inputRef={(input) => {
+          if (input != null) {
+            input.focus();
+          }
+        }}
+        onChange={(e) => {
           setSearchQuery(e.target.value);
         }}
         sx={{ margin: "5px" }}
         fullWidth
+        onKeyDown={enterKeyHandler}
         label="Search Metaverse"
         variant="outlined"
         placeholder="Search"
@@ -48,6 +65,13 @@ function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
           ),
         }}
       />
-    </form>
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "10px" }}
+      >
+        <Typography variant="caption">
+          Search through all public Metaverse Rooms using key words and hashtags
+        </Typography>
+      </div>
+    </>
   );
 }

@@ -50,7 +50,7 @@ export default function MenuBar({ text_color }) {
       action: () => navigate(PAGES.METAVERSE_FEED),
     },
     {
-      label: "Start Demo ",
+      label: "Start Metaverse Room ",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
       action: () => {

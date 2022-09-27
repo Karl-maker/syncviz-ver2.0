@@ -17,7 +17,7 @@ export default function PrivacyPolicy() {
       <h2 style={{ textAlign: "center" }}>
         <b>PRIVACY POLICY</b>
       </h2>
-      <p>Effective date: 2022-09-18</p>
+      <p>Effective date: 2022-09-26</p>
       <p>
         1. <b>Introduction</b>
       </p>
@@ -26,14 +26,14 @@ export default function PrivacyPolicy() {
       </p>
       <p>
         <b>Syncviz</b> (“us”, “we”, or “our”) operates{" "}
-        <b>https://project-syncviz.herokuapp.com/</b> (hereinafter referred to
-        as <b>“Service”</b>).
+        <b>project-syncviz.herokuapp.com</b> (hereinafter referred to as{" "}
+        <b>“Service”</b>).
       </p>
       <p>
         Our Privacy Policy governs your visit to{" "}
-        <b>https://project-syncviz.herokuapp.com/</b>, and explains how we
-        collect, safeguard and disclose information that results from your use
-        of our Service.
+        <b>project-syncviz.herokuapp.com</b>, and explains how we collect,
+        safeguard and disclose information that results from your use of our
+        Service.
       </p>
       <p>
         We use your data to provide and improve Service. By using Service, you
@@ -51,8 +51,8 @@ export default function PrivacyPolicy() {
         2. <b>Definitions</b>
       </p>
       <p>
-        <b>SERVICE</b> means the https://project-syncviz.herokuapp.com/ website
-        operated by Syncviz.
+        <b>SERVICE</b> means the project-syncviz.herokuapp.com website operated
+        by Syncviz.
       </p>
       <p>
         <b>PERSONAL DATA</b> means data about a living individual who can be
@@ -259,9 +259,9 @@ export default function PrivacyPolicy() {
         laws may differ from those of your jurisdiction.
       </p>
       <p>
-        If you are located outside United States and choose to provide
+        If you are located outside Trinidad &amp; Tobago and choose to provide
         information to us, please note that we transfer the data, including
-        Personal Data, to United States and process it there.
+        Personal Data, to Trinidad &amp; Tobago and process it there.
       </p>
       <p>
         Your consent to this Privacy Policy followed by your submission of such
@@ -636,8 +636,8 @@ export default function PrivacyPolicy() {
       </p>
       <p style={{ marginTop: "5em", fontSize: "0.7em" }}>
         This <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a>{" "}
-        was created for <b>https://project-syncviz.herokuapp.com/</b> by{" "}
-        <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-18.
+        was created for <b>project-syncviz.herokuapp.com</b> by{" "}
+        <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-26.
       </p>
     </Box>
   );
