@@ -5,6 +5,8 @@ import {
   CircularProgress,
   Backdrop,
   Box,
+  Typography,
+  Chip,
 } from "@mui/material";
 import Selection from "./environment-selections";
 //import { GiPirateFlag, GiModernCity } from "react-icons/gi";
@@ -13,6 +15,8 @@ import { useRef } from "react";
 import GridLayout from "../../template/layout/grid-layout";
 import { useState } from "react";
 import useAnalyticsEventTracker from "../../utils/hooks/useAnalyticsEventTracker";
+import constants from "../../utils/constants/values";
+import formatBytes from "../../utils/tools/sizeFormat";
 
 const MODELS = [
   {
@@ -50,6 +54,9 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const [load, setLoad] = useState(false);
   const [loadProgress, setLoadProgress] = useState(0);
+  const [warning, setWarning] = useState(
+    `File needs to be below ${formatBytes(constants.FILESIZE_LIMIT)}`
+  );
 
   const handleClick = (event) => {
     fileInput.current.click();
@@ -90,7 +97,21 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
         noClickOff
         title="Select Model"
         content={
-          <Box sx={{ width: mobile ? "70vw" : "30vw", maxHeight: "50vh" }}>
+          <Box
+            sx={{
+              width: mobile ? "70vw" : "30vw",
+              maxHeight: "50vh",
+              textAlign: "center",
+            }}
+          >
+            {warning && (
+              <Chip
+                sx={{ marginBottom: "10px" }}
+                variant="outlined"
+                size="small"
+                label={warning}
+              />
+            )}
             <GridLayout>
               <Selection
                 data={{
@@ -116,6 +137,21 @@ export default function EnvironmentSelection({ virtualSpace, open, setOpen }) {
                     }`
                   );
                   modelSizeTracker(`${fileInput.current.files[0].size}`);
+
+                  if (
+                    fileInput.current.files[0].size > constants.FILESIZE_LIMIT
+                  ) {
+                    // Warning
+                    setWarning(
+                      `Cannot upload file the size of ${formatBytes(
+                        fileInput.current.files[0].size
+                      )}, file needs to be below ${formatBytes(
+                        constants.FILESIZE_LIMIT
+                      )}`
+                    );
+                    return;
+                  }
+
                   setOpen(false);
                   startLoad();
                   const formData = new FormData();
