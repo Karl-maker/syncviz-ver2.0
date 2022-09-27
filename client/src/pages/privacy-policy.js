@@ -1,9 +1,16 @@
 import { Box, useMediaQuery } from "@mui/material";
 import MEDIA from "../utils/constants/media";
+import { useEffect } from "react";
 
 export default function PrivacyPolicy() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   //https://policymaker.io/privacy-policy/?gclid=CjwKCAjwpqCZBhAbEiwAa7pXeRntOX3vJbHdtPrvILuK5NtnyaPMmrAkInRhRwAlfwzmW7JK8VrDShoCkk8QAvD_BwE
+
+  useEffect(() => {
+    if (document) document.title = "Syncviz | Privacy Policy";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box
       className="no-sidebar"

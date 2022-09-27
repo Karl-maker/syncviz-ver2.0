@@ -25,6 +25,11 @@ export default function SearchVirtualPage() {
     });
   }, [searchParams, page]);
 
+  useEffect(() => {
+    if (document) document.title = "Syncviz | Privacy Policy";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <>
       <div

@@ -1,8 +1,15 @@
 import { Box, useMediaQuery } from "@mui/material";
 import MEDIA from "../utils/constants/media";
+import { useEffect } from "react";
 
 export default function Terms() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
+
+  useEffect(() => {
+    if (document) document.title = "Syncviz | Terms and Conditions";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <Box
       className="no-sidebar"

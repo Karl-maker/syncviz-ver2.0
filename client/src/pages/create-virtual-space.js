@@ -1,5 +1,5 @@
 import VirtualSpaceWidget from "../widgets/virtual-space";
-import { useMemo, useContext } from "react";
+import { useMemo, useContext, useEffect } from "react";
 import VirtualSpaceClass from "../classes/virtual-space";
 import { UserAccountContext } from "../context/user";
 import Tour from "../tours";
@@ -13,6 +13,11 @@ export default function CreateVirtualSpace() {
   Cannot re make another Metaverse room from refreshing so a re-render tracker is made
 
   */
+
+  useEffect(() => {
+    if (document) document.title = "Syncviz | Create Metaverse Room";
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   const { user } = useContext(UserAccountContext);
 
