@@ -133,6 +133,11 @@ export default function Viewer() {
     () =>
       virtualSpace.url ? (
         <ThreeDimentionalViewer
+          sceneOptions={{
+            useGeometryIdsMap: true,
+            useMaterialMeshMap: true,
+            useClonedMeshMap: true,
+          }}
           virtualSpace={virtualSpace}
           fullScreen={handleFullScreen.active}
           modelUrl={virtualSpace.url}

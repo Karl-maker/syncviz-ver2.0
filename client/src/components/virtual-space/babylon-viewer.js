@@ -45,7 +45,6 @@ export default function BabylonViewer(props) {
 
     babylonSceneRef.current = babylonScene;
     babylonSceneRef.current.mobile = mobile;
-
     babylonSceneRef.current.scene.clearColor = new BABYLON.Color4(
       theme.palette.mode === "dark" ? 0.2 : 0.93,
       theme.palette.mode === "dark" ? 0.29 : 0.94,
@@ -54,7 +53,7 @@ export default function BabylonViewer(props) {
     );
 
     //theme.palette.mode === "dark" ? "#34495e" : "#ecf0f1"34495e
-
+    babylonSceneRef.current.blockfreeActiveMeshesAndRenderingGroups = true;
     babylonSceneRef.current.initializeCamera({ mobile, vr });
 
     await babylonSceneRef.current.loadScene(
@@ -62,7 +61,25 @@ export default function BabylonViewer(props) {
       {
         setProgress,
       },
-      (scene) => {}
+      (scene) => {
+        console.log(scene);
+        scene.blockMaterialDirtyMechanism = true;
+        scene.blockfreeActiveMeshesAndRenderingGroups = false;
+        scene.getAnimationRatio();
+        if (!manage) {
+          scene.clearCachedVertexData();
+        }
+
+        scene.materials.forEach((material) => {
+          material.freeze();
+        });
+
+        scene.meshes.forEach((mesh) => {
+          if (!manage) mesh.isPickable = false;
+          mesh.freezeWorldMatrix();
+          mesh.doNotSyncBoundingInfo = true;
+        });
+      }
     );
 
     babylonSceneRef.current.setArcCameraFraming(() => {

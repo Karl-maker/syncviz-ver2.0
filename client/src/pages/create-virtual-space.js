@@ -1,9 +1,10 @@
 import VirtualSpaceWidget from "../widgets/virtual-space";
-import { useMemo, useContext, useEffect } from "react";
+import { useMemo, useContext } from "react";
 import VirtualSpaceClass from "../classes/virtual-space";
 import { UserAccountContext } from "../context/user";
 import Tour from "../tours";
 import Steps from "../tours/steps";
+import { Helmet } from "react-helmet";
 
 export default function CreateVirtualSpace() {
   // Create Space On Site
@@ -13,11 +14,6 @@ export default function CreateVirtualSpace() {
   Cannot re make another Metaverse room from refreshing so a re-render tracker is made
 
   */
-
-  useEffect(() => {
-    if (document) document.title = "Syncviz | Create Metaverse Room";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
 
   const { user } = useContext(UserAccountContext);
 
@@ -50,6 +46,13 @@ export default function CreateVirtualSpace() {
     <>
       {socket && (
         <Tour steps={Steps.MANAGE}>
+          <Helmet>
+            <title>Syncviz | Create Metaverse Room</title>
+            <meta
+              name="description"
+              content="Start a Metaverse Room to create a virtual environment where 3D models, products and environments can be shared. Allow persons to join your Metaverse Room now and share your 3D experience with many."
+            />
+          </Helmet>
           <VirtualSpaceWidget
             manage={true}
             socket={socket}

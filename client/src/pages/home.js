@@ -8,6 +8,7 @@ import VirtualSpaceClass from "../classes/virtual-space";
 import Preview from "../components/preview";
 import GridLayout from "../template/layout/grid-layout";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 export default function Home() {
   const [metaverseRooms, setMetaverseRooms] = useState([]);
@@ -19,12 +20,6 @@ export default function Home() {
       if (results) setMetaverseRooms(results.virtual_rooms);
       else setMetaverseRooms([]);
     });
-  }, []);
-
-  useEffect(() => {
-    if (document)
-      document.title = "Syncviz | Share 3D Models, Products and Environments";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const Examples = ({ height }) => {
@@ -49,6 +44,13 @@ export default function Home() {
 
   return (
     <>
+      <Helmet>
+        <title>Syncviz | Share 3D Models, Products and Environments</title>
+        <meta
+          name="description"
+          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. Syncviz helps to bring 3D sharing to everyone."
+        />
+      </Helmet>
       {mobile ? (
         <Box
           sx={{

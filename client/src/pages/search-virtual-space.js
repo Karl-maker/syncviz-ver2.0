@@ -5,6 +5,7 @@ import GridLayout from "../template/layout/grid-layout";
 import Preview from "../components/preview";
 import { Pagination, Typography } from "@mui/material";
 import { MdOutlineDoNotDisturb } from "react-icons/md";
+import { Helmet } from "react-helmet";
 
 export default function SearchVirtualPage() {
   const [searchParams] = useSearchParams();
@@ -25,13 +26,15 @@ export default function SearchVirtualPage() {
     });
   }, [searchParams, page]);
 
-  useEffect(() => {
-    if (document) document.title = "Syncviz | Privacy Policy";
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   return (
     <>
+      <Helmet>
+        <title>Syncviz | Share 3D Models, Products and Environments</title>
+        <meta
+          name="description"
+          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. Syncviz helps to bring 3D sharing to everyone."
+        />
+      </Helmet>
       <div
         style={{
           width: "100%",

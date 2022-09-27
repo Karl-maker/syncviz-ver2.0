@@ -5,6 +5,7 @@ import { VirtualSpaceContext } from "../../widgets/virtual-space";
 import { UserAccountContext } from "../../context/user";
 import Viewer from "./viewer";
 import DialogButton from "../../template/buttons/dialog";
+import { Helmet } from "react-helmet";
 
 export default function VirtualSpaceComponent() {
   const { user, save } = useContext(UserAccountContext);
@@ -75,42 +76,49 @@ export default function VirtualSpaceComponent() {
   }, [save]);
 
   return (
-    <Box
-      sx={{
-        width: "100%",
-        padding: "5px",
-        margin: "0px",
-        height: "100%",
-        overflow: "none",
-      }}
-    >
-      <Viewer />
-      <DialogButton
-        title={link.title}
-        content={<Typography>{link.content}</Typography>}
-        actions={
-          <>
-            <Button
-              variant="filled"
-              onClick={() => {
-                if (window) window.open(link.url, "_blank");
-              }}
-            >
-              Do Survey
-            </Button>
-            <Button
-              variant="filled"
-              onClick={() => {
-                setPopUp(false);
-              }}
-            >
-              Cancel
-            </Button>
-          </>
-        }
-        open={popup}
-        setOpen={setPopUp}
-      />
-    </Box>
+    <>
+      {virtualSpace.description && (
+        <Helmet>
+          <meta name="description" content={virtualSpace.description} />
+        </Helmet>
+      )}
+      <Box
+        sx={{
+          width: "100%",
+          padding: "5px",
+          margin: "0px",
+          height: "100%",
+          overflow: "none",
+        }}
+      >
+        <Viewer />
+        <DialogButton
+          title={link.title}
+          content={<Typography>{link.content}</Typography>}
+          actions={
+            <>
+              <Button
+                variant="filled"
+                onClick={() => {
+                  if (window) window.open(link.url, "_blank");
+                }}
+              >
+                Do Survey
+              </Button>
+              <Button
+                variant="filled"
+                onClick={() => {
+                  setPopUp(false);
+                }}
+              >
+                Cancel
+              </Button>
+            </>
+          }
+          open={popup}
+          setOpen={setPopUp}
+        />
+      </Box>
+    </>
   );
 }
