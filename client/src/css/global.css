@@ -100,3 +100,12 @@ ol::-webkit-scrollbar {
 .no-sidebar::-webkit-scrollbar {
   display: none;
 }
+
+#syncviz-viewer {
+  -webkit-touch-callout: none;
+  -webkit-tap-highlight-color: transparent;
+  -moz-user-select: -moz-none;
+  -webkit-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}

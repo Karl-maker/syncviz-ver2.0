@@ -216,10 +216,16 @@ export default function BabylonViewer(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [deleteTag]);
 
+  useEffect(() => {
+    document.getElementById("babylon-3d-viewer").disabled = true;
+  }, []);
+
   return (
     <canvas
+      id="babylon-3d-viewer"
       ref={reactCanvas}
       style={{
+        content: "pseudo block!",
         zIndex: 10000,
         borderRadius: fullScreen || borderRadiusNull ? "0em" : "2em",
         backgroundColor: theme.palette.mode === "dark" ? "#34495e" : "#ecf0f1",

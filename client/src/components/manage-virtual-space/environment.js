@@ -5,7 +5,6 @@ import {
   CircularProgress,
   Backdrop,
   Box,
-  Typography,
   Chip,
 } from "@mui/material";
 import Selection from "./environment-selections";

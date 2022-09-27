@@ -43,6 +43,10 @@ export default function Viewer() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
 
   useEffect(() => {
+    document.getElementById("syncviz-viewer").disabled = true;
+  }, []);
+
+  useEffect(() => {
     setHost(virtualSpace.host.display({ backgroundColor: "transparent" }));
   }, [virtualSpace.host]);
 
@@ -202,6 +206,7 @@ export default function Viewer() {
       }}
     >
       <div
+        id="syncviz-viewer"
         className={classes.VIEWER_WINDOW}
         style={{
           position: "relative",
