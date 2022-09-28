@@ -50,9 +50,9 @@ export default function Header() {
       >
         <img
           src={synclogo}
-          alt="syncviz-logo"
+          alt="SyncPoly-logo"
           height={mobile ? 70 : 80}
-          onClick={() => navigation(PAGE.METAVERSE_FEED)}
+          onClick={() => navigation(PAGE.VIRTUAL_FEED)}
         />
       </Grid>
       <Grid

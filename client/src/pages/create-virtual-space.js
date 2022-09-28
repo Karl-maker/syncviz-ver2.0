@@ -11,7 +11,7 @@ export default function CreateVirtualSpace() {
 
   /*
 
-  Cannot re make another Metaverse room from refreshing so a re-render tracker is made
+  Cannot re make another Virtual room from refreshing so a re-render tracker is made
 
   */
 
@@ -20,7 +20,7 @@ export default function CreateVirtualSpace() {
   /*
 
   1. Fill out info
-  2. Create Metaverse Room
+  2. Create Virtual Room
 
   */
 
@@ -47,10 +47,10 @@ export default function CreateVirtualSpace() {
       {socket && (
         <Tour steps={Steps.MANAGE}>
           <Helmet>
-            <title>Syncviz | Create Metaverse Room</title>
+            <title>SyncPoly | Create Virtual Room</title>
             <meta
               name="description"
-              content="Start a Metaverse Room to create a virtual environment where 3D models, products and environments can be shared. Allow persons to join your Metaverse Room now and share your 3D experience with many."
+              content="Start a Virtual Room to create a virtual environment where 3D models, products and environments can be shared. Allow persons to join your Virtual Room now and share your 3D experience with many."
             />
           </Helmet>
           <VirtualSpaceWidget

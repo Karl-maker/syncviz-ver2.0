@@ -12,7 +12,7 @@ export function SearchContextProvider({ children }) {
   useEffect(() => {
     if (searchRquest) {
       // Search Page
-      navigate(`${PAGE.METAVERSE_SEARCH}?q=${searchQuery}`);
+      navigate(`${PAGE.VIRTUAL_ROOM_SEARCH}?q=${searchQuery}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [searchRquest]);

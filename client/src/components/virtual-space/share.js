@@ -20,23 +20,23 @@ export default function Share({ toggleOpen, open }) {
 
   const createLink = (href) => {
     return href.replace(
-      PAGES.CREATE_METAVERSE,
-      `${PAGES.METAVERSE_ROOM}/?id=${virtualSpace.id}`
+      PAGES.CREATE_VIRTUAL_ROOM,
+      `${PAGES.VIRTUAL_ROOM}/?id=${virtualSpace.id}`
     );
   };
 
   const shareContent = () => {
     return `${createLink(
       window.location.href
-    )} to Join Metaverse Room with topic "${virtualSpace.description}"`;
+    )} to Join Virtual Room with topic "${virtualSpace.description}"`;
   };
 
   const shareHeader = () => {
     return virtualSpace.manage
-      ? "Join My Metaverse Room!"
+      ? "Join My Virtual Room!"
       : `Join ${
           virtualSpace.host.username ? virtualSpace.host.username : "Creator"
-        }'s Metaverse Room!`;
+        }'s Virtual Room!`;
   };
 
   return (
@@ -70,11 +70,11 @@ export default function Share({ toggleOpen, open }) {
                       virtualSpace.host.username
                         ? virtualSpace.host.username
                         : "Creator"
-                    }'s Metaverse Room "${
+                    }'s Virtual Room "${
                       virtualSpace.description
                     }"&url=${createLink(
                       window.location.href
-                    )}&hashtags=3dshare,3dsharing,metaverse`}
+                    )}&hashtags=3dshare,3dsharing,virtual`}
                     target="_blank"
                   >
                     <BsTwitter />

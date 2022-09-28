@@ -9,35 +9,28 @@ import Preview from "../components/preview";
 import GridLayout from "../template/layout/grid-layout";
 import { useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
+import desktop_img from "../images/desktop-view.png";
 
 export default function Home() {
-  const [metaverseRooms, setMetaverseRooms] = useState([]);
+  const [virtualRooms, setVirtualRooms] = useState([]);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
 
   useEffect(() => {
-    VirtualSpaceClass.searchMetaverseRooms("", { page: 1 }).then((results) => {
-      if (results) setMetaverseRooms(results.virtual_rooms);
-      else setMetaverseRooms([]);
+    VirtualSpaceClass.searchVirtualRooms("", { page: 1 }).then((results) => {
+      if (results) setVirtualRooms(results.virtual_rooms);
+      else setVirtualRooms([]);
     });
   }, []);
 
   const Examples = ({ height }) => {
     return (
       <>
-        {/* {theme.palette.mode === "light" ? (
         <img
-          src={light_themed_mobile_example}
-          alt="light-themed-mobile-example"
+          src={desktop_img}
+          alt="desktop_img"
           height={height ? height : 300}
         />
-      ) : (
-        <img
-          src={dark_themed_mobile_example}
-          alt="dark-themed-mobile-example"
-          height={height ? height : 300}
-        />
-      )} */}
       </>
     );
   };
@@ -45,10 +38,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>Syncviz | Share 3D Models, Products and Environments</title>
+        <title>SyncPoly | Share 3D Models, Products and Environments</title>
         <meta
           name="description"
-          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. Syncviz helps to bring 3D sharing to everyone."
+          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. SyncPoly helps to bring 3D sharing to everyone."
         />
       </Helmet>
       {mobile ? (
@@ -61,7 +54,7 @@ export default function Home() {
             padding: 3,
           }}
         >
-          <img src={synclogo} alt="syncviz-logo" height={120} />
+          <img src={synclogo} alt="SyncPoly-logo" height={120} />
           <Divider sx={{ marginTop: "20px", marginBottom: "20px" }}>
             Get Started
           </Divider>
@@ -79,7 +72,7 @@ export default function Home() {
           >
             <Button
               onClick={() => {
-                navigation(PAGES.CREATE_METAVERSE);
+                navigation(PAGES.CREATE_VIRTUAL_ROOM);
               }}
               variant="contained"
               startIcon={<HiOutlineCubeTransparent />}
@@ -98,7 +91,8 @@ export default function Home() {
             display: "flex",
           }}
         >
-          <div style={{ marginRight: "20px" }}>
+          {!virtualRooms.length && <Examples height={400} />}
+          <div style={{ marginRight: "10px" }}>
             <div
               style={{
                 display: "flex",
@@ -110,30 +104,35 @@ export default function Home() {
                 variant="subtitle1"
                 sx={{ marginTop: "40px", marginBottom: "20px" }}
               >
-                Syncviz is an online platform that makes the Metaverse
+                SyncPoly is an online platform that makes the Metaverse
                 accessible to all persons. Share 3D files with clients and
                 friends.
               </Typography>
-
-              <Divider
-                orientation={mobile ? "" : "vertical"}
-                flexItem={mobile ? false : true}
-                sx={mobile ? {} : { marginLeft: "30px", marginRight: "30px" }}
-              ></Divider>
-              <img src={synclogo} alt="syncviz-logo" height={80} />
+              {virtualRooms.length && (
+                <>
+                  <Divider
+                    orientation={mobile ? "" : "vertical"}
+                    flexItem={mobile ? false : true}
+                    sx={
+                      mobile ? {} : { marginLeft: "30px", marginRight: "30px" }
+                    }
+                  ></Divider>
+                  <img src={synclogo} alt="SyncPoly-logo" height={80} />
+                </>
+              )}
             </div>
 
             {
               // Rooms
             }
 
-            {metaverseRooms.length ? (
+            {virtualRooms.length ? (
               <>
                 <Typography variant="caption" sx={{ marginLeft: "10px" }}>
                   Join A Virtual Room
                 </Typography>
                 <GridLayout>
-                  {metaverseRooms.map((room, i) => {
+                  {virtualRooms.map((room, i) => {
                     return <Preview data={room} key={i} />;
                   })}
                 </GridLayout>
@@ -152,7 +151,7 @@ export default function Home() {
             >
               <Button
                 onClick={() => {
-                  navigation(PAGES.CREATE_METAVERSE);
+                  navigation(PAGES.CREATE_VIRTUAL_ROOM);
                 }}
                 variant="contained"
                 startIcon={<HiOutlineCubeTransparent />}
@@ -161,7 +160,6 @@ export default function Home() {
               </Button>
             </div>
           </div>
-          <Examples height={400} />
         </Box>
       )}
     </>

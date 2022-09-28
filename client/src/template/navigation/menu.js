@@ -47,14 +47,14 @@ export default function MenuBar({ text_color }) {
       label: "Home",
       icon: <FiHome />,
       info: "Go to the main page",
-      action: () => navigate(PAGES.METAVERSE_FEED),
+      action: () => navigate(PAGES.VIRTUAL_FEED),
     },
     {
-      label: "Start Metaverse Room ",
+      label: "Start Virtual Room ",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
       action: () => {
-        navigate(PAGES.CREATE_METAVERSE);
+        navigate(PAGES.CREATE_VIRTUAL_ROOM);
         navigate(0);
       },
     },

@@ -1,8 +1,8 @@
 const constants = {
-  CREATE_METAVERSE: "/manage-metaverse-room",
-  METAVERSE_FEED: "/",
-  METAVERSE_ROOM: "/metaverse-room",
-  METAVERSE_SEARCH: "/metaverse-rooms",
+  CREATE_VIRTUAL_ROOM: "/manage-virtual-room",
+  VIRTUAL_FEED: "/",
+  VIRTUAL_ROOM: "/virtual-room",
+  VIRTUAL_ROOM_SEARCH: "/virtual-rooms",
   ABOUT: "/about",
   CONTACT: "/contact",
   HELP: "/help",

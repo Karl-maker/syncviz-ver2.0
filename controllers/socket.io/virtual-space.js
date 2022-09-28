@@ -241,7 +241,7 @@ module.exports = virtualSpaceHandler = async (io) => {
   function endVirtualSpace() {
    if (User.socket_id === VirtualSpace.creator_id || VirtualSpace.master) {
     NameSpace.to(VirtualSpace._id).emit("alerts", {
-     message: `Metaverse room was ended by host`,
+     message: `Virtual room was ended by host`,
     });
 
     VirtualSpace.end()
@@ -298,7 +298,7 @@ module.exports = virtualSpaceHandler = async (io) => {
      .then((virtual_space) => {
       // Others
       NameSpace.to(VirtualSpace._id).emit("alerts", {
-       message: "Metaverse attributes has changed",
+       message: "Virtual attributes has changed",
        type: "info",
       });
       NameSpace.to(VirtualSpace._id).emit("attributes", { virtual_space });

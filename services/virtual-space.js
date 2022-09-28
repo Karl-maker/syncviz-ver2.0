@@ -117,7 +117,7 @@ class VirtualSpace {
   // Check if exists
 
   if (!virtual_space) {
-   throw { name: "NotFound", message: "Metaverse room isn't found" };
+   throw { name: "NotFound", message: "Virtual Room isn't found" };
   }
 
   // Socket operations
@@ -147,7 +147,7 @@ class VirtualSpace {
 
   this.initializeChat();
 
-  return { message: "Joined Metaverse Room", virtual_space };
+  return { message: "Joined Virtual Room", virtual_space };
  }
 
  async manage(id, code) {
@@ -197,7 +197,7 @@ class VirtualSpace {
 
   this.initializeChat();
 
-  return { message: "Joined Metaverse Room", virtual_space };
+  return { message: "Joined Virtual Room", virtual_space };
  }
 
  async getSocketClients(room) {
@@ -306,7 +306,7 @@ class VirtualSpace {
    this._master = true;
 
    return {
-    message: "Metaverse room created",
+    message: "Virtual room created",
     virtual_space: virtual_space,
    };
   } catch (err) {
@@ -350,7 +350,7 @@ class VirtualSpace {
   const trackTimer = (minutes) => {
    if (minutes >= this._time_limit) {
     room.emit("alerts", {
-     message: `Metaverse room has closed`,
+     message: `Virtual room has closed`,
     });
     this.end()
      .then(() => {

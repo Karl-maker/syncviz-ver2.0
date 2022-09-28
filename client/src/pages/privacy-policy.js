@@ -9,7 +9,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Helmet>
-        <title>Syncviz | Privacy Policy</title>
+        <title>SyncPoly | Privacy Policy</title>
       </Helmet>
       <Box
         className="no-sidebar"
@@ -28,18 +28,16 @@ export default function PrivacyPolicy() {
           1. <b>Introduction</b>
         </p>
         <p>
-          Welcome to <b> Syncviz</b>.
+          Welcome to <b> SyncPoly</b>.
         </p>
         <p>
-          <b>Syncviz</b> (“us”, “we”, or “our”) operates{" "}
-          <b>project-syncviz.herokuapp.com</b> (hereinafter referred to as{" "}
-          <b>“Service”</b>).
+          <b>SyncPoly</b> (“us”, “we”, or “our”) operates <b>syncpoly.com</b>{" "}
+          (hereinafter referred to as <b>“Service”</b>).
         </p>
         <p>
-          Our Privacy Policy governs your visit to{" "}
-          <b>project-syncviz.herokuapp.com</b>, and explains how we collect,
-          safeguard and disclose information that results from your use of our
-          Service.
+          Our Privacy Policy governs your visit to <b>syncpoly.com</b>, and
+          explains how we collect, safeguard and disclose information that
+          results from your use of our Service.
         </p>
         <p>
           We use your data to provide and improve Service. By using Service, you
@@ -57,8 +55,7 @@ export default function PrivacyPolicy() {
           2. <b>Definitions</b>
         </p>
         <p>
-          <b>SERVICE</b> means the project-syncviz.herokuapp.com website
-          operated by Syncviz.
+          <b>SERVICE</b> means the syncpoly.com website operated by SyncPoly.
         </p>
         <p>
           <b>PERSONAL DATA</b> means data about a living individual who can be
@@ -204,7 +201,7 @@ export default function PrivacyPolicy() {
         <p>
           5. <b>Use of Data</b>
         </p>
-        <p>Syncviz uses the collected data for various purposes:</p>
+        <p>SyncPoly uses the collected data for various purposes:</p>
         <p>0.1. to provide and maintain our Service;</p>
         <p>0.2. to notify you about changes to our Service;</p>
         <p>
@@ -277,7 +274,7 @@ export default function PrivacyPolicy() {
           such information represents your agreement to that transfer.
         </p>
         <p>
-          Syncviz will take all the steps reasonably necessary to ensure that
+          SyncPoly will take all the steps reasonably necessary to ensure that
           your data is treated securely and in accordance with this Privacy
           Policy and no transfer of your Personal Data will take place to an
           organisation or a country unless there are adequate controls in place
@@ -651,7 +648,7 @@ export default function PrivacyPolicy() {
         <p style={{ marginTop: "5em", fontSize: "0.7em" }}>
           This{" "}
           <a href="https://policymaker.io/privacy-policy/">Privacy Policy</a>{" "}
-          was created for <b>project-syncviz.herokuapp.com</b> by{" "}
+          was created for <b>syncpoly.com</b> by{" "}
           <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-26.
         </p>
       </Box>

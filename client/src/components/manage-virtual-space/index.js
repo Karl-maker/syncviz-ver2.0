@@ -11,7 +11,7 @@ import { RiShareFill } from "react-icons/ri";
 import { useState, useContext } from "react";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
 import MEDIA from "../../utils/constants/media";
-import EndMetaverseRoom from "./end";
+import EndVirtualRoom from "./end";
 import Attributes from "./attributes";
 import EnvironmentSelection from "./environment";
 import Share from "../../components/virtual-space/share";
@@ -42,7 +42,7 @@ export default function ManageVirtualSpace({ isManager }) {
     ? [
         SHARE,
         {
-          name: "End Metaverse Room",
+          name: "End Virtual Room",
           icon: <BiLogOut color="#fff" />,
           action: () => toggleEndDialog(true),
           managerOnly: true,
@@ -73,7 +73,7 @@ export default function ManageVirtualSpace({ isManager }) {
         onClick={() => {
           setOpen((open) => !open);
         }}
-        ariaLabel="Metaverse Room Manager"
+        ariaLabel="Virtual Room Manager"
         sx={{
           position: "fixed",
           bottom: mobile ? 65 : 30,
@@ -94,7 +94,7 @@ export default function ManageVirtualSpace({ isManager }) {
       {
         // Options Dialogs
       }
-      <EndMetaverseRoom
+      <EndVirtualRoom
         virtualSpace={virtualSpace}
         setOpen={toggleEndDialog}
         open={endDialog}

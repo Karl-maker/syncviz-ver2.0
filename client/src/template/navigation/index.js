@@ -18,23 +18,23 @@ export default function PageNavigation() {
   return (
     <Routes>
       <Route
-        path={PAGES.METAVERSE_FEED}
+        path={PAGES.VIRTUAL_FEED}
         caseSensitive={false}
         element={<Home />}
       />
       <Route
-        path={PAGES.METAVERSE_ROOM}
+        path={PAGES.VIRTUAL_ROOM}
         caseSensitive={false}
         element={<VirtualSpace />}
       />
 
       <Route
-        path={PAGES.CREATE_METAVERSE}
+        path={PAGES.CREATE_VIRTUAL_ROOM}
         caseSensitive={false}
         element={<CreateVirtualSpace />}
       />
       <Route
-        path={PAGES.METAVERSE_SEARCH}
+        path={PAGES.VIRTUAL_ROOM_SEARCH}
         caseSensitive={false}
         element={<SearchVirtualPage />}
       />

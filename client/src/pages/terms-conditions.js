@@ -8,7 +8,7 @@ export default function Terms() {
   return (
     <>
       <Helmet>
-        <title>Syncviz | Terms and Conditions</title>
+        <title>SyncPoly | Terms and Conditions</title>
       </Helmet>
       <Box
         className="no-sidebar"
@@ -27,12 +27,12 @@ export default function Terms() {
           1. <b>Introduction</b>
         </p>
         <p>
-          Welcome to <b>Syncviz</b> (“Company”, “we”, “our”, “us”)!
+          Welcome to <b>SyncPoly</b> (“Company”, “we”, “our”, “us”)!
         </p>
         <p>
           These Terms of Service (“Terms”, “Terms of Service”) govern your use
-          of our website located at <b>project-syncviz.herokuapp.com</b>{" "}
-          (together or individually “Service”) operated by <b>Syncviz</b>.
+          of our website located at <b>syncpoly.com</b> (together or
+          individually “Service”) operated by <b>SyncPoly</b>.
         </p>
         <p>
           Our Privacy Policy also governs your use of our Service and explains
@@ -107,12 +107,12 @@ export default function Terms() {
           subject to these Terms.
         </p>
         <p>
-          Syncviz has the right but not the obligation to monitor and edit all
+          SyncPoly has the right but not the obligation to monitor and edit all
           Content provided by users.
         </p>
         <p>
           In addition, Content found on or through this Service are the property
-          of Syncviz or used with permission. You may not distribute, modify,
+          of SyncPoly or used with permission. You may not distribute, modify,
           transmit, reuse, download, repost, copy, or use said Content, whether
           in whole or in part, for commercial purposes or for personal gain,
           without express advance written permission from us.
@@ -249,10 +249,10 @@ export default function Terms() {
         <p>
           Service and its original content (excluding Content provided by
           users), features and functionality are and will remain the exclusive
-          property of Syncviz and its licensors. Service is protected by
+          property of SyncPoly and its licensors. Service is protected by
           copyright, trademark, and other laws of and foreign countries. Our
           trademarks may not be used in connection with any product or service
-          without the prior written consent of Syncviz.
+          without the prior written consent of SyncPoly.
         </p>
         <p>
           10. <b>Copyright Policy</b>
@@ -342,10 +342,10 @@ export default function Terms() {
         </p>
         <p>
           Our Service may contain links to third party web sites or services
-          that are not owned or controlled by Syncviz.
+          that are not owned or controlled by SyncPoly.
         </p>
         <p>
-          Syncviz has no control over, and assumes no responsibility for the
+          SyncPoly has no control over, and assumes no responsibility for the
           content, privacy policies, or practices of any third party web sites
           or services. We do not warrant the offerings of any of these
           entities/individuals or their websites.
@@ -534,7 +534,7 @@ export default function Terms() {
           <a href="https://policymaker.io/terms-and-conditions/">
             Terms of Service
           </a>{" "}
-          were created for <b>project-syncviz.herokuapp.com</b> by{" "}
+          were created for <b>syncpoly.com</b> by{" "}
           <a href="https://policymaker.io">PolicyMaker.io</a> on 2022-09-26.
         </p>
       </Box>

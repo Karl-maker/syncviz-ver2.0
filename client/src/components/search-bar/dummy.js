@@ -20,7 +20,9 @@ export default function SearchDummy() {
           </IconButton>
         }
         variant="outlined"
-        label={<Typography variant="caption">{"Search Metaverse"}</Typography>}
+        label={
+          <Typography variant="caption">{"Search Virtual Rooms"}</Typography>
+        }
         sx={{
           border: "1 solid",
           borderColor: "background.screen",

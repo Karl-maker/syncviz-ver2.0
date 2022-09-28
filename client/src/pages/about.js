@@ -53,16 +53,16 @@ export default function About() {
         >
           <Typography variant="h5">About Us</Typography>
           <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
-            Syncviz is an online platform that makes the Metaverse accessible to
-            all persons. The Metaverse in our definition is a virtual world
+            SyncPoly is an online platform that makes the Metaverse accessible
+            to all persons. The Metaverse in our definition is a virtual world
             where people can connect to each other to share an experience in 3D.
-            Syncviz brings the Metaverse to ordinary people by giving them the
+            SyncPoly brings the Metaverse to ordinary people by giving them the
             ability to develop their own spaces with ease and the help of the
-            community. Metaverse Rooms allow its owners to share experiences,
+            community. Virtual Rooms allow its owners to share experiences,
             inform, sell products, entertain and advertise to all its attendees
             in a familiar hassle free manner. Services, products and a community
-            are developed by Syncviz to breathe life into the Metaverse in a way
-            where all persons can gain value from it.
+            are developed by SyncPoly to breathe life into the Metaverse in a
+            way where all persons can gain value from it.
           </Typography>
         </Box>
       ) : (
@@ -89,15 +89,15 @@ export default function About() {
                 textAlign: "center",
               }}
             >
-              Syncviz is an online platform that makes the Metaverse accessible
+              SyncPoly is an online platform that makes the Metaverse accessible
               to all persons. The Metaverse in our definition is a virtual world
               where people can connect to each other to share an experience in
-              3D. Syncviz brings the Metaverse to ordinary people by giving them
-              the ability to develop their own spaces with ease and the help of
-              the community. Metaverse Rooms allow its owners to share
+              3D. SyncPoly brings the Metaverse to ordinary people by giving
+              them the ability to develop their own spaces with ease and the
+              help of the community. Metaverse Rooms allow its owners to share
               experiences, inform, sell products, entertain and advertise to all
               its attendees in a familiar hassle free manner. Services, products
-              and a community are developed by Syncviz to breathe life into the
+              and a community are developed by SyncPoly to breathe life into the
               Metaverse in a way where all persons can gain value from it.
             </Typography>
           </div>

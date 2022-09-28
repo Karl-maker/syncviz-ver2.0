@@ -45,7 +45,7 @@ function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
         sx={{ margin: "5px" }}
         fullWidth
         onKeyDown={enterKeyHandler}
-        label="Search Metaverse"
+        label="Search Virtual Rooms"
         variant="outlined"
         placeholder="Search"
         size="small"
@@ -74,7 +74,7 @@ function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
         }}
       >
         <Typography variant="caption">
-          Search through all public Metaverse Rooms using key words and hashtags
+          Search through all public Virtual Rooms using key words and hashtags
         </Typography>
       </div>
     </>

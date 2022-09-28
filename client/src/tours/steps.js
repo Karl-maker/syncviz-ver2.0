@@ -145,7 +145,7 @@ const COMMON = {
             variant="caption"
           >
             When a 3D model is loaded, you can traverse and interact with the{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span>.
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span>.
           </Typography>
           <Instructions />
           <NextButton />
@@ -165,7 +165,7 @@ const COMMON = {
             variant="caption"
           >
             Here are all the messages and updates that are occuring within the
-            current <span style={{ fontWeight: "bold" }}>Metaverse Room</span>
+            current <span style={{ fontWeight: "bold" }}>Virtual Room</span>
           </Typography>
           <NextButton />
         </Box>
@@ -186,8 +186,8 @@ const COMMON = {
             variant="caption"
           >
             This shows you how many persons are currently in this{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span>,
-            including you.
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span>, including
+            you.
           </Typography>
           <NextButton />
         </Box>
@@ -206,7 +206,7 @@ const COMMON = {
   //           variant="caption"
   //         >
   //           Here tells you and your visitors how much time is left till your{" "}
-  //           <span style={{ fontWeight: "bold" }}>Metaverse Room</span> ends.
+  //           <span style={{ fontWeight: "bold" }}>Virtual Room</span> ends.
   //         </Typography>
   //         <NextButton />
   //       </Box>
@@ -226,7 +226,7 @@ const COMMON = {
           >
             Different colors of this icon tells you your current connection
             status to the{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span>
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span>
           </Typography>
           <ul>
             <li>
@@ -266,7 +266,7 @@ const COMMON = {
             sx={{ color: "#2d3436", marginTop: "5px" }}
             variant="caption"
           >
-            This gives you more options and settings for the Metaverse Room.{" "}
+            This gives you more options and settings for the Virtual Room.{" "}
             <span
               style={{ fontWeight: "bold" }}
               onClick={() => {
@@ -294,7 +294,7 @@ const COMMON = {
             variant="caption"
           >
             You can share this{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span> with your
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span> with your
             friends, family and clients.
           </Typography>
           <NextButton />
@@ -314,7 +314,7 @@ const COMMON = {
             variant="caption"
           >
             This demo allows you to interact and explore{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Rooms</span>, please
+            <span style={{ fontWeight: "bold" }}>Virtual Rooms</span>, please
             enjoy!
           </Typography>
           <div style={{ display: "flex", marginTop: "10px" }}>
@@ -349,7 +349,7 @@ const MANAGE = [
         <Box>
           <Typography sx={{ color: "#2d3436" }}>
             Welcome to our{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Manager</span>
+            <span style={{ fontWeight: "bold" }}>Virtual Manager</span>
           </Typography>
           <Typography
             sx={{ color: "#2d3436", marginTop: "5px" }}
@@ -458,8 +458,7 @@ const MANAGE = [
             variant="caption"
           >
             You can add a caption, hashtags or other attributes to your{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span> right
-            here
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span> right here
           </Typography>
           <NextButton />
         </Box>
@@ -501,10 +500,10 @@ const MANAGE = [
             variant="caption"
           >
             Whenever you are ready you can end your{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span> here.
-            This will also end it for all your visitors.{" "}
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span> here. This
+            will also end it for all your visitors.{" "}
             <span style={{ fontWeight: "bold" }}>
-              Please note if you leave or close your window the Metaverse Room
+              Please note if you leave or close your window the Virtual Room
               won't end.
             </span>
           </Typography>
@@ -526,7 +525,7 @@ const VISITER = [
         <Box>
           <Typography sx={{ color: "#2d3436" }}>
             Welcome to a{" "}
-            <span style={{ fontWeight: "bold" }}>Metaverse Room</span>
+            <span style={{ fontWeight: "bold" }}>Virtual Room</span>
           </Typography>
           <Typography
             sx={{ color: "#2d3436", marginTop: "5px" }}

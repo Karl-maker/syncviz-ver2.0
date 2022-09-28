@@ -29,7 +29,7 @@ export default function BottomNavigationBar() {
         icon={
           <Button
             onClick={() => {
-              navigate(PAGES.CREATE_METAVERSE);
+              navigate(PAGES.CREATE_VIRTUAL_ROOM);
               navigate(0);
             }}
             elevation={0}

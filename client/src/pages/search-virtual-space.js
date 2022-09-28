@@ -9,7 +9,7 @@ import { Helmet } from "react-helmet";
 
 export default function SearchVirtualPage() {
   const [searchParams] = useSearchParams();
-  const [metaverseRooms, setMetaverseRooms] = useState([]);
+  const [virtualRooms, setVirtualRooms] = useState([]);
   const [page, setPage] = useState(1);
   const [amount, setAmount] = useState(0);
 
@@ -19,20 +19,20 @@ export default function SearchVirtualPage() {
 
   useEffect(() => {
     const q = searchParams.get("q");
-    VirtualSpace.searchMetaverseRooms(q, { page }).then((results) => {
-      if (results) setMetaverseRooms(results.virtual_rooms);
+    VirtualSpace.searchVirtualRooms(q, { page }).then((results) => {
+      if (results) setVirtualRooms(results.virtual_rooms);
       if (results.amount) setAmount(results.amount);
-      else setMetaverseRooms([]);
+      else setVirtualRooms([]);
     });
   }, [searchParams, page]);
 
   return (
     <>
       <Helmet>
-        <title>Syncviz | Share 3D Models, Products and Environments</title>
+        <title>SyncPoly | Share 3D Models, Products and Environments</title>
         <meta
           name="description"
-          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. Syncviz helps to bring 3D sharing to everyone."
+          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. SyncPoly helps to bring 3D sharing to everyone."
         />
       </Helmet>
       <div
@@ -51,9 +51,9 @@ export default function SearchVirtualPage() {
         />
       </div>
 
-      {metaverseRooms.length ? (
+      {virtualRooms.length ? (
         <GridLayout>
-          {metaverseRooms.map((room, i) => {
+          {virtualRooms.map((room, i) => {
             return <Preview data={room} key={i} />;
           })}
         </GridLayout>

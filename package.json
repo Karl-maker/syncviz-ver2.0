@@ -1,5 +1,5 @@
 {
- "name": "syncviz-backend",
+ "name": "syncpoly-backend",
  "version": "1.0.0",
  "description": "3D file sharing app",
  "main": "index.js",

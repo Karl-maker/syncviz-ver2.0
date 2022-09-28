@@ -14,7 +14,7 @@ export default function Preview({ data }) {
     <Grid xs={4} sm={8} md={12} sx={{ padding: "5px" }}>
       <Box
         onClick={() => {
-          navigate(`${PAGE.METAVERSE_ROOM}?id=${room._id}`);
+          navigate(`${PAGE.VIRTUAL_ROOM}?id=${room._id}`);
         }}
         sx={{
           position: "relative",

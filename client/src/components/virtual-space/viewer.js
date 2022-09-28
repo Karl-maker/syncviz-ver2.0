@@ -43,7 +43,7 @@ export default function Viewer() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
 
   useEffect(() => {
-    document.getElementById("syncviz-viewer").disabled = true;
+    document.getElementById("syncpoly-viewer").disabled = true;
   }, []);
 
   useEffect(() => {
@@ -180,7 +180,7 @@ export default function Viewer() {
             alignItems: "center",
           }}
         >
-          <img src={synclogo} alt="syncviz-logo" height={80} />
+          <img src={synclogo} alt="syncpoly-logo" height={80} />
         </div>
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -206,7 +206,7 @@ export default function Viewer() {
       }}
     >
       <div
-        id="syncviz-viewer"
+        id="syncpoly-viewer"
         className={classes.VIEWER_WINDOW}
         style={{
           position: "relative",
