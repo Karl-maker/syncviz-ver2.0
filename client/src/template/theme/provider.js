@@ -40,6 +40,7 @@ export default function StyleProvider({ children }) {
                   tertiary: "#ffff",
                 },
                 background: {
+                  default: "#f5f6fa",
                   paper: "#2980b9",
                   screen: "#ecf0f1",
                 },
