@@ -7,9 +7,9 @@ import {
   Divider,
   Switch,
   Grid,
-  Chip,
   Typography,
   useMediaQuery,
+  Chip,
 } from "@mui/material";
 import { styled, useTheme } from "@mui/material/styles";
 import { useContext } from "react";
@@ -195,6 +195,14 @@ export default function MenuBar({ text_color }) {
           <Contact label={"karljohanbailey98@gmail.com"} />
         </div>
       </List>
+
+      <div
+        style={{ display: "flex", justifyContent: "center", marginTop: "20px" }}
+      >
+        {
+          // Share Area
+        }
+      </div>
 
       <List>
         {

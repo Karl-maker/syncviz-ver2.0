@@ -1,36 +1,60 @@
 import PAGES from "../utils/constants/page-names";
-import { Button, Typography, Box, useMediaQuery, Divider } from "@mui/material";
+import {
+  Button,
+  Typography,
+  Box,
+  useMediaQuery,
+  Divider,
+  ButtonGroup,
+} from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
-import { useEffect, useState } from "react";
 import synclogo from "../images/logo192.png";
-import VirtualSpaceClass from "../classes/virtual-space";
-import Preview from "../components/preview";
-import GridLayout from "../template/layout/grid-layout";
 import { useNavigate } from "react-router-dom";
+import { IoMail } from "react-icons/io5";
+import { BsTwitter, BsFacebook } from "react-icons/bs";
 import { Helmet } from "react-helmet";
-import desktop_img from "../images/desktop-view.png";
+import { useTheme } from "@mui/material/styles";
 
 export default function Home() {
-  const [virtualRooms, setVirtualRooms] = useState([]);
+  const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
 
-  useEffect(() => {
-    VirtualSpaceClass.searchVirtualRooms("", { page: 1 }).then((results) => {
-      if (results) setVirtualRooms(results.virtual_rooms);
-      else setVirtualRooms([]);
-    });
-  }, []);
+  const spanStyle = {
+    color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
+  };
 
-  const Examples = ({ height }) => {
+  const ShareElements = () => {
     return (
       <>
-        <img
-          src={desktop_img}
-          alt="desktop_img"
-          height={height ? height : 300}
-        />
+        <Button
+          size="large"
+          href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=SyncPoly offers a way to bring 3D to clients and friends in a interactive helpful way. This allow persons to develop creative ways share experiences and information. Check us out ${window.location.href} `}
+        >
+          <IoMail />
+        </Button>
+        <Button
+          size="large"
+          href={`http://twitter.com/share?text=Share 3D Models, Products, Environments and more in SyncPoly's Virtual Room &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
+          target="_blank"
+        >
+          <BsTwitter />
+        </Button>
+        <Button
+          size="large"
+          href={`https://www.facebook.com/share.php?u=${window.location.href}`}
+          target="_blank"
+        >
+          <BsFacebook />
+        </Button>
+        {/* <Button
+          size="large"
+          href={`whatsapp://send?text=${window.location.href}`}
+          data-action="share/whatsapp/share"
+        >
+          <BsWhatsapp />
+        </Button> */}
       </>
     );
   };
@@ -59,7 +83,8 @@ export default function Home() {
             Get Started
           </Divider>
           <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
-            Create virtual rooms to share 3D worlds with clients and friends
+            Share 3D Models, Products, Environments and more in SyncPoly's
+            Virtual Room
           </Typography>
 
           <div
@@ -77,7 +102,7 @@ export default function Home() {
               variant="contained"
               startIcon={<HiOutlineCubeTransparent />}
             >
-              Creat Room
+              Creat Virtual Room
             </Button>
           </div>
         </Box>
@@ -91,62 +116,61 @@ export default function Home() {
             display: "flex",
           }}
         >
-          {!virtualRooms.length && <Examples height={400} />}
           <div style={{ marginRight: "10px" }}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                marginBottom: "20px",
-              }}
-            >
-              <Typography
-                variant="subtitle1"
-                sx={{ marginTop: "40px", marginBottom: "20px" }}
+            <div>
+              <div
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  marginBottom: "30px",
+                }}
               >
-                SyncPoly is an online platform that makes the Metaverse
-                accessible to all persons. Share 3D files with clients and
-                friends.
-              </Typography>
-              {virtualRooms.length && (
-                <>
-                  <Divider
-                    orientation={mobile ? "" : "vertical"}
-                    flexItem={mobile ? false : true}
-                    sx={
-                      mobile ? {} : { marginLeft: "30px", marginRight: "30px" }
+                <Typography
+                  variant="h3"
+                  sx={{
+                    marginBottom: "30px",
+                    marginTop: "20px",
+                    fontWeight: "bold",
+                  }}
+                >
+                  Share <span style={spanStyle}>3D</span> Models, Products,
+                  Environments and more in{" "}
+                  <span style={spanStyle}>SyncPoly</span>'s Virtual Room
+                </Typography>
+                <Divider
+                  orientation={mobile ? "" : "vertical"}
+                  flexItem={mobile ? false : true}
+                  sx={mobile ? {} : { marginLeft: "30px", marginRight: "30px" }}
+                ></Divider>
+                <div>
+                  {/* <img src={synclogo} alt="SyncPoly-logo" height={80} /> */}
+                  <div style={{ textAlign: "center", marginBottom: "10px" }}>
+                    <Typography variant="caption">Share</Typography>
+                  </div>
+                  <ButtonGroup
+                    orientation="vertical"
+                    variant="outlined"
+                    aria-label="outlined primary button group"
+                  >
+                    {
+                      // Share
                     }
-                  ></Divider>
-                  <img src={synclogo} alt="SyncPoly-logo" height={80} />
-                </>
-              )}
+
+                    <ShareElements />
+                  </ButtonGroup>
+                </div>
+              </div>
+              <Typography variant="body1" sx={{ marginBottom: "20px" }}>
+                SyncPoly offers a way to bring 3D to clients and friends in a
+                interactive helpful way. This allow persons to develop creative
+                ways share experiences and information.
+              </Typography>
             </div>
 
-            {
-              // Rooms
-            }
-
-            {virtualRooms.length ? (
-              <>
-                <Typography variant="caption" sx={{ marginLeft: "10px" }}>
-                  Join A Virtual Room
-                </Typography>
-                <GridLayout>
-                  {virtualRooms.map((room, i) => {
-                    return <Preview data={room} key={i} />;
-                  })}
-                </GridLayout>
-              </>
-            ) : (
-              <></>
-            )}
-
             <div
               style={{
+                marginTop: "20px",
                 display: "flex",
-                alignItems: "center",
-                justifyContent: "start",
-                marginTop: "0px",
               }}
             >
               <Button
@@ -156,7 +180,7 @@ export default function Home() {
                 variant="contained"
                 startIcon={<HiOutlineCubeTransparent />}
               >
-                Creat Room
+                Create Virtual Room
               </Button>
             </div>
           </div>
