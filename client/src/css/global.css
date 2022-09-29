@@ -101,7 +101,8 @@ ol::-webkit-scrollbar {
   display: none;
 }
 
-#syncpoly-viewer #none-touch-image {
+#syncpoly-viewer,
+#none-touch-image {
   -webkit-touch-callout: none;
   -webkit-tap-highlight-color: transparent;
   -moz-user-select: -moz-none;
