@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import { BsSearch } from "react-icons/bs";
+import synclogo from "../../images/logo192.png";
 import {
   TextField,
   InputAdornment,
@@ -8,7 +9,7 @@ import {
 } from "@mui/material";
 import { SearchContext } from "../../context/search";
 
-export default function SearchBarComponent() {
+export default function SearchBarComponent({ setOpen }) {
   const { searchQuery, setSearchQuery, toggleSearchRequest } =
     useContext(SearchContext);
 
@@ -18,20 +19,30 @@ export default function SearchBarComponent() {
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
         toggleSearchRequest={toggleSearchRequest}
+        setOpen={setOpen}
       />
     </div>
   );
 }
 
-function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
+function SearchBar({
+  setSearchQuery,
+  searchQuery,
+  toggleSearchRequest,
+  setOpen,
+}) {
   const enterKeyHandler = (event) => {
     if (event.key === "Enter") {
       toggleSearchRequest((search) => !search);
+      setOpen(false);
     }
   };
 
   return (
     <>
+      <div style={{ display: "flex", justifyContent: "center" }}>
+        <img src={synclogo} alt="SyncPoly-logo" height={120} />
+      </div>
       <TextField
         id="search-bar"
         inputRef={(input) => {
@@ -57,6 +68,7 @@ function SearchBar({ setSearchQuery, searchQuery, toggleSearchRequest }) {
                 size="small"
                 onClick={() => {
                   toggleSearchRequest((search) => !search);
+                  setOpen(false);
                 }}
               >
                 <BsSearch />

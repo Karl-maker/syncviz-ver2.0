@@ -99,6 +99,7 @@ export default function Home() {
               onClick={() => {
                 navigation(PAGES.CREATE_VIRTUAL_ROOM);
               }}
+              disableElevation
               variant="contained"
               startIcon={<HiOutlineCubeTransparent />}
             >
@@ -178,6 +179,7 @@ export default function Home() {
                   navigation(PAGES.CREATE_VIRTUAL_ROOM);
                 }}
                 variant="contained"
+                disableElevation
                 startIcon={<HiOutlineCubeTransparent />}
               >
                 Create Virtual Room
