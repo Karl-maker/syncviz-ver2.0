@@ -9,6 +9,7 @@ import PrivacyPolicy from "../../pages/privacy-policy";
 import Terms from "../../pages/terms-conditions";
 import Home from "../../pages/home";
 import SearchVirtualPage from "../../pages/search-virtual-space";
+import CookiePolicy from "../../pages/cookie-policy";
 
 export default function PageNavigation() {
   useEffect(() => {
@@ -42,6 +43,11 @@ export default function PageNavigation() {
         path={PAGES.PRIVACY_POLICY}
         caseSensitive={false}
         element={<PrivacyPolicy />}
+      />
+      <Route
+        path={PAGES.COOKIE_POLICY}
+        caseSensitive={false}
+        element={<CookiePolicy />}
       />
       <Route
         path={PAGES.TERMS_AND_CONDITIONS}

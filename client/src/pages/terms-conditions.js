@@ -15,7 +15,7 @@ export default function Terms() {
         sx={{
           overflow: mobile ? "none" : "scroll",
           maxHeight: "100vh",
-          padding: "5px",
+          padding: mobile ? "10px" : "5px",
           paddingBottom: "100px",
         }}
       >

@@ -186,14 +186,18 @@ export default function MenuBar({ text_color }) {
           />
           <Divider orientation="vertical" flexItem />
           <Contact
+            label={"Cookie Policy"}
+            action={() => {
+              navigate(PAGES.COOKIE_POLICY);
+            }}
+          />
+          <Divider orientation="vertical" flexItem />
+          <Contact
             label={"Terms of Service"}
             action={() => {
               navigate(PAGES.TERMS_AND_CONDITIONS);
             }}
           />
-
-          <Divider orientation="vertical" flexItem />
-          <Contact label={"karljohanbailey98@gmail.com"} />
         </div>
       </List>
 

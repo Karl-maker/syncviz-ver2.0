@@ -5,8 +5,7 @@ export default function CookiePermission({ accept }) {
   return (
     <CookieConsent
       location="bottom"
-      buttonText="I understand"
-      cookieName="refreshToken"
+      buttonText="Yes, proceed"
       style={{ background: "#2B373B" }}
       onAccept={accept}
       buttonStyle={{
@@ -20,8 +19,8 @@ export default function CookiePermission({ accept }) {
       This website uses cookies to enhance the user experience.{" "}
       <span style={{ fontSize: "10px" }}>
         View our{" "}
-        <a href={PAGE.TERMS_AND_CONDITIONS} style={{ color: "#74b9ff" }}>
-          terms of service
+        <a href={PAGE.COOKIE_POLICY} style={{ color: "#74b9ff" }}>
+          cookie policy
         </a>{" "}
         and{" "}
         <a href={PAGE.PRIVACY_POLICY} style={{ color: "#74b9ff" }}>

@@ -8,6 +8,7 @@ const constants = {
   HELP: "/help",
   SURVEY: "/survey",
   PRIVACY_POLICY: "/privacy-policy",
+  COOKIE_POLICY: "/cookie-policy",
   TERMS_AND_CONDITIONS: "terms-and-conditions",
 };
 
