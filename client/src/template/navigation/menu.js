@@ -64,7 +64,7 @@ export default function MenuBar({ text_color }) {
       label: "Learn More",
       icon: <FaInfo />,
       info: "Learn more about us here",
-      action: () => window.open(URLS.presentation, "_blank"),
+      action: () => navigate(PAGES.LEARN_MORE),
     },
     {
       label: "Feedback",

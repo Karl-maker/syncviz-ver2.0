@@ -10,6 +10,7 @@ import Terms from "../../pages/terms-conditions";
 import Home from "../../pages/home";
 import SearchVirtualPage from "../../pages/search-virtual-space";
 import CookiePolicy from "../../pages/cookie-policy";
+import LearnMore from "../../pages/learn-more";
 
 export default function PageNavigation() {
   useEffect(() => {
@@ -54,7 +55,11 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<Terms />}
       />
-
+      <Route
+        path={PAGES.LEARN_MORE}
+        caseSensitive={false}
+        element={<LearnMore />}
+      />
       <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
     </Routes>
   );

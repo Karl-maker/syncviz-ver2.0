@@ -1,5 +1,4 @@
 import PAGES from "../utils/constants/page-names";
-import URLS from "../utils/constants/url";
 import {
   Button,
   Typography,
@@ -196,7 +195,7 @@ export default function Home() {
                 }
               ></Divider>
               <Button
-                onClick={() => window.open(URLS.presentation, "_blank")}
+                onClick={() => navigation(PAGES.LEARN_MORE)}
                 variant="contained"
                 disableElevation
                 startIcon={<FaInfo />}
