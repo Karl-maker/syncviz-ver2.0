@@ -1,4 +1,5 @@
 import PAGES from "../utils/constants/page-names";
+import URLS from "../utils/constants/url";
 import {
   Button,
   Typography,
@@ -13,6 +14,7 @@ import synclogo from "../images/logo192.png";
 import { useNavigate } from "react-router-dom";
 import { IoMail } from "react-icons/io5";
 import { BsTwitter, BsFacebook } from "react-icons/bs";
+import { FaInfo } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { useTheme } from "@mui/material/styles";
 
@@ -183,6 +185,23 @@ export default function Home() {
                 startIcon={<HiOutlineCubeTransparent />}
               >
                 Create Virtual Room
+              </Button>
+              <Divider
+                orientation={mobile ? "" : "vertical"}
+                flexItem={mobile ? false : true}
+                sx={
+                  mobile
+                    ? { marginLeft: "10px", marginRight: "10px" }
+                    : { marginLeft: "30px", marginRight: "30px" }
+                }
+              ></Divider>
+              <Button
+                onClick={() => window.open(URLS.presentation, "_blank")}
+                variant="contained"
+                disableElevation
+                startIcon={<FaInfo />}
+              >
+                Learn More
               </Button>
             </div>
           </div>

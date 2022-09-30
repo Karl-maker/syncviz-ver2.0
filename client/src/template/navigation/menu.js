@@ -22,6 +22,7 @@ import MEDIA from "../../utils/constants/media";
 // Icons
 
 import { FiHome } from "react-icons/fi";
+import { FaInfo } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
 
@@ -59,12 +60,12 @@ export default function MenuBar({ text_color }) {
       },
     },
 
-    // {
-    //   label: "About",
-    //   icon: <FaInfo />,
-    //   info: "Learn more about us here",
-    //   action: () => navigate(PAGES.ABOUT),
-    // },
+    {
+      label: "Learn More",
+      icon: <FaInfo />,
+      info: "Learn more about us here",
+      action: () => window.open(URLS.presentation, "_blank"),
+    },
     {
       label: "Feedback",
       icon: <RiSurveyLine />,
