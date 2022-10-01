@@ -8,40 +8,47 @@ import {
 import { IoMail } from "react-icons/io5";
 import { BsTwitter, BsFacebook, BsWhatsapp } from "react-icons/bs";
 import MEDIA from "../../utils/constants/media";
+import { useTheme } from "@mui/material/styles";
 
 export default function Heading({ header, action, action_label }) {
+  const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
+  const color = theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3";
 
   const ShareElements = () => {
     return (
       <>
         <Button
+          color={color}
           size="large"
           href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=SyncPoly offers a way to bring 3D to clients and friends in a interactive helpful way. This allow persons to develop creative ways share experiences and information. Check us out ${window.location.href} `}
         >
-          <IoMail />
+          <IoMail color={color} />
         </Button>
         <Button
+          color={color}
           size="large"
           href={`http://twitter.com/share?text=Share 3D Models, Products, Environments and more in SyncPoly's Virtual Room &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
           target="_blank"
         >
-          <BsTwitter />
+          <BsTwitter color={color} />
         </Button>
         <Button
+          color={color}
           size="large"
           href={`https://www.facebook.com/share.php?u=${window.location.href}`}
           target="_blank"
         >
-          <BsFacebook />
+          <BsFacebook color={color} />
         </Button>
         {mobile && (
           <Button
+            color={color}
             size="large"
             href={`whatsapp://send?text=${window.location.href}`}
             data-action="share/whatsapp/share"
           >
-            <BsWhatsapp />
+            <BsWhatsapp color={color} />
           </Button>
         )}
       </>
