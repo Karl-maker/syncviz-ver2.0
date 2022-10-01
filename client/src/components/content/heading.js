@@ -19,12 +19,14 @@ export default function Heading({ header, action, action_label }) {
     return (
       <>
         <Button
+          sx={{ borderColor: color }}
           size="large"
           href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=SyncPoly offers a way to bring 3D to clients and friends in a interactive helpful way. This allow persons to develop creative ways share experiences and information. Check us out ${window.location.href} `}
         >
           <IoMail color={color} />
         </Button>
         <Button
+          sx={{ borderColor: color }}
           size="large"
           href={`http://twitter.com/share?text=Share 3D Models, Products, Environments and more in SyncPoly's Virtual Room &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
           target="_blank"
@@ -32,6 +34,7 @@ export default function Heading({ header, action, action_label }) {
           <BsTwitter color={color} />
         </Button>
         <Button
+          sx={{ borderColor: color }}
           size="large"
           href={`https://www.facebook.com/share.php?u=${window.location.href}`}
           target="_blank"
@@ -40,6 +43,7 @@ export default function Heading({ header, action, action_label }) {
         </Button>
         {mobile && (
           <Button
+            sx={{ borderColor: color }}
             size="large"
             href={`whatsapp://send?text=${window.location.href}`}
             data-action="share/whatsapp/share"

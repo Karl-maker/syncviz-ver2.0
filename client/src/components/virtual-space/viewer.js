@@ -213,7 +213,7 @@ export default function Viewer() {
           margin: mobile ? "5px" : "0px",
           padding: "0px",
           width: "auto",
-          height: handleFullScreen.active ? "100vh" : mobile ? "65vh" : "60vh",
+          height: handleFullScreen.active ? "100vh" : mobile ? "75vh" : "60vh",
           webKitUserSelect: "none",
           MozUserSelect: "none",
           msUserSelect: "none",

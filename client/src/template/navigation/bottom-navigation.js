@@ -18,6 +18,7 @@ export default function BottomNavigationBar() {
         bgcolor: "background.default",
         margin: 0,
         height: "6vh",
+        // zIndex: (theme) => theme.zIndex.drawer + 2,
       }}
       value={value}
       onChange={(event, newValue) => {
@@ -34,6 +35,7 @@ export default function BottomNavigationBar() {
             }}
             elevation={0}
             sx={{
+              //
               borderRadius: "10px",
               bgcolor: "background.default",
               paddingTop: "5px",
