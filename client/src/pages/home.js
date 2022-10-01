@@ -1,21 +1,13 @@
 import PAGES from "../utils/constants/page-names";
-import {
-  Button,
-  Typography,
-  Box,
-  useMediaQuery,
-  Divider,
-  ButtonGroup,
-} from "@mui/material";
+import { Button, Typography, Box, useMediaQuery, Divider } from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
 import synclogo from "../images/logo192.png";
 import { useNavigate } from "react-router-dom";
-import { IoMail } from "react-icons/io5";
-import { BsTwitter, BsFacebook } from "react-icons/bs";
 import { FaInfo } from "react-icons/fa";
 import { Helmet } from "react-helmet";
 import { useTheme } from "@mui/material/styles";
+import Heading from "../components/content/heading";
 
 export default function Home() {
   const theme = useTheme();
@@ -24,40 +16,6 @@ export default function Home() {
 
   const spanStyle = {
     color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
-  };
-
-  const ShareElements = () => {
-    return (
-      <>
-        <Button
-          size="large"
-          href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=SyncPoly offers a way to bring 3D to clients and friends in a interactive helpful way. This allow persons to develop creative ways share experiences and information. Check us out ${window.location.href} `}
-        >
-          <IoMail />
-        </Button>
-        <Button
-          size="large"
-          href={`http://twitter.com/share?text=Share 3D Models, Products, Environments and more in SyncPoly's Virtual Room &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
-          target="_blank"
-        >
-          <BsTwitter />
-        </Button>
-        <Button
-          size="large"
-          href={`https://www.facebook.com/share.php?u=${window.location.href}`}
-          target="_blank"
-        >
-          <BsFacebook />
-        </Button>
-        {/* <Button
-          size="large"
-          href={`whatsapp://send?text=${window.location.href}`}
-          data-action="share/whatsapp/share"
-        >
-          <BsWhatsapp />
-        </Button> */}
-      </>
-    );
   };
 
   return (
@@ -79,7 +37,16 @@ export default function Home() {
             padding: 3,
           }}
         >
-          <img src={synclogo} alt="SyncPoly-logo" height={120} />
+          <div style={{ marginBottom: "30px" }}>
+            <Heading
+              header={
+                <>
+                  <img src={synclogo} alt="SyncPoly-logo" height={120} />
+                </>
+              }
+            />
+          </div>
+
           <Divider sx={{ marginTop: "20px", marginBottom: "20px" }}>
             Get Started
           </Divider>
@@ -124,42 +91,18 @@ export default function Home() {
                 style={{
                   display: "flex",
                   alignItems: "center",
-                  marginBottom: "30px",
                 }}
               >
-                <Typography
-                  variant="h3"
-                  sx={{
-                    marginBottom: "30px",
-                    marginTop: "20px",
-                    fontWeight: "bold",
-                  }}
-                >
-                  Share <span style={spanStyle}>3D</span> Models, Products,
-                  Environments and more in{" "}
-                  <span style={spanStyle}>SyncPoly</span>'s Virtual Room
-                </Typography>
-                <Divider
-                  orientation={mobile ? "" : "vertical"}
-                  flexItem={mobile ? false : true}
-                  sx={mobile ? {} : { marginLeft: "30px", marginRight: "30px" }}
-                ></Divider>
-                <div>
-                  {/* <img src={synclogo} alt="SyncPoly-logo" height={80} /> */}
-                  <div style={{ textAlign: "center", marginBottom: "10px" }}>
-                    <Typography variant="caption">Share</Typography>
-                  </div>
-                  <ButtonGroup
-                    orientation="vertical"
-                    variant="outlined"
-                    aria-label="outlined primary button group"
-                  >
-                    {
-                      // Share
+                <div style={{ marginBottom: "10px" }}>
+                  <Heading
+                    header={
+                      <>
+                        Share <span style={spanStyle}>3D</span> Models,
+                        Products, Environments and more in{" "}
+                        <span style={spanStyle}>SyncPoly</span>'s Virtual Room
+                      </>
                     }
-
-                    <ShareElements />
-                  </ButtonGroup>
+                  />
                 </div>
               </div>
               <Typography variant="body1" sx={{ marginBottom: "20px" }}>

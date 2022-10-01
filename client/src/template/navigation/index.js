@@ -11,6 +11,7 @@ import Home from "../../pages/home";
 import SearchVirtualPage from "../../pages/search-virtual-space";
 import CookiePolicy from "../../pages/cookie-policy";
 import LearnMore from "../../pages/learn-more";
+import NotFound from "../../pages/not-found";
 
 export default function PageNavigation() {
   useEffect(() => {
@@ -61,6 +62,7 @@ export default function PageNavigation() {
         element={<LearnMore />}
       />
       <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
+      <Route path="*" element={<NotFound />} />
     </Routes>
   );
 }

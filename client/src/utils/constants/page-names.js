@@ -13,4 +13,11 @@ const constants = {
   LEARN_MORE: "/learn-more",
 };
 
+export const nested = {
+  LEARN_MORE: {
+    INDEX: constants.LEARN_MORE,
+    VIRTUAL_ROOM: "virtual-room",
+  },
+};
+
 export default constants;

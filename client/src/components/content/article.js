@@ -4,14 +4,14 @@ export default function Article({
   header,
   subtitle,
   body,
-  learn_more,
-  learn_more_text,
+  action_label,
+  action,
   keywords,
 }) {
   const common_style = { marginBottom: "10px" };
 
   return (
-    <article style={{ padding: "20px" }}>
+    <article>
       <Typography variant="h5" sx={{ fontWeight: "bold", ...common_style }}>
         {header}
       </Typography>
@@ -28,15 +28,20 @@ export default function Article({
             <>
               {keywords.map((keyword) => {
                 return (
-                  <Chip size="small" label={keyword.word} color="primary" />
+                  <Chip
+                    size="small"
+                    label={keyword.word}
+                    color="primary"
+                    variant="outlined"
+                  />
                 );
               })}
             </>
           </Stack>
         )}
-        {learn_more && (
-          <Button variant="contained" disableElevation>
-            {learn_more_text ? { learn_more_text } : <>Learn More</>}
+        {action && (
+          <Button variant="contained" disableElevation onClick={action}>
+            {action_label ? { action_label } : <>Learn More</>}
           </Button>
         )}
       </footer>
