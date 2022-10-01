@@ -100,7 +100,7 @@ export default function LearnMore() {
         </div>
         {ARTICLES.map((article, index) => {
           return (
-            <div>
+            <div style={{ marginBottom: "100px" }}>
               <Article
                 keywords={article.keywords}
                 learn_more_text={article.learn_more_text}
@@ -112,8 +112,7 @@ export default function LearnMore() {
             </div>
           );
         })}
-        <br />
-        <br />
+
         {/* Also Check Out
         <ul style={{ marginBottom: "100px" }}>
           <li
