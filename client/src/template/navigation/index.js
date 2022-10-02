@@ -19,7 +19,7 @@ export default function PageNavigation() {
   const location = useLocation();
   useEffect(() => {
     if (location) ReactGA.pageview(location.pathname.split(/[?#]/)[0]);
-  }, []);
+  }, [location]);
 
   return (
     <Routes>
