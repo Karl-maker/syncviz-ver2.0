@@ -77,7 +77,7 @@ export default function LearnMoreVirtualRoom() {
           <Heading
             share={{
               message:
-                "Learn more about Syncpoly's Virtual Rooms and how they can create interactive worlds that anyone can have.",
+                "Learn more about Syncpoly's Virtual Rooms and how they can create interactive worlds that anyone can have access to.",
             }}
             header={
               <>
