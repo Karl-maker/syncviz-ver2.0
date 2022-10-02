@@ -1,6 +1,7 @@
 import { createContext } from "react";
 import CookiePermission from "../utils/tools/cookie-consent";
 import { useState } from "react";
+import config from "../config";
 
 export const CookieContext = createContext({});
 
