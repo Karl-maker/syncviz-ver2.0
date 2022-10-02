@@ -67,6 +67,10 @@ export default function LearnMore3DTag() {
           name="description"
           content=" 3D Tags are annotations that are placed in the Virtual Room. These can highlight aspects of the Virtual environment that can inform or give a call to action. 3D Tags can be used in many creative ways such as the following; Annotaions, Labels and Call to actions"
         />
+        <link
+          rel="canonical"
+          href={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.TAG}`}
+        />
       </Helmet>
       <Box
         className="no-sidebar"
@@ -77,19 +81,21 @@ export default function LearnMore3DTag() {
         }}
       >
         <div style={{ marginBottom: "300px" }}>
-          <Heading
-            share={{
-              message:
-                "Learn more about Syncpoly's 3D Tags and how it can improve your Virtual Room experience.",
-            }}
-            header={
-              <>
-                Learn More About <span style={common_span}>3D Tags</span>
-              </>
-            }
-            action_label="Start A Virtual Room"
-            action={() => navigation(PAGES.CREATE_VIRTUAL_ROOM)}
-          />
+          <div style={{ marginBottom: "20px" }}>
+            <Heading
+              share={{
+                message:
+                  "Learn more about Syncpoly's 3D Tags and how it can improve your Virtual Room experience.",
+              }}
+              header={
+                <>
+                  Learn More About <span style={common_span}>3D Tags</span>
+                </>
+              }
+              action_label="Start A Virtual Room"
+              action={() => navigation(PAGES.CREATE_VIRTUAL_ROOM)}
+            />
+          </div>
           <Article
             keywords={article.keywords}
             learn_more_text={article.learn_more_text}

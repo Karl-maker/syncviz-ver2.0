@@ -77,6 +77,7 @@ export default function LearnMore() {
           name="description"
           content="Syncpoly at its core is a 3D sharing web app that allows users to broadcast their 3D models, environments, concepts, products or designs. With this technology persons can avoid the long process of rendering their 3D creations into still images or video. We believe that it is much more beneficial to use a Virtual Room because whoever you are the content with will be able to interact live with it."
         />
+        <link rel="canonical" href={`${nested.LEARN_MORE.INDEX}`} />
       </Helmet>
       <Box
         className="no-sidebar"

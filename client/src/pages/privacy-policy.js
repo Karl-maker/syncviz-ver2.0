@@ -1,6 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { Helmet } from "react-helmet";
+import PAGE from "../utils/constants/page-names";
 
 export default function PrivacyPolicy() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
@@ -10,6 +11,13 @@ export default function PrivacyPolicy() {
     <>
       <Helmet>
         <title>SyncPoly | Privacy Policy</title>
+        <meta
+          name="description"
+          content=" Our Privacy Policy governs your visit to syncpoly.com, and
+          explains how we collect, safeguard and disclose information that
+          results from your use of our Service."
+        />
+        <link rel="canonical" href={`${PAGE.PRIVACY_POLICY}`} />
       </Helmet>
       <Box
         className="no-sidebar"

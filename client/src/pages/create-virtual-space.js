@@ -4,6 +4,7 @@ import VirtualSpaceClass from "../classes/virtual-space";
 import { UserAccountContext } from "../context/user";
 import Tour from "../tours";
 import Steps from "../tours/steps";
+import PAGES from "../utils/constants/page-names";
 import { Helmet } from "react-helmet";
 
 export default function CreateVirtualSpace() {
@@ -52,6 +53,7 @@ export default function CreateVirtualSpace() {
               name="description"
               content="Start a Virtual Room to create a virtual environment where 3D models, products and environments can be shared. Allow persons to join your Virtual Room now and share your 3D experience with many."
             />
+            <link rel="canonical" href={`${PAGES.CREATE_VIRTUAL_ROOM}`} />
           </Helmet>
           <VirtualSpaceWidget
             manage={true}

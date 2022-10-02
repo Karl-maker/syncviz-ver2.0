@@ -1,6 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { Helmet } from "react-helmet";
+import PAGES from "../utils/constants/page-names";
 
 export default function CookiePolicy() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
@@ -8,6 +9,13 @@ export default function CookiePolicy() {
     <>
       <Helmet>
         <title>SyncPoly | Cookie Policy</title>
+        <meta
+          name="description"
+          content="As is common practice with almost all professional websites this site
+          uses cookies, which are tiny files that are downloaded to your
+          computer, to improve your experience."
+        />
+        <link rel="canonical" href={`${PAGES.COOKIE_POLICY}`} />
       </Helmet>
       <Box
         className="no-sidebar"

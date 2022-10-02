@@ -1,6 +1,7 @@
 import { Box, useMediaQuery } from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { Helmet } from "react-helmet";
+import PAGE from "../utils/constants/page-names";
 
 export default function Terms() {
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
@@ -9,6 +10,13 @@ export default function Terms() {
     <>
       <Helmet>
         <title>SyncPoly | Terms and Conditions</title>
+        <meta
+          name="description"
+          content="Our Privacy Policy also governs your use of our Service and explains
+          how we collect, safeguard and disclose information that results from
+          your use of our web pages."
+        />
+        <link rel="canonical" href={`${PAGE.TERMS_AND_CONDITIONS}`} />
       </Helmet>
       <Box
         className="no-sidebar"
