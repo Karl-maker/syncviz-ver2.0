@@ -17,7 +17,7 @@ import LearnMore3DTag from "../../pages/learn-more/3d-tag";
 
 export default function PageNavigation() {
   useEffect(() => {
-    ReactGA.pageview(window.location.pathname);
+    ReactGA.pageview(window.location.href.split(/[?#]/)[0]);
   }, []);
 
   return (
