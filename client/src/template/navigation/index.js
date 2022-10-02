@@ -1,6 +1,6 @@
 import VirtualSpace from "../../pages/virtual-space";
 import CreateVirtualSpace from "../../pages/create-virtual-space";
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import PAGES, { NESTED } from "../../utils/constants/page-names";
 import About from "../../pages/about";
 import ReactGA from "react-ga";
@@ -16,8 +16,9 @@ import LearnMoreVirtualRoom from "../../pages/learn-more/virtual-room";
 import LearnMore3DTag from "../../pages/learn-more/3d-tag";
 
 export default function PageNavigation() {
+  const location = useLocation();
   useEffect(() => {
-    ReactGA.pageview(window.location.href.split(/[?#]/)[0]);
+    if (location) ReactGA.pageview(location.pathname.split(/[?#]/)[0]);
   }, []);
 
   return (
