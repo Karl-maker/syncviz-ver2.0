@@ -13,10 +13,11 @@ const constants = {
   LEARN_MORE: "/learn-more",
 };
 
-export const nested = {
+export const NESTED = {
   LEARN_MORE: {
     INDEX: constants.LEARN_MORE,
-    VIRTUAL_ROOM: "virtual-room",
+    VIRTUAL_ROOM: "/virtual-room",
+    TAG: "/3d-tags",
   },
 };
 

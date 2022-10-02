@@ -10,7 +10,7 @@ import { BsTwitter, BsFacebook, BsWhatsapp } from "react-icons/bs";
 import MEDIA from "../../utils/constants/media";
 import { useTheme } from "@mui/material/styles";
 
-export default function Heading({ header, action, action_label }) {
+export default function Heading({ header, action, action_label, share }) {
   const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const color = theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3";
@@ -21,14 +21,18 @@ export default function Heading({ header, action, action_label }) {
         <Button
           sx={{ borderColor: color }}
           size="large"
-          href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=SyncPoly offers a way to bring 3D to clients and friends in a interactive helpful way. This allow persons to develop creative ways share experiences and information. Check us out ${window.location.href} `}
+          href={`mailto:?subject=Share 3D in SyncPoly's Virtual Room&body=${
+            share ? share.message : ""
+          } Check us out here ${window.location.href}`}
         >
           <IoMail color={color} />
         </Button>
         <Button
           sx={{ borderColor: color }}
           size="large"
-          href={`http://twitter.com/share?text=Share 3D Models, Products, Environments and more in SyncPoly's Virtual Room &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
+          href={`http://twitter.com/share?text=${
+            share ? share.message : ""
+          } &url=${window.location.href}&hashtags=3dshare,3dsharing,virtual`}
           target="_blank"
         >
           <BsTwitter color={color} />
@@ -45,7 +49,9 @@ export default function Heading({ header, action, action_label }) {
           <Button
             sx={{ borderColor: color }}
             size="large"
-            href={`whatsapp://send?text=${window.location.href}`}
+            href={`whatsapp://send?text=${window.location.href} ${
+              share ? share.message : ""
+            }`}
             data-action="share/whatsapp/share"
           >
             <BsWhatsapp color={color} />

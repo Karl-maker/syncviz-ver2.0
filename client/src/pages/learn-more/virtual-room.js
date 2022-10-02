@@ -1,11 +1,12 @@
 import Article from "../../components/content/article";
 import Heading from "../../components/content/heading";
-import PAGES from "../../utils/constants/page-names";
+import PAGES, { NESTED as nested } from "../../utils/constants/page-names";
 import { Box, useMediaQuery } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
 import MEDIA from "../../utils/constants/media";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 export default function LearnMoreVirtualRoom() {
   const theme = useTheme();
@@ -30,15 +31,21 @@ export default function LearnMoreVirtualRoom() {
         A Virtual Room is the environment in which 3D models can be broadcasted
         to everyone attending it. Attendees can interact with the model,
         communicate with eachother and select{" "}
-        <a style={common_a} href={`${PAGES.LEARN_MORE_3D_TAG}`}>
+        <Link
+          style={common_a}
+          to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.TAG}`}
+        >
           3D Tags.
-        </a>{" "}
+        </Link>{" "}
         With the main features given in these Virtual Rooms you can create
         virtual environments where attendees may learn about a design, purchase
         a product using a{" "}
-        <a style={common_a} href={`${PAGES.LEARN_MORE_3D_TAG}`}>
+        <Link
+          style={common_a}
+          to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.TAG}`}
+        >
           3D Tag
-        </a>{" "}
+        </Link>{" "}
         or just experience an event in a different way.
       </>
     ),
@@ -64,6 +71,10 @@ export default function LearnMoreVirtualRoom() {
       >
         <div style={{ marginBottom: "30px" }}>
           <Heading
+            share={{
+              message:
+                "Learn more about Syncpoly's Virtual Rooms and how they can create interactive worlds that anyone can have.",
+            }}
             header={
               <>
                 Learn More About <span style={common_span}>Virtual Rooms</span>

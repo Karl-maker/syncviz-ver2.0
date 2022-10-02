@@ -2,7 +2,7 @@ import Article from "../../components/content/article";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
 import MEDIA from "../../utils/constants/media";
-import { nested } from "../../utils/constants/page-names";
+import { NESTED as nested } from "../../utils/constants/page-names";
 import URLS from "../../utils/constants/url";
 import { Box, useMediaQuery } from "@mui/material";
 import Heading from "../../components/content/heading";
@@ -37,7 +37,7 @@ export default function LearnMore() {
           video. We believe that it is much more beneficial to use a{" "}
           <Link
             style={common_a}
-            to={`${location.pathname}/${nested.LEARN_MORE.VIRTUAL_ROOM}`}
+            to={`${location.pathname}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
           >
             Virtual Room
           </Link>{" "}
@@ -49,7 +49,7 @@ export default function LearnMore() {
           our users may use{" "}
           <Link
             style={common_a}
-            to={`${location.pathname}/${nested.LEARN_MORE.VIRTUAL_ROOM}`}
+            to={`${location.pathname}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
           >
             Virtual Room
           </Link>{" "}
@@ -88,6 +88,10 @@ export default function LearnMore() {
       >
         <div style={{ marginBottom: "20px" }}>
           <Heading
+            share={{
+              message:
+                "Learn more about Syncpoly and the many features we provide to create amazing Virtual Rooms",
+            }}
             header={
               <>
                 Learn More about <span style={common_span}>Syncpoly</span> and
@@ -100,7 +104,7 @@ export default function LearnMore() {
         </div>
         {ARTICLES.map((article, index) => {
           return (
-            <div style={{ marginBottom: "100px" }}>
+            <div style={{ marginBottom: "200px" }}>
               <Article
                 keywords={article.keywords}
                 learn_more_text={article.learn_more_text}

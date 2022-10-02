@@ -39,6 +39,10 @@ export default function Home() {
         >
           <div style={{ marginBottom: "30px" }}>
             <Heading
+              share={{
+                message:
+                  "Welcome to Syncpoly, an online 3D sharing platform that allows persons to create amazing experiences and worlds. Syncpoly allows anyone to join a virtual environment easily from their phone or laptop",
+              }}
               header={
                 <>
                   <img src={synclogo} alt="SyncPoly-logo" height={120} />
