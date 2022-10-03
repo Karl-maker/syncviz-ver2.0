@@ -25,6 +25,15 @@ module.exports = function () {
 
  // HTTP
 
+ app.enable("trust proxy");
+ app.use(function (request, response, next) {
+  if (process.env.NODE_ENV != "dev" && !request.secure) {
+   return response.redirect("https://" + request.headers.host + request.url);
+  }
+
+  next();
+ });
+
  app.use(cors(corsOptions));
  app.use(jsonParser);
  app.use(urlencodedParser);
