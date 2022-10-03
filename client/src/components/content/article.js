@@ -12,7 +12,11 @@ export default function Article({
 
   return (
     <article>
-      <Typography variant="h5" sx={{ fontWeight: "bold", ...common_style }}>
+      <Typography
+        variant="h5"
+        component="h2"
+        sx={{ fontWeight: "bold", ...common_style }}
+      >
         {header}
       </Typography>
       <Typography variant="subtitle1" sx={{ ...common_style }}>

@@ -71,6 +71,7 @@ export default function Heading({ header, action, action_label, share }) {
     >
       <div>
         <Typography
+          component="h1"
           variant="h3"
           sx={{ marginBottom: "30px", fontWeight: "bold" }}
         >
