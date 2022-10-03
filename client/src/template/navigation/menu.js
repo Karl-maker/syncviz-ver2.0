@@ -51,7 +51,7 @@ export default function MenuBar({ text_color }) {
       action: () => navigate(PAGES.VIRTUAL_FEED),
     },
     {
-      label: "Start Virtual Room ",
+      label: "Virtual Room ",
       icon: <BiAddToQueue />,
       info: "Create virtual space",
       action: () => {
