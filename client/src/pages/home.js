@@ -21,10 +21,10 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Share 3D Models, Products and Environments</title>
+        <title>SyncPoly | Create Virtual Experiences</title>
         <meta
           name="description"
-          content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother."
+          content="Host 3D Models, Products or Environments live on a Virtual Room. Quickly you can allow others to interact and explore 3D while communicating with eachother."
         />
         <link rel="canonical" href={`${PAGES.VIRTUAL_FEED}`} />
       </Helmet>
@@ -42,7 +42,7 @@ export default function Home() {
             <Heading
               share={{
                 message:
-                  "Welcome to Syncpoly, an online 3D sharing platform that allows persons to create amazing experiences and worlds. Syncpoly allows anyone to join a virtual environment easily from their phone or laptop",
+                  "Welcome to Syncpoly, an online platform where persons can develop Virtual Rooms that allows persons to create amazing experiences and worlds. Syncpoly allows anyone to join a virtual environment easily from their phone or laptop",
               }}
               header={
                 <>
@@ -51,15 +51,13 @@ export default function Home() {
               }
             />
           </div>
-
+          Create Virtual Rooms to give many persons a 3D experience. You can
+          allow persons to interact with designs, concepts, products or models
+          using our 3D hosting technology.
           <Divider sx={{ marginTop: "20px", marginBottom: "20px" }}>
             Get Started
           </Divider>
-          <Typography variant="subtitle1" sx={{ marginTop: 2 }}>
-            Share 3D Models, Products, Environments and more in SyncPoly's
-            Virtual Room
-          </Typography>
-
+          <Typography variant="subtitle1" sx={{ marginTop: 2 }}></Typography>
           <div
             style={{
               display: "flex",
@@ -102,18 +100,19 @@ export default function Home() {
                   <Heading
                     header={
                       <>
-                        Share <span style={spanStyle}>3D</span> Models,
-                        Products, Environments and more in{" "}
-                        <span style={spanStyle}>SyncPoly</span>'s Virtual Room
+                        Create <span style={spanStyle}>Virtual Rooms</span> to
+                        allow persons to interact and experience products,
+                        designs or concepts.
                       </>
                     }
                   />
                 </div>
               </div>
               <Typography variant="body1" sx={{ marginBottom: "20px" }}>
-                SyncPoly offers a way to bring 3D to clients and friends in a
-                interactive helpful way. This allow persons to develop creative
-                ways share experiences and information.
+                SyncPoly offers a way to bring virtual experiences to persons
+                online. Create Virtual Rooms to give many persons a 3D
+                experience. You can allow persons to interact with designs,
+                concepts, products or models using our 3D hosting technology.
               </Typography>
             </div>
 
