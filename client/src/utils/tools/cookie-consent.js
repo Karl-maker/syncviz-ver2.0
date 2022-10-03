@@ -5,28 +5,22 @@ export default function CookiePermission({ accept }) {
   return (
     <CookieConsent
       location="bottom"
-      buttonText="Yes, proceed"
-      style={{ background: "#2B373B" }}
+      buttonText="I understand"
+      style={{ background: "#2B373B", opacity: 0.8 }}
       onAccept={accept}
       buttonStyle={{
         backgroundColor: "#74b9ff",
         color: "#ffff",
-        fontSize: "13px",
+        fontSize: "15px",
         borderRadius: "10px",
       }}
       expires={150}
     >
-      This website uses cookies to enhance the user experience.{" "}
-      <span style={{ fontSize: "10px" }}>
-        View our{" "}
-        <a href={PAGE.COOKIE_POLICY} style={{ color: "#74b9ff" }}>
-          cookie policy
-        </a>{" "}
-        and{" "}
-        <a href={PAGE.PRIVACY_POLICY} style={{ color: "#74b9ff" }}>
-          privacy policy
-        </a>
-      </span>
+      By continuing to use this site you agree to our{" "}
+      <a href={`${PAGE.COOKIE_POLICY}`} style={{ color: "#74b9ff" }}>
+        Cookie Policy
+      </a>
+      .{" "}
     </CookieConsent>
   );
 }
