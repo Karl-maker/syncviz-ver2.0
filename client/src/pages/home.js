@@ -2,7 +2,6 @@ import PAGES from "../utils/constants/page-names";
 import { Button, Typography, Box, useMediaQuery, Divider } from "@mui/material";
 import MEDIA from "../utils/constants/media";
 import { HiOutlineCubeTransparent } from "react-icons/hi";
-import synclogo from "../images/logo192.png";
 import { useNavigate } from "react-router-dom";
 import { FaInfo } from "react-icons/fa";
 import { Helmet } from "react-helmet";
@@ -10,6 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import Heading from "../components/content/heading";
 
 export default function Home() {
+  const synclogo = window.location.origin + "/syncpoly.svg";
   const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();

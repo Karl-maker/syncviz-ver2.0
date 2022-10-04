@@ -1,6 +1,5 @@
 import { useContext } from "react";
 import { BsSearch } from "react-icons/bs";
-import synclogo from "../../images/logo192.png";
 import {
   TextField,
   InputAdornment,
@@ -40,9 +39,6 @@ function SearchBar({
 
   return (
     <>
-      <div style={{ display: "flex", justifyContent: "center" }}>
-        <img src={synclogo} alt="SyncPoly-logo" height={120} />
-      </div>
       <TextField
         id="search-bar"
         inputRef={(input) => {

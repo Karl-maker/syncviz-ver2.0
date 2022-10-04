@@ -1,6 +1,7 @@
 import React from "react";
 import CssBaseline from "@mui/material/CssBaseline";
 import "./css/global.css";
+import "babel-polyfill";
 
 import ReactDOM from "react-dom/client";
 import PageNavigation from "./template/navigation";

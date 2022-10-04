@@ -1,7 +1,6 @@
 import MenuComponent from "./user-menu";
 import Timer from "./timer";
 import { FullScreen, useFullScreenHandle } from "react-full-screen";
-import synclogo from "../../images/logo192.png";
 import { useState, useEffect, useContext, useMemo } from "react";
 import { VirtualSpaceContext, TagContext } from "../../widgets/virtual-space";
 import {
@@ -21,6 +20,7 @@ import classes from "../../utils/constants/classes";
 
 export default function Viewer() {
   const theme = useTheme();
+  const synclogo = window.location.origin + "/syncpoly.svg";
   const handleFullScreen = useFullScreenHandle();
   const { socket, virtualSpace, manage } = useContext(VirtualSpaceContext);
   const { tag, setTag, setSelect, select } = useContext(TagContext);

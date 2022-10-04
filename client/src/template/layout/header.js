@@ -9,9 +9,9 @@ import { useNavigate } from "react-router-dom";
 import { useContext, useState } from "react";
 import { UserAccountContext } from "../../context/user";
 import EditUsername from "../../components/user-account/edit-username";
-import synclogo from "../../images/logo192.png";
 
 export default function Header() {
+  const synclogo = window.location.origin + "/syncpoly.svg";
   const [userDialog, setUserDialog] = useState(false);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
