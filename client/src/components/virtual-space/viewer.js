@@ -20,7 +20,7 @@ import classes from "../../utils/constants/classes";
 
 export default function Viewer() {
   const theme = useTheme();
-  const synclogo = window.location.origin + "/syncpoly.svg";
+  const synclogo = window.location.origin + "/logo192.png";
   const handleFullScreen = useFullScreenHandle();
   const { socket, virtualSpace, manage } = useContext(VirtualSpaceContext);
   const { tag, setTag, setSelect, select } = useContext(TagContext);

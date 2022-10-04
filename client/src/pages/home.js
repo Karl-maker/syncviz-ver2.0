@@ -9,7 +9,7 @@ import { useTheme } from "@mui/material/styles";
 import Heading from "../components/content/heading";
 
 export default function Home() {
-  const synclogo = window.location.origin + "/syncpoly.svg";
+  const synclogo = window.location.origin + "/logo192.png";
   const theme = useTheme();
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();

@@ -11,7 +11,7 @@ import { UserAccountContext } from "../../context/user";
 import EditUsername from "../../components/user-account/edit-username";
 
 export default function Header() {
-  const synclogo = window.location.origin + "/syncpoly.svg";
+  const synclogo = window.location.origin + "/logo192.png";
   const [userDialog, setUserDialog] = useState(false);
   const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
