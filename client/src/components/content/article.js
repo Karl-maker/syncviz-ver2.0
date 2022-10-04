@@ -19,12 +19,16 @@ export default function Article({
       >
         {header}
       </Typography>
-      <Typography variant="subtitle1" sx={{ ...common_style }}>
+      <Typography variant="subtitle1" component="h3" sx={{ ...common_style }}>
         {subtitle}
       </Typography>
       <Divider />
-      <Typography variant="body1" sx={{ marginTop: "10px", ...common_style }}>
-        {body}
+      <Typography
+        variant="body1"
+        component="p"
+        sx={{ marginTop: "10px", ...common_style }}
+      >
+        <p>{body}</p>
       </Typography>
       <footer style={{ width: "100%", display: "flex", justifyContent: "end" }}>
         {keywords && (

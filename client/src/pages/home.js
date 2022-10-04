@@ -51,9 +51,11 @@ export default function Home() {
               }
             />
           </div>
-          Create Virtual Rooms to give many persons a 3D experience. You can
-          allow persons to interact with designs, concepts, products or models
-          using our 3D hosting technology.
+          <p>
+            Create Virtual Rooms to give many persons a 3D experience. You can
+            allow persons to interact with designs, concepts, products or models
+            using our 3D hosting technology.
+          </p>
           <Divider sx={{ marginTop: "20px", marginBottom: "20px" }}>
             Get Started
           </Divider>
@@ -108,7 +110,11 @@ export default function Home() {
                   />
                 </div>
               </div>
-              <Typography variant="body1" sx={{ marginBottom: "20px" }}>
+              <Typography
+                variant="body1"
+                sx={{ marginBottom: "20px" }}
+                component="P"
+              >
                 SyncPoly offers a way to bring virtual experiences to persons
                 online. Create Virtual Rooms to give many persons a 3D
                 experience. You can allow persons to interact with designs,
