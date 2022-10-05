@@ -33,7 +33,6 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<VirtualSpace />}
       />
-
       <Route
         path={PAGES.CREATE_VIRTUAL_ROOM}
         caseSensitive={false}
@@ -59,6 +58,7 @@ export default function PageNavigation() {
         caseSensitive={false}
         element={<Terms />}
       />
+      <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
       <Route
         path={PAGES.LEARN_MORE}
         caseSensitive={false}
@@ -75,7 +75,6 @@ export default function PageNavigation() {
         path={`${PAGES.LEARN_MORE}${NESTED.LEARN_MORE.TAG}`}
         element={<LearnMore3DTag />}
       />
-      <Route path={PAGES.ABOUT} caseSensitive={false} element={<About />} />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

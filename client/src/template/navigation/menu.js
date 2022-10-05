@@ -59,7 +59,6 @@ export default function MenuBar({ text_color }) {
         navigate(0);
       },
     },
-
     {
       label: "Learn More",
       icon: <FaInfo />,
@@ -71,6 +70,12 @@ export default function MenuBar({ text_color }) {
       icon: <RiSurveyLine />,
       info: "Give us feedback",
       action: () => window.open(URLS.feedback_survey, "_blank"),
+    },
+    {
+      label: "About Us",
+      icon: <FaInfo />,
+      info: "Why are we here?",
+      action: () => navigate(PAGES.ABOUT),
     },
   ];
 
