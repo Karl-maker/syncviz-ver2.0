@@ -25,6 +25,7 @@ import { FiHome } from "react-icons/fi";
 import { FaInfo } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
+import { AiFillInfoCircle } from "react-icons/ai";
 
 /*
 
@@ -73,7 +74,7 @@ export default function MenuBar({ text_color }) {
     },
     {
       label: "About Us",
-      icon: <FaInfo />,
+      icon: <AiFillInfoCircle />,
       info: "Why are we here?",
       action: () => navigate(PAGES.ABOUT),
     },
