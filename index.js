@@ -50,26 +50,15 @@ module.exports = function () {
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-  app.use(
-    "/",
-    haltOnTimedout,
-    express.static(path.join(__dirname, config.build.PATH))
-  ); // Build
-  app.use(
-    "/static",
-    haltOnTimedout,
-    express.static(path.join(__dirname, "/static"))
-  );
-  app.use("/api", haltOnTimedout, httpControllers.call({ io }));
-  app.use((req, res, next) => {
-    if (process.env.NODE_ENV != "development") {
-      return favicon(path.join(__dirname, `${config.build.PATH}/favicon.ico`));
-    }
-    next();
-  });
-  app.get("*", haltOnTimedout, (req, res) => {
+  app.use("/", express.static(path.join(__dirname, config.build.PATH))); // Build
+  app.use("/static", express.static(path.join(__dirname, "/static")));
+  app.use("/api", httpControllers.call({ io }));
+  app.use(favicon(path.join(__dirname, `${config.build.PATH}/favicon.ico`)));
+  app.get("*", (req, res) => {
     res.sendFile(path.join(__dirname, config.build.INDEX));
   });
+  app.all("*", (req, res) => {
+    // code logic
+    res.status(404).send("Not found");
+  });
 };
-
-function haltOnTimedout(req, res, next) {}

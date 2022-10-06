@@ -1,4 +1,5 @@
 User-agent: *
-Disallow: 
+Disallow:
+
 
 Sitemap: https://www.syncpoly.com/sitemap.txt

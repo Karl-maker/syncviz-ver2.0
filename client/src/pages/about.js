@@ -54,9 +54,7 @@ export default function About() {
           <Article
             header="The Problem With 3D"
             subtitle="How we want to solve it"
-            body={
-              <>
-                For many years companies, artists, freelancers and hobbyists
+            body={` For many years companies, artists, freelancers and hobbyists
                 have used 3D modeling to create detailed, accurate virtual
                 replicas of their ideas, concepts and products. However due to
                 the complex nature of 3D files and models most have been limited
@@ -73,15 +71,11 @@ export default function About() {
                 and interaction, however that industry is already stigmatized
                 and usually requires a lot of commitment, hassle and time. For
                 example most ordinary people are not going to go on Roblox or
-                Minecraft to find out about events, experiences or products.
-              </>
-            }
+                Minecraft to find out about events, experiences or products.`}
           />
           <Article
             subtitle="Syncpoly's way of tackling this issue"
-            body={
-              <>
-                SyncPoly is an online platform that offers a lightweight Virtual
+            body={`SyncPoly is an online platform that offers a lightweight Virtual
                 Experience that allows anyone with any device to access. Our
                 idea was to make the Metaverse simple to all persons, then build
                 our features and complexity overtime with our user's wants. The
@@ -91,9 +85,7 @@ export default function About() {
                 ability to develop their own spaces with ease and the help of
                 the community. Virtual Rooms allow its owners to share
                 experiences, inform, sell products, entertain and advertise to
-                all its attendees in a familiar hassle free manner.
-              </>
-            }
+                all its attendees in a familiar hassle free manner.`}
           />
         </div>
       </Box>
