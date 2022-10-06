@@ -43,7 +43,6 @@ module.exports = function () {
     next();
   });
 
-  app.use(timeout("25s"));
   app.use(limiter);
   app.use(cors(corsOptions));
   app.use(jsonParser);
@@ -73,6 +72,4 @@ module.exports = function () {
   });
 };
 
-function haltOnTimedout(req, res, next) {
-  if (!req.timedout) next();
-}
+function haltOnTimedout(req, res, next) {}
