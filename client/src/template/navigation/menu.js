@@ -22,10 +22,9 @@ import MEDIA from "../../utils/constants/media";
 // Icons
 
 import { FiHome } from "react-icons/fi";
-import { FaInfo } from "react-icons/fa";
 import { BiAddToQueue } from "react-icons/bi";
 import { RiSurveyLine } from "react-icons/ri";
-import { AiFillInfoCircle } from "react-icons/ai";
+import { AiOutlineInfoCircle, AiOutlineRead } from "react-icons/ai";
 
 /*
 
@@ -60,20 +59,20 @@ export default function MenuBar({ text_color }) {
       },
     },
     {
-      label: "Learn More",
-      icon: <FaInfo />,
-      info: "Learn more about us here",
-      action: () => navigate(PAGES.LEARN_MORE),
-    },
-    {
       label: "Feedback",
       icon: <RiSurveyLine />,
       info: "Give us feedback",
       action: () => window.open(URLS.feedback_survey, "_blank"),
     },
     {
+      label: "Learn More",
+      icon: <AiOutlineRead />,
+      info: "Learn more about us here",
+      action: () => navigate(PAGES.LEARN_MORE),
+    },
+    {
       label: "About Us",
-      icon: <AiFillInfoCircle />,
+      icon: <AiOutlineInfoCircle />,
       info: "Why are we here?",
       action: () => navigate(PAGES.ABOUT),
     },
