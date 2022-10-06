@@ -31,7 +31,6 @@ export default function BottomNavigationBar() {
           <Button
             onClick={() => {
               navigate(PAGES.CREATE_VIRTUAL_ROOM);
-              navigate(0);
             }}
             elevation={0}
             sx={{

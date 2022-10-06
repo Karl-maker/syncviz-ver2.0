@@ -57,7 +57,6 @@ export default function MenuBar({ text_color }) {
       info: "Create virtual space",
       action: () => {
         navigate(PAGES.CREATE_VIRTUAL_ROOM);
-        navigate(0);
       },
     },
     {
