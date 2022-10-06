@@ -173,6 +173,7 @@ export default function Share({ toggleOpen, open }) {
             <Button
               variant="filled"
               onClick={() => {
+                toggleShowQRCode(false);
                 toggleOpen();
               }}
             >

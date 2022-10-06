@@ -180,7 +180,7 @@ export default function Viewer() {
             alignItems: "center",
           }}
         >
-          <img src={synclogo} alt="syncpoly-logo" height={80} />
+          <img src={synclogo} alt="syncpoly-logo" height={80} loading="lazy" />
         </div>
       ),
     // eslint-disable-next-line react-hooks/exhaustive-deps

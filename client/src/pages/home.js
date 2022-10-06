@@ -46,7 +46,12 @@ export default function Home() {
               }}
               header={
                 <>
-                  <img src={synclogo} alt="SyncPoly-logo" height={120} />
+                  <img
+                    src={synclogo}
+                    alt="SyncPoly-logo"
+                    height={120}
+                    loading="lazy"
+                  />
                 </>
               }
             />

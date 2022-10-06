@@ -80,6 +80,7 @@ export default function Selection({ data, action, lock, premium }) {
                 height: "100%",
                 borderRadius: "15px",
               }}
+              loading="lazy"
             />
           ) : (
             <RiFileUploadFill size={30} />

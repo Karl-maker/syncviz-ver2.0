@@ -50,6 +50,7 @@ export default function Header() {
       >
         <img
           id="none-touch-image"
+          loading="lazy"
           src={synclogo}
           alt="syncpoly-logo"
           height={mobile ? 70 : 80}
