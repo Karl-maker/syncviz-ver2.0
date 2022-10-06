@@ -26,7 +26,7 @@ module.exports = function () {
   virtualSpaceHandler(io);
 
   const limiter = rateLimit({
-    windowMs: 15 * 60 * 1000, // 15 minutes
+    windowMs: 30 * 60 * 1000, // 15 minutes
     max: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
     standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
     legacyHeaders: false, // Disable the `X-RateLimit-*` headers
@@ -43,18 +43,21 @@ module.exports = function () {
     next();
   });
 
-  app.use(limiter);
   app.use(cors(corsOptions));
   app.use(jsonParser);
   app.use(urlencodedParser);
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-  app.use("/", express.static(path.join(__dirname, config.build.PATH))); // Build
-  app.use("/static", express.static(path.join(__dirname, "/static")));
-  app.use("/api", httpControllers.call({ io }));
+  app.use(
+    "/",
+    limiter,
+    express.static(path.join(__dirname, config.build.PATH))
+  ); // Build
+  app.use("/static", limiter, express.static(path.join(__dirname, "/static")));
+  app.use("/api", limiter, httpControllers.call({ io }));
   app.use(favicon(path.join(__dirname, `${config.build.PATH}/favicon.ico`)));
-  app.get("*", (req, res) => {
+  app.get("*", limiter, (req, res) => {
     res.sendFile(path.join(__dirname, config.build.INDEX));
   });
   app.all("*", (req, res) => {
