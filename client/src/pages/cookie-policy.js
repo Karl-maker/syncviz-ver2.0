@@ -20,7 +20,7 @@ export default function CookiePolicy() {
       <Box
         className="no-sidebar"
         sx={{
-          overflow: mobile ? "none" : "scroll",
+          overflow: "scroll",
           maxHeight: "100vh",
           padding: mobile ? "10px" : "5px",
           paddingBottom: "100px",

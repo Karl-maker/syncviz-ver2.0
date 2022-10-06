@@ -51,7 +51,7 @@ export default function Header() {
         <img
           id="none-touch-image"
           src={synclogo}
-          alt="SyncPoly-logo"
+          alt="syncpoly-logo"
           height={mobile ? 70 : 80}
           onClick={() => navigation(PAGE.VIRTUAL_FEED)}
           style={{

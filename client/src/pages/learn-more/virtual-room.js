@@ -1,16 +1,14 @@
 import Article from "../../components/content/article";
 import Heading from "../../components/content/heading";
 import PAGES, { NESTED as nested } from "../../utils/constants/page-names";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
-import MEDIA from "../../utils/constants/media";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 export default function LearnMoreVirtualRoom() {
   const theme = useTheme();
-  const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
   const common_span = {
     color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
@@ -68,7 +66,7 @@ export default function LearnMoreVirtualRoom() {
       <Box
         className="no-sidebar"
         sx={{
-          overflow: mobile ? "none" : "scroll",
+          overflow: "scroll",
           maxHeight: "100vh",
           padding: "20px",
         }}

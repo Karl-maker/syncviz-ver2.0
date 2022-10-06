@@ -21,4 +21,12 @@ export const NESTED = {
   },
 };
 
+export const ID = {
+  LEARN_MORE: {
+    LABELS: "learn-more-labels",
+    ANNOTATIONS: "learn-more-annotations",
+    CALL_TO_ACTIONS: "learn-more-call-to-actions",
+  },
+};
+
 export default constants;

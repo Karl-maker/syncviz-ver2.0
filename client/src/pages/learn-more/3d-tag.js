@@ -1,17 +1,15 @@
 import Article from "../../components/content/article";
 import Heading from "../../components/content/heading";
 import PAGES from "../../utils/constants/page-names";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
 import { NESTED as nested } from "../../utils/constants/page-names";
-import MEDIA from "../../utils/constants/media";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
 export default function LearnMore3DTag() {
   const theme = useTheme();
-  const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const navigation = useNavigate();
   const common_span = {
     color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
@@ -21,43 +19,92 @@ export default function LearnMore3DTag() {
     color: theme.palette.mode === "dark" ? "#81ecec" : "#00cec9",
   };
 
-  const article = {
-    header: (
-      <>
-        What is a <span style={common_span}>3D Tag</span>?
-      </>
-    ),
-    body: (
-      <>
-        3D Tags are annotations that are placed in the{" "}
-        <Link
-          style={common_a}
-          to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
-        >
-          Virtual Room
-        </Link>
-        . These can highlight aspects of the Virtual environment that can inform
-        or give a call to action. 3D Tags can be used in many creative ways such
-        as the following:
-        <ul>
-          <li>1. Annotations</li>
-          <li>2. Call to Actions</li>
-          <li>3. Labels</li>
-        </ul>
-        <br />
-        <br />
-        3D Tags can be added live in the{" "}
-        <Link
-          style={common_a}
-          to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
-        >
-          Virtual Room
-        </Link>
-        .
-      </>
-    ),
-    keywords: [{ word: "virtual room" }, { word: "3d tag" }],
-  };
+  const articles = [
+    {
+      header: (
+        <>
+          What is a <span style={common_span}>3D Tag</span>?
+        </>
+      ),
+      body: (
+        <>
+          3D Tags are notes that are placed in the{" "}
+          <Link
+            style={common_a}
+            to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
+          >
+            Virtual Room
+          </Link>
+          . These can highlight aspects of the Virtual environment that can
+          inform or give a call to action. 3D Tags can be used in many creative
+          ways.
+        </>
+      ),
+      keywords: [
+        { word: "virtual room" },
+        { word: "3d tag" },
+        { word: "annotation" },
+        { word: "label" },
+        { word: "call to action" },
+      ],
+    },
+    {
+      subtitle: <>Labels</>,
+      body: (
+        <>
+          Quick labels do very well for describing 3D maps, products in a store
+          or other elements that need to be quickly labeled. Labeling your 3D
+          model will go a long way by giving your attendees a quick way to learn
+          about the different parts of a 3D model. Unlike annotations you can
+          label your models with just the title attribute so that it will have a
+          name. For example if you are sharing a 3D map of a university campus,
+          you can label the separate buildings so that the attendees can quickly
+          click or press the tag. Another example can be the labeling of a 3D
+          model of the human skeleton. Many students can gather around and join
+          a Virtual Room to interact with this model and view these labels.
+        </>
+      ),
+    },
+    {
+      subtitle: <>Annotations</>,
+      body: (
+        <>
+          By annotating aspects of the 3D model, the other attendees are given
+          more explanation by notes and comments. 3D Tags will allow you to go
+          in depth in whatever product, model, concept or design you have
+          shared, and go into further detail by using the description attribute
+          in the tag. By using the title attribute and the description attribute
+          you can fully explain all the different aspects of your model. In
+          situations of explanation the link tag can also send your attendees to
+          another website to view more information on whatever you want.
+        </>
+      ),
+    },
+    {
+      subtitle: <>Call To Action</>,
+      body: (
+        <>
+          For commercial use{" "}
+          <Link
+            style={common_a}
+            to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
+          >
+            Virtual Rooms
+          </Link>{" "}
+          are perfect to host virtual stores, products, virtual showcase rooms
+          and whatever you can think of. Just like annotating using the
+          description and the title tags will help also by allowing your
+          customers to understand your products better, however the link tag is
+          also available which will redirect your customers to any website you
+          want including a payment link. We try to understand what a company or
+          business would need when allowing their potential customers to
+          interact with their products in a virtual environment. We believe that
+          the link attributes will help close sales and bring more customers to
+          their own website.
+        </>
+      ),
+    },
+  ];
 
   return (
     <>
@@ -75,7 +122,7 @@ export default function LearnMore3DTag() {
       <Box
         className="no-sidebar"
         sx={{
-          overflow: mobile ? "none" : "scroll",
+          overflow: "scroll",
           maxHeight: "100vh",
           padding: "20px",
         }}
@@ -96,14 +143,20 @@ export default function LearnMore3DTag() {
               action={() => navigation(PAGES.CREATE_VIRTUAL_ROOM)}
             />
           </div>
-          <Article
-            keywords={article.keywords}
-            learn_more_text={article.learn_more_text}
-            learn_more={article.learn_more}
-            header={article.header}
-            subtitle={article.subtitle}
-            body={article.body}
-          />{" "}
+          {articles.map((article, index) => (
+            <>
+              <Article
+                key={index}
+                keywords={article.keywords}
+                learn_more_text={article.learn_more_text}
+                learn_more={article.learn_more}
+                header={article.header}
+                subtitle={article.subtitle}
+                body={article.body}
+              />
+              <br />
+            </>
+          ))}
         </div>
       </Box>
     </>

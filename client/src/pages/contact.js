@@ -10,7 +10,7 @@ export default function Contact() {
       <Box
         className="no-sidebar"
         sx={{
-          overflow: mobile ? "none" : "scroll",
+          overflow: "scroll",
           maxHeight: "100vh",
           padding: "20px",
         }}

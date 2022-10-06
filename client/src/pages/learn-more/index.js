@@ -1,17 +1,15 @@
 import Article from "../../components/content/article";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
-import MEDIA from "../../utils/constants/media";
 import { NESTED as nested } from "../../utils/constants/page-names";
 import URLS from "../../utils/constants/url";
-import { Box, useMediaQuery } from "@mui/material";
+import { Box } from "@mui/material";
 import Heading from "../../components/content/heading";
 import { Link, useLocation } from "react-router-dom";
 
 export default function LearnMore() {
   const location = useLocation();
   const theme = useTheme();
-  const mobile = useMediaQuery(MEDIA.MOBILE_MAX);
   const common_span = {
     color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
   };
@@ -82,7 +80,7 @@ export default function LearnMore() {
       <Box
         className="no-sidebar"
         sx={{
-          overflow: mobile ? "none" : "scroll",
+          overflow: "scroll",
           maxHeight: "100vh",
           padding: "20px",
         }}

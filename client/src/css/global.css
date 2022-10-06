@@ -2,8 +2,7 @@ html,
 body {
   padding: 0;
   margin: 0;
-  overflow-x: hidden;
-  overflow-y: scroll;
+  overflow: none;
   box-sizing: border-box;
   -ms-overflow-style: "none";
   scrollbar-width: "none";
@@ -29,8 +28,7 @@ li {
 }
 
 .list-content {
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: none;
   padding-bottom: 0vh;
   box-sizing: border-box;
   -ms-overflow-style: "none";
@@ -46,8 +44,7 @@ li {
 }
 
 .list {
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: none;
   height: 100vh;
   padding-bottom: 0vh;
   box-sizing: border-box;
@@ -60,8 +57,7 @@ li {
 }
 
 .page {
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: none;
   -ms-overflow-style: "none";
   scrollbar-width: "none";
   opacity: 1;
@@ -79,8 +75,7 @@ li {
 }
 
 ol {
-  overflow-y: scroll;
-  overflow-x: hidden;
+  overflow: none;
   height: 100vh;
   padding-bottom: 30vh;
   box-sizing: border-box;
@@ -107,9 +102,7 @@ ol::-webkit-scrollbar {
 }
 
 .no-sidebar {
-  overflow-y: scroll;
-  overflow-x: hidden;
-
+  overflow: none;
   -ms-overflow-style: "none";
   scrollbar-width: "none";
 }
