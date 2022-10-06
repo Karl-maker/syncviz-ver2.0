@@ -5,6 +5,8 @@ const bodyParser = require("body-parser");
 const favicon = require("serve-favicon");
 const cors = require("cors");
 const config = require("./config");
+const timeout = require("connect-timeout");
+const rateLimit = require("express-rate-limit");
 
 const jsonParser = bodyParser.json();
 const urlencodedParser = bodyParser.urlencoded({ extended: false });
@@ -18,6 +20,13 @@ module.exports = function () {
   const io = this.io;
   const express = this.express;
   const app = this.app;
+
+  const limiter = rateLimit({
+    windowMs: 15 * 60 * 1000, // 15 minutes
+    max: 50, // Limit each IP to 100 requests per `window` (here, per 15 minutes)
+    standardHeaders: true, // Return rate limit info in the `RateLimit-*` headers
+    legacyHeaders: false, // Disable the `X-RateLimit-*` headers
+  });
 
   // Namespaces..
 
@@ -34,22 +43,36 @@ module.exports = function () {
     next();
   });
 
+  app.use(timeout("10s"));
+  app.use(limiter);
   app.use(cors(corsOptions));
   app.use(jsonParser);
   app.use(urlencodedParser);
   app.use(bodyParser.json({ limit: "50mb" }));
   app.use(bodyParser.urlencoded({ limit: "50mb", extended: true }));
 
-  app.use("/", express.static(path.join(__dirname, config.build.PATH))); // Build
-  app.use("/static", express.static(path.join(__dirname, "/static")));
-  app.use("/api", httpControllers.call({ io }));
+  app.use(
+    "/",
+    haltOnTimedout,
+    express.static(path.join(__dirname, config.build.PATH))
+  ); // Build
+  app.use(
+    "/static",
+    haltOnTimedout,
+    express.static(path.join(__dirname, "/static"))
+  );
+  app.use("/api", haltOnTimedout, httpControllers.call({ io }));
   app.use((req, res, next) => {
     if (process.env.NODE_ENV != "development") {
       return favicon(path.join(__dirname, `${config.build.PATH}/favicon.ico`));
     }
     next();
   });
-  app.get("*", (req, res) => {
+  app.get("*", haltOnTimedout, (req, res) => {
     res.sendFile(path.join(__dirname, config.build.INDEX));
   });
 };
+
+function haltOnTimedout(req, res, next) {
+  if (!req.timedout) next();
+}
