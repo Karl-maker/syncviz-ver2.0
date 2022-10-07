@@ -4,7 +4,7 @@ import PAGES from "../../utils/constants/page-names";
 import { Box } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
-import { NESTED as nested } from "../../utils/constants/page-names";
+import { NESTED as nested, ID } from "../../utils/constants/page-names";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 
@@ -18,6 +18,8 @@ export default function LearnMore3DTag() {
     textDecoration: "none",
     color: theme.palette.mode === "dark" ? "#81ecec" : "#00cec9",
   };
+
+  const content_id = ID.LEARN_MORE;
 
   const articles = [
     {
@@ -40,15 +42,24 @@ export default function LearnMore3DTag() {
           ways.
         </>
       ),
+
+      // ${location.pathname}${nested.LEARN_MORE.TAG}
+
       keywords: [
-        { word: "virtual room" },
-        { word: "3d tag" },
-        { word: "annotation" },
-        { word: "label" },
-        { word: "call to action" },
+        { word: "3d tag", action: () => {} },
+        {
+          word: "annotation",
+          action: () => navigation(`#${content_id.ANNOTATIONS}`),
+        },
+        { word: "label", action: () => navigation(`#${content_id.LABELS}`) },
+        {
+          word: "call to action",
+          action: () => navigation(`#${content_id.CALL_TO_ACTIONS}`),
+        },
       ],
     },
     {
+      position_id: content_id.LABELS,
       subtitle: <>Labels</>,
       body: (
         <>
@@ -66,6 +77,7 @@ export default function LearnMore3DTag() {
       ),
     },
     {
+      position_id: content_id.ANNOTATIONS,
       subtitle: <>Annotations</>,
       body: (
         <>
@@ -81,6 +93,7 @@ export default function LearnMore3DTag() {
       ),
     },
     {
+      position_id: content_id.CALL_TO_ACTIONS,
       subtitle: <>Call To Action</>,
       body: (
         <>

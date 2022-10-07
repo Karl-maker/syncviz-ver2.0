@@ -85,6 +85,7 @@ export default function BabylonViewer(props) {
     babylonSceneRef.current.setArcCameraFraming(() => {
       setSceneReady(true);
     });
+    babylonSceneRef.current.camera.wheelDeltaPercentage = 0.01;
     // This attaches the camera to the canvas
     babylonSceneRef.current.scene.activeCamera.attachControl(
       babylonSceneRef.current.canvas,

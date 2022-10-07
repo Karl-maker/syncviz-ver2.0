@@ -18,14 +18,17 @@ export const NESTED = {
     INDEX: constants.LEARN_MORE,
     VIRTUAL_ROOM: "/virtual-room",
     TAG: "/3d-tags",
+    SHARING: "/3d-sharing",
   },
 };
 
 export const ID = {
   LEARN_MORE: {
-    LABELS: "learn-more-labels",
-    ANNOTATIONS: "learn-more-annotations",
-    CALL_TO_ACTIONS: "learn-more-call-to-actions",
+    LABELS: "learnmorelabels",
+    ANNOTATIONS: "learnmoreannotations",
+    CALL_TO_ACTIONS: "learnmorecalltoactions",
+    THRIVE_AREAS: "learnmoreareasthrive-in",
+    SYNCPOLY: "whatissyncpoly",
   },
 };
 

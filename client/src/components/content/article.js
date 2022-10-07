@@ -7,11 +7,12 @@ export default function Article({
   action_label,
   action,
   keywords,
+  position_id,
 }) {
   const common_style = { marginBottom: "10px" };
 
   return (
-    <article>
+    <article id={position_id}>
       <Typography
         variant="h5"
         component="h2"
@@ -41,6 +42,7 @@ export default function Article({
                     label={keyword.word}
                     color="primary"
                     variant="outlined"
+                    onClick={keyword.action && keyword.action}
                   />
                 );
               })}

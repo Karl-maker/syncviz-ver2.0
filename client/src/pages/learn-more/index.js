@@ -1,11 +1,11 @@
 import Article from "../../components/content/article";
 import { useTheme } from "@mui/material/styles";
 import { Helmet } from "react-helmet";
-import { NESTED as nested } from "../../utils/constants/page-names";
+import PAGES, { NESTED as nested, ID } from "../../utils/constants/page-names";
 import URLS from "../../utils/constants/url";
 import { Box } from "@mui/material";
 import Heading from "../../components/content/heading";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export default function LearnMore() {
   const location = useLocation();
@@ -17,9 +17,11 @@ export default function LearnMore() {
     textDecoration: "none",
     color: theme.palette.mode === "dark" ? "#81ecec" : "#00cec9",
   };
+  const navigation = useNavigate();
 
   const ARTICLES = [
     {
+      position_id: ID.LEARN_MORE.SYNCPOLY,
       header: (
         <>
           What is <span style={common_span}>Syncpoly</span>?
@@ -60,10 +62,45 @@ export default function LearnMore() {
         </>
       ),
       keywords: [
-        { word: "syncpoly" },
-        { word: "3d sharing" },
-        { word: "virtual room" },
+        { word: "syncpoly", action: () => navigation(`${PAGES.ABOUT}`) },
+        {
+          word: "3d sharing",
+          action: () =>
+            navigation(`${location.pathname}${nested.LEARN_MORE.SHARING}`),
+        },
+        {
+          word: "virtual room",
+          action: () =>
+            navigation(`${location.pathname}${nested.LEARN_MORE.VIRTUAL_ROOM}`),
+        },
       ],
+    },
+    {
+      position_id: ID.LEARN_MORE.THRIVE_AREAS,
+      subtitle: <>Areas we thrive in</>,
+      body: (
+        <>
+          Our 3D sharing software thrives in certain areas within different
+          industries and markets. We are committed to facilitating and packaging
+          for the needs of each of these areas listed below. As we grow, we will
+          continue to develop features that aims at facilitating these area's
+          goals.
+          <ul
+            style={{
+              paddingLeft: "0px",
+              listStyleType: "circle",
+              listStyle: "display",
+            }}
+          >
+            <li>Education</li>
+            <li>Retail</li>
+            <li>Architecture</li>
+            <li>Manufacturing</li>
+            <li>Advertising</li>
+            <li>Health Care</li>
+          </ul>
+        </>
+      ),
     },
   ];
 
@@ -101,9 +138,9 @@ export default function LearnMore() {
             action_label={<>Watch Presentation</>}
           />
         </div>
-        {ARTICLES.map((article, index) => {
-          return (
-            <div style={{ marginBottom: "200px" }}>
+        <div style={{ marginBottom: "200px" }}>
+          {ARTICLES.map((article, index) => {
+            return (
               <Article
                 keywords={article.keywords}
                 learn_more_text={article.learn_more_text}
@@ -112,9 +149,9 @@ export default function LearnMore() {
                 subtitle={article.subtitle}
                 body={article.body}
               />
-            </div>
-          );
-        })}
+            );
+          })}
+        </div>
 
         {/* Also Check Out
         <ul style={{ marginBottom: "100px" }}>

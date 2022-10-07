@@ -47,7 +47,14 @@ export default function LearnMoreVirtualRoom() {
         or just experience an event in a different way.
       </>
     ),
-    keywords: [{ word: "virtual room" }, { word: "3d sharing" }],
+    keywords: [
+      { word: "virtual room", action: () => {} },
+      {
+        word: "3d sharing",
+        action: () =>
+          navigation(`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.SHARING}`),
+      },
+    ],
   };
 
   return (
