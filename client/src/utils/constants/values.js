@@ -1,5 +1,5 @@
 const constants = {
-  FILESIZE_LIMIT: 104857600,
+  FILESIZE_LIMIT: 209715200,
 };
 
 export default constants;
