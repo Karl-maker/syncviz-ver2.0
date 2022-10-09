@@ -41,8 +41,8 @@ export default function LearnMore() {
           >
             Virtual Room
           </Link>{" "}
-          because whoever you are the content with will be able to interact live
-          with it.
+          because whoever you are sharing the content with will be able to
+          interact live with it.
           <br />
           <br />
           Our main objective is to share 3D models, however we have learnt that
