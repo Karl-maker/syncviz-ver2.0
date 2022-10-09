@@ -5,18 +5,12 @@ import { useNavigate } from "react-router-dom";
 import { useTheme } from "@mui/material/styles";
 import Article from "../components/content/article";
 import { Box } from "@mui/material";
-import { Link } from "react-router-dom";
-import { NESTED as nested } from "../utils/constants/page-names";
 
 export default function About() {
   const theme = useTheme();
   const navigation = useNavigate();
   const common_span = {
     color: theme.palette.mode === "dark" ? "#74b9ff" : "#0984e3",
-  };
-  const common_a = {
-    textDecoration: "none",
-    color: theme.palette.mode === "dark" ? "#81ecec" : "#00cec9",
   };
 
   return (
@@ -94,16 +88,9 @@ export default function About() {
               connect to each other to share an experience in 3D. SyncPoly
               brings the Metaverse to ordinary people by giving them the ability
               to develop their own spaces with ease and the help of the
-              community.{" "}
-              <Link
-                style={common_a}
-                to={`${nested.LEARN_MORE.INDEX}${nested.LEARN_MORE.VIRTUAL_ROOM}`}
-              >
-                Virtual Rooms
-              </Link>{" "}
-              allow its owners to share experiences, inform, sell products,
-              entertain and advertise to all its attendees in a familiar hassle
-              free manner.
+              community. Virtual Rooms allow its owners to share experiences,
+              inform, sell products, entertain and advertise to all its
+              attendees in a familiar hassle free manner.
             </>
           }
         />

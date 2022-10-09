@@ -153,7 +153,7 @@ export default function Home() {
                 }
               ></Divider>
               <Button
-                onClick={() => navigation(PAGES.LEARN_MORE)}
+                onClick={() => window.open(PAGES.LEARN_MORE)}
                 variant="contained"
                 disableElevation
                 startIcon={<FaInfo />}

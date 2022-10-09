@@ -68,7 +68,7 @@ export default function MenuBar({ text_color }) {
       label: "Learn More",
       icon: <AiOutlineRead />,
       info: "Learn more about us here",
-      action: () => navigate(PAGES.LEARN_MORE),
+      action: () => window.open(PAGES.LEARN_MORE),
     },
     {
       label: "About Us",

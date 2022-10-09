@@ -10,7 +10,7 @@ const constants = {
   PRIVACY_POLICY: "/privacy-policy",
   COOKIE_POLICY: "/cookie-policy",
   TERMS_AND_CONDITIONS: "terms-and-conditions",
-  LEARN_MORE: "/learn-more",
+  LEARN_MORE: "https://community.syncpoly.com",
 };
 
 export const NESTED = {
