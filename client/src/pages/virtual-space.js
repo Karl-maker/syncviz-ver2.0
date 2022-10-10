@@ -25,7 +25,7 @@ export default function VirtualSpace() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | View Virtual Room</title>
+        <title>Syncpoly | View Virtual Room</title>
         <meta
           name="description"
           content="Share 3D Models, Products or Environments live with anyone. Quickly you can allow others to interact and explore 3D while communicating with eachother. SyncPoly helps to bring 3D sharing to everyone."

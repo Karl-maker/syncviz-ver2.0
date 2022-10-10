@@ -9,7 +9,7 @@ export default function Terms() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Terms and Conditions</title>
+        <title>Syncpoly | Terms and Conditions</title>
         <meta
           name="description"
           content="Our Privacy Policy also governs your use of our Service and explains

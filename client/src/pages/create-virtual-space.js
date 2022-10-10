@@ -48,7 +48,7 @@ export default function CreateVirtualSpace() {
       {socket && (
         <Tour steps={Steps.MANAGE}>
           <Helmet>
-            <title>SyncPoly | Create Virtual Room</title>
+            <title>Syncpoly | Create Virtual Room</title>
             <meta
               name="description"
               content="Start a Virtual Room to create a virtual environment where 3D models, products and environments can be shared. Allow persons to join your Virtual Room now and share your 3D experience with many."

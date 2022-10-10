@@ -60,7 +60,7 @@ export default function LearnMoreVirtualRoom() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Learn More About Virtual Rooms</title>
+        <title>Syncpoly | Learn More About Virtual Rooms</title>
         <meta
           name="description"
           content="Learn more about Syncpoly's Virtual Rooms and how they can be used to develop a Metaverse and Virtual environment. A Virtual Room is the environment in which 3D models can be broadcasted to everyone attending it. Attendees can interact with the model, communicate with eachother and select 3D Tags. With the main features given in these Virtual Rooms you can create virtual environments where attendees may learn about a design, purchase a product using a 3D Tag or just experience an event in a different way."

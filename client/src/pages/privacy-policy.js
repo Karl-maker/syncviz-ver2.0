@@ -10,7 +10,7 @@ export default function PrivacyPolicy() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Privacy Policy</title>
+        <title>Syncpoly | Privacy Policy</title>
         <meta
           name="description"
           content=" Our Privacy Policy governs your visit to syncpoly.com, and

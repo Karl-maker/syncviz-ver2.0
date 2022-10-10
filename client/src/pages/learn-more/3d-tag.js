@@ -122,7 +122,7 @@ export default function LearnMore3DTag() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Learn More About 3D Tag</title>
+        <title>Syncpoly | Learn More About 3D Tag</title>
         <meta
           name="description"
           content=" 3D Tags are annotations that are placed in the Virtual Room. These can highlight aspects of the Virtual environment that can inform or give a call to action. 3D Tags can be used in many creative ways such as the following; Annotaions, Labels and Call to actions"

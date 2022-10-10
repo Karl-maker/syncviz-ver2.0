@@ -4,7 +4,7 @@ export default function Contact() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Contact Us</title>
+        <title>Syncpoly | Contact Us</title>
         <meta name="description" content="Contact Us" />
       </Helmet>
       <Box

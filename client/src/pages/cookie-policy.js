@@ -8,7 +8,7 @@ export default function CookiePolicy() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Cookie Policy</title>
+        <title>Syncpoly | Cookie Policy</title>
         <meta
           name="description"
           content="As is common practice with almost all professional websites this site

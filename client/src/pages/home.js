@@ -21,7 +21,7 @@ export default function Home() {
   return (
     <>
       <Helmet>
-        <title>SyncPoly | Create Virtual Experiences</title>
+        <title>Syncpoly | Create Virtual Experiences</title>
         <meta
           name="description"
           content="Host 3D Models, Products or Environments live on a Virtual Room. Quickly you can allow others to interact and explore 3D while communicating with eachother."
@@ -120,7 +120,7 @@ export default function Home() {
                 sx={{ marginBottom: "20px" }}
                 component="P"
               >
-                SyncPoly offers a way to bring virtual experiences to persons
+                Syncpoly offers a way to bring virtual experiences to persons
                 online. Create Virtual Rooms to give many persons a 3D
                 experience. You can allow persons to interact with designs,
                 concepts, products or models using our 3D hosting technology.

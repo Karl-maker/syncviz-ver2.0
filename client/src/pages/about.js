@@ -24,7 +24,7 @@ export default function About() {
       }}
     >
       <Helmet>
-        <title>SyncPoly | About Us</title>
+        <title>Syncpoly | About Us</title>
         <meta
           name="description"
           content="SyncPoly is an online platform that offers a lightweight Virtual
