@@ -22,6 +22,7 @@ export default class Tag {
     this.virtualSpace = virtualSpace;
     this._manage = manage || false;
     this._placeholder = null;
+    this._displayed = false;
   }
 
   get id() {
@@ -92,25 +93,29 @@ export default class Tag {
 
     ring.onPointerEnterObservable.add(() => {
       // Display Label
+
       this.displayLabel();
     });
 
-    ring.onPointerUpObservable.add(function () {
+    ring.onPointerUpObservable.add(() => {
       // Display Label
-      this.displayLabel();
 
-      //   camera.setTarget(
-      //     new BABYLON.Vector3(
-      //       plane.position.x,
-      //       plane.position.y,
-      //       plane.position.z
-      //     )
-      //   );
+      this.displayLabel();
+    });
+
+    ring.onPointerDownObservable.add(() => {
+      // Display Label
+
+      this.displayLabel();
     });
   }
 
   displayLabel() {
     // Graphical component
+
+    if (this._displayed) return;
+
+    this._displayed = true;
 
     this._placeholder = BABYLON.Mesh.CreateSphere(
       `GUI-Label-${this._id}`,
@@ -142,6 +147,7 @@ export default class Tag {
     box.onPointerOutObservable.add(() => {
       // The entire GUI Component
       advancedTexture.removeControl(box);
+      this._displayed = false;
     });
 
     advancedTexture.addControl(box);
@@ -167,6 +173,7 @@ export default class Tag {
       handleClick: () => {
         // The entire GUI Component
         advancedTexture.removeControl(box);
+        this._displayed = false;
       },
     });
 
@@ -299,6 +306,7 @@ export default class Tag {
             // The entire GUI Component
 
             advancedTexture.removeControl(box);
+            this._displayed = false;
           },
         }
       );
