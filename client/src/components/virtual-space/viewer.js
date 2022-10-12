@@ -102,12 +102,14 @@ export default function Viewer() {
     });
 
     socket.on("remove-tag", ({ data }) => {
-      setDeleteTag(data._id);
-      setTags(
-        tags.filter(function (e) {
-          return e !== { _id: data._id };
-        })
-      );
+      try {
+        setDeleteTag(data._id);
+        setTags(
+          tags.filter(function (e) {
+            return e !== { _id: data._id };
+          })
+        );
+      } catch (err) {}
     });
 
     return () => {

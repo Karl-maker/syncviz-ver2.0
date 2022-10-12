@@ -35,8 +35,6 @@ export default function BabylonViewer(props) {
     sceneReady,
     tags,
     vr,
-    info,
-    infoOpen,
     ...rest
   } = props;
 
@@ -55,6 +53,7 @@ export default function BabylonViewer(props) {
     //theme.palette.mode === "dark" ? "#34495e" : "#ecf0f1"34495e
     babylonSceneRef.current.blockfreeActiveMeshesAndRenderingGroups = true;
     babylonSceneRef.current.initializeCamera({ mobile, vr });
+    babylonSceneRef.current.manage = manage;
 
     await babylonSceneRef.current.loadScene(
       modelUrl,
@@ -62,7 +61,6 @@ export default function BabylonViewer(props) {
         setProgress,
       },
       (scene) => {
-        console.log(scene);
         scene.blockMaterialDirtyMechanism = true;
         scene.blockfreeActiveMeshesAndRenderingGroups = false;
         scene.getAnimationRatio();
@@ -126,6 +124,7 @@ export default function BabylonViewer(props) {
       BABYLON.SceneLoader.ShowLoadingScreen = true;
 
       const scene = new BABYLON.Scene(engine, sceneOptions);
+
       if (scene.isReady()) {
         onSceneReady(scene);
       } else {
@@ -136,6 +135,7 @@ export default function BabylonViewer(props) {
         if (typeof onRender === "function") {
           onRender(scene);
         }
+
         scene.render();
       });
 
@@ -170,6 +170,21 @@ export default function BabylonViewer(props) {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [reactCanvas, fullScreen, refresh, theme.palette.mode, vr]);
 
+  // useEffect(() => {
+  //   if (
+  //     babylonSceneRef.current &&
+  //     babylonSceneRef &&
+  //     progress === "100" &&
+  //     sceneReady
+  //   ) {
+  //     // Pointers
+  //   }
+
+  //   return () => {};
+
+  //   // eslint-disable-next-line react-hooks/exhaustive-deps
+  // }, [tags, progress, sceneReady]);
+
   useEffect(() => {
     if (!tags) return;
     if (
@@ -181,14 +196,9 @@ export default function BabylonViewer(props) {
       // Add tag / render
       tags.forEach((tag) => {
         // Delete
-
-        if (!previousTags.includes({ _id: tag._id }))
-          babylonSceneRef.current.addTag(tag, 0, {
-            backgroundColor:
-              theme.palette.mode === "dark" ? "#2c3e50" : "#2980b9",
-            fontColor: "#ffff",
-            setInfo,
-            setInfoOpen,
+        if (!previousTags.includes({ id: tag._id }))
+          babylonSceneRef.current.addTag(tag, {
+            virtualSpace: virtualSpace,
           });
       });
 
@@ -199,17 +209,6 @@ export default function BabylonViewer(props) {
 
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [tags, progress, sceneReady]);
-
-  useEffect(() => {
-    if (infoOpen && info) {
-      babylonSceneRef.current.displayGUILabel(info, manage, {
-        setInfo,
-        setInfoOpen,
-        virtualSpace,
-      });
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [infoOpen, info]);
 
   useEffect(() => {
     //delete
