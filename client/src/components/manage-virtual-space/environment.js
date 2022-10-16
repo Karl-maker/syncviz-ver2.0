@@ -19,25 +19,21 @@ import formatBytes from "../../utils/tools/sizeFormat";
 
 const MODELS = [
   {
+    name: "Speakers",
+    description: "Speaker example",
+    url: `/static/Speaker.glb`,
+  },
+  {
+    name: "Audi RS6",
+    description: "Audi car RS7",
+    url: `/static/Audi_RS6.glb`,
+  },
+  {
     name: "Pirate Fort",
     description: "Detailed model of pirate fort",
     url: `https://assets.babylonjs.com/meshes/pirateFort/pirateFort.glb`,
   },
-  {
-    name: "Seagull",
-    description: "Stylistic seagull model",
-    url: `https://assets.babylonjs.com/meshes/seagulf.glb`,
-  },
-  {
-    name: "UFO",
-    description: "UFO model",
-    url: `https://assets.babylonjs.com/meshes/ufo.glb`,
-  },
-  {
-    name: "Flight Helmet",
-    description: "Detailed flight helmet",
-    url: `https://assets.babylonjs.com/meshes/flightHelmet.glb`,
-  },
+
   {
     name: "Fish",
     description: "Fish",
