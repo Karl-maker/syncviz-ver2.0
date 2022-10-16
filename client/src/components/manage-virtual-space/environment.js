@@ -21,12 +21,12 @@ const MODELS = [
   {
     name: "Speakers",
     description: "Speaker example",
-    url: `/static/Speaker.glb`,
+    url: "https://www.syncpoly.com/static/Speaker.glb",
   },
   {
     name: "Audi RS6",
     description: "Audi car RS7",
-    url: `/static/Audi_RS6.glb`,
+    url: `https://www.syncpoly.com/static/Audi_RS6.glb`,
   },
   {
     name: "Pirate Fort",
