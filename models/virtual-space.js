@@ -21,7 +21,7 @@ const VirtualSpaceSchema = new mongoose.Schema(
     model: {
       url: {
         type: String,
-        default: "https://www.syncpoly.com/static/Speaker.glb",
+        default: "https://www.syncpoly.com/static/Audi_RS6.glb",
       },
       name: { type: String, default: "Default Pirate Bay" },
     },
