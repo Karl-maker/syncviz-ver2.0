@@ -19,6 +19,11 @@ import formatBytes from "../../utils/tools/sizeFormat";
 
 const MODELS = [
   {
+    name: "Bed Room",
+    description: "Bed room example",
+    url: "https://www.syncpoly.com/static/Bedroom.glb",
+  },
+  {
     name: "Speakers",
     description: "Speaker example",
     url: "https://www.syncpoly.com/static/Speaker.glb",
